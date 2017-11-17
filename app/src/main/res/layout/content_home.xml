@@ -24,6 +24,20 @@
             layout="@layout/spiner"
             tools:ignore="ResourceCycle" />
 
-
     </HorizontalScrollView>
+
+    <ImageButton
+        android:id="@+id/sell"
+        android:layout_width="162dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="48dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.992"
+        app:srcCompat="@drawable/sell" />
+
+
 </android.support.constraint.ConstraintLayout>

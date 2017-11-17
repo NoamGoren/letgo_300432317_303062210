@@ -28,16 +28,16 @@
             app:srcCompat="@drawable/home" />
 
         <ImageButton
-            android:id="@+id/fashion"
-            android:layout_width="75dp"
-            android:layout_height="100dp"
-            app:srcCompat="@drawable/fashion" />
-
-        <ImageButton
             android:id="@+id/motors"
             android:layout_width="75dp"
             android:layout_height="100dp"
             app:srcCompat="@drawable/motors" />
+
+        <ImageButton
+            android:id="@+id/fashion"
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/fashion" />
 
         <ImageButton
             android:id="@+id/other"

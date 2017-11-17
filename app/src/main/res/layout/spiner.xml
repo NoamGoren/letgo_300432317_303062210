@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_weight="0.07">
+
+        <ImageButton
+            android:id="@+id/cars"
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/cars1" />
+
+
+        <ImageButton
+            android:id="@+id/home"
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/home" />
+
+        <ImageButton
+            android:id="@+id/fashion"
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/fashion" />
+
+        <ImageButton
+            android:id="@+id/motors"
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/motors" />
+
+        <ImageButton
+            android:id="@+id/other"
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/other" />
+
+        <ImageButton
+            android:id="@+id/child"
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/child" />
+
+        <ImageButton
+            android:id="@+id/entertai"
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/entertai" />
+
+        <ImageButton
+            android:id="@+id/leisure"
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/leisure1" />
+
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

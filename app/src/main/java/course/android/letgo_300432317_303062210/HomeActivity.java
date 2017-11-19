@@ -1,5 +1,6 @@
 package course.android.letgo_300432317_303062210;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -94,6 +95,8 @@ public class HomeActivity extends AppCompatActivity
 
         }
         else if (id == R.id.nav_categories) {
+            Intent i = new Intent(HomeActivity.this,CategoriesActivity.class);
+            startActivity(i);
 
         }
         else if (id == R.id.nav_profile) {

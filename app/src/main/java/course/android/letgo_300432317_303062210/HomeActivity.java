@@ -1,5 +1,7 @@
 package course.android.letgo_300432317_303062210;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -23,6 +25,12 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction t= fm.beginTransaction();
+        ProductsListFragment ProductsFragment= new ProductsListFragment();
+        t.replace(R.id.root_layout, ProductsFragment);
+        t.commit();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <array name="images">
+  <item>@drawable/lion</item>
+  <item>@drawable/tiger</item>
+  <item>@drawable/elephant</item>
+  <item>@drawable/cow</item>
+  <item>@drawable/zebra</item>
+  <item>@drawable/kangaro</item>
+  <item>@drawable/panda</item>
+    <item>@drawable/fox</item>
+    <item>@drawable/squarl</item>
+    <item>@drawable/rabbit</item>
+    <item>@drawable/toky</item>
+    <item>@drawable/cat</item>
+</array>
+
+
+  <string-array name="names">
+    <item>lion</item>
+    <item>tiger</item>
+    <item>elephant</item>
+    <item>cow</item>
+    <item>zebra</item>
+    <item>kangaro</item>
+    <item>panda</item>
+    <item>fox</item>
+    <item>squarl</item>
+    <item>rabbit</item>
+    <item>toky</item>
+    <item>cat</item>
+  </string-array>
+
+  <string-array name="descriptions">
+    <item>The lion (Panthera leo) is one of the big cats in the genus Panthera and a member of the family Felidae. The commonly used term African lion collectively denotes the several subspecies in Africa.</item>
+    <item>The tiger (Panthera tigris) is the largest cat species, most recognisable for their pattern of dark vertical stripes on reddish-orange fur with a lighter underside. The species is classified in the genus Panthera with the lion, leopard, jaguar and snow leopard. </item>
+    <item>Elephants are large mammals of the family Elephantidae and the order Proboscidea. Two species are traditionally recognised, the African elephant (Loxodonta africana) and the Asian elephant (Elephas maximus), although some evidence suggests that African bush elephants and African forest elephants are separate species</item>
+    <item>Foxes are small-to-medium-sized, omnivorous mammals belonging to several genera of the family Canidae. Foxes are slightly smaller than a medium-size domestic dog, with a flattened skull, upright triangular ears, a pointed, slightly upturned snout, and a long bushy tail (or brush).</item>
+    <item>Squirrels are members of the family Sciuridae, a family that includes small or medium-size rodents. The squirrel family includes tree squirrels, ground squirrels, chipmunks, marmots (including woodchucks), flying squirrels, and prairie dogs amongst other rodents. </item>
+    <item>Cattle—colloquially cows—are the most common type of large domesticated ungulates. They are a prominent modern member of the subfamily Bovinae, are the most widespread species of the genus Bos, and are most commonly classified collectively as Bos taurus</item>
+    <item>Rabbits are small mammals in the family Leporidae of the order Lagomorpha, found in several parts of the world. There are eight different genera in the family classified as rabbits, including the European rabbit (Oryctolagus cuniculus), cottontail rabbits </item>
+    <item>Parrots, also known as psittacines are birds of the roughly 393 species in 92 genera that make up the order Psittaciformes, found in most tropical and subtropical regions. The order is subdivided into three superfamilies: the Psittacoidea ("true" parrots), the Cacatuoidea (cockatoos), and the Strigopoidea (New Zealand parrots).</item>
+    <item>Zebras are several species of African equids (horse family) united by their distinctive black and white striped coats. Their stripes come in different patterns, unique to each individual. They are generally social animals that live in small harems to large herds. Unlike their closest relatives, horses and donkeys, zebras have never been truly domesticated.</item>
+    <item>The kangaroo is a marsupial from the family Macropodidae (macropods, meaning "large foot"). In common use the term is used to describe the largest species from this family, especially those of the genus Macropus: the red kangaroo, antilopine kangaroo, eastern grey kangaroo, and western grey kangaroo.</item>
+    <item>The giant panda (Ailuropoda melanoleuca, literally "black and white cat-foot";  literally "big bear cat"), also known as panda bear or simply panda, is a bear native to south central China. It is easily recognized by the large, distinctive black patches around its eyes, over the ears, and across its round body.</item>
+    <item>The domestic cat (Latin: Felis catus) is a small, typically furry, carnivorous mammal. They are often called house cats when kept as indoor pets or simply cats when there is no need to distinguish them from other felids and felines.[6] Cats are often valued by humans for companionship and for their ability to hunt vermin. </item>
+     </string-array>
+
+
+</resources>

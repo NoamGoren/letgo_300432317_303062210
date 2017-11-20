@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
-                                             android:layout_width="wrap_content"
-                                             android:layout_height="match_parent"
-                                             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                                             tools:context="course.android.letgo_300432317_303062210.HomeActivity"
-                                             tools:layout_editor_absoluteY="81dp"
-                                             tools:showIn="@layout/app_bar_home">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="course.android.letgo_300432317_303062210.HomeActivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:showIn="@layout/app_bar_home">
 
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView2"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        >
+        android:layout_height="100dp">
 
         <include
             layout="@layout/spiner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:ignore="ResourceCycle"/>
+            tools:ignore="ResourceCycle" />
+
 
     </HorizontalScrollView>
+
 
     <ImageButton
         android:id="@+id/sell"
@@ -34,7 +35,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/sell"/>
+        app:srcCompat="@drawable/sell" />
+
+    <FrameLayout
+        android:id="@+id/root_layout"
+        android:layout_width="381dp"
+        android:layout_height="343dp"
+        android:layout_marginBottom="68dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2"
+        app:layout_constraintVertical_bias="0.0">
+
+    </FrameLayout>
 
 
 </android.support.constraint.ConstraintLayout>

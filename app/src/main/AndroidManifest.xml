@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="course.android.letgo_300432317_303062210">
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-feature android:name="android.hardware.camera" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".HomeActivity"
-            android:label="@string/title_activity_home"
+            android:label="letgo"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -20,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".TestActivity"/>
+        <activity android:name=".CameraActivity"/>
         <activity android:name=".MainActivity"/>
         <activity android:name=".CategoriesActivity">
         </activity>

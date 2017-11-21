@@ -22,9 +22,9 @@
 
         android:centerColor="#FFFFFF"
 
-        android:endColor="#f9d7f2"
+        android:endColor="@color/lightRed"
 
-        android:startColor="#f9d7f2" />
+        android:startColor="@color/lightRed" />
 
 
 

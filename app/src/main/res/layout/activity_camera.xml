@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-
+        android:textColor="@color/black"
         android:text="Upload your item to letgo" />
 
     <ImageButton
@@ -74,6 +74,38 @@
                 android:id="@+id/coin_spinner"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/editText4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter price"
+                android:layout_marginLeft="5dp"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:textColor="@color/red"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Choose category" />
+
+            <Spinner
+                android:id="@+id/category_spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+
+            <EditText
+                android:id="@+id/editText44"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="20"
+                android:hint="Location"
+                android:layout_marginLeft="5dp"
+                android:inputType="textPersonName" />
 
 
         </LinearLayout>

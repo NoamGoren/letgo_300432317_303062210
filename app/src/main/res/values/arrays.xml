@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+  <string-array name="coin_array">
+    <item>ILS</item>
+    <item>USD</item>
+    <item>EUR</item>
+  </string-array>
+
+  <string-array name="category_array">
+    <item>Not selected</item>
+    <item>Cars</item>
+    <item>Home</item>
+    <item>Motors</item>
+    <item>Fashion</item>
+    <item>Other</item>
+    <item>Child</item>
+    <item>Entertaiment</item>
+    <item>Leisure</item>
+  </string-array>
+
+
+
   <array name="images">
   <item>@drawable/lion</item>
   <item>@drawable/tiger</item>

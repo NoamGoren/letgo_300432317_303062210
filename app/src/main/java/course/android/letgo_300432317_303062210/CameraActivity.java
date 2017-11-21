@@ -50,14 +50,23 @@ public class CameraActivity extends Activity {
 
         initiViews();
 
-        Spinner spinner = (Spinner) findViewById(R.id.coin_spinner);
+        Spinner coinSpinner = (Spinner) findViewById(R.id.coin_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        ArrayAdapter<CharSequence> coinadapter = ArrayAdapter.createFromResource(this,
                 R.array.coin_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        coinadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        coinSpinner.setAdapter(coinadapter);
+
+        Spinner categorySpinner = (Spinner) findViewById(R.id.category_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> categoryadapter = ArrayAdapter.createFromResource(this,
+                R.array.category_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        categoryadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        categorySpinner.setAdapter(categoryadapter);
 
     }
 

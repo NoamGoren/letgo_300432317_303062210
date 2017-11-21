@@ -16,9 +16,11 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.File;
@@ -47,6 +49,15 @@ public class CameraActivity extends Activity {
         setContentView(R.layout.activity_camera);
 
         initiViews();
+
+        Spinner spinner = (Spinner) findViewById(R.id.coin_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.coin_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
 
     }
 
@@ -469,5 +480,7 @@ public class CameraActivity extends Activity {
         return inSampleSize;
 
     }
+
+
 
 }

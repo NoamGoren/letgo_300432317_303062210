@@ -27,14 +27,25 @@ public class ProductsListFragment extends Fragment {
     @Override
     public void onAttach(Activity context) {
         super.onAttach(context);
+        TypedArray typedArray;
 
-        // Get  names and descriptions.
+        Bundle bundle = this.getArguments();
         final Resources resources = context.getResources();
-        mNames = resources.getStringArray(R.array.names);
-        mDescriptions = resources.getStringArray(R.array.descriptions);
+        if (bundle!=null){
+            int myValue = bundle.getInt("message");
+            mNames = resources.getStringArray(R.array.car_names);
+            mDescriptions = resources.getStringArray(R.array.car_descriptions);
+            typedArray = resources.obtainTypedArray(R.array.cars);
+        }
 
-        // Get images.
-        final TypedArray typedArray = resources.obtainTypedArray(R.array.images);
+        else{
+            mNames = resources.getStringArray(R.array.names);
+            mDescriptions = resources.getStringArray(R.array.descriptions);
+            // Get images.
+             typedArray = resources.obtainTypedArray(R.array.images);
+        }
+
+
         final int imageCount = mNames.length;
         mImageResIds = new int[imageCount];
         for (int i = 0; i < imageCount; i++) {

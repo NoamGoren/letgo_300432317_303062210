@@ -15,6 +15,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,6 +36,7 @@ public class HomeActivity extends AppCompatActivity
         t.commit();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setAlpha(0.75f);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,6 +44,15 @@ public class HomeActivity extends AppCompatActivity
 
             }
         });
+
+        ImageButton m1 = (ImageButton) findViewById(R.id.cars);
+        m1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeFrag();
+            }
+        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -61,6 +74,17 @@ public class HomeActivity extends AppCompatActivity
         }
     }
 
+    public void changeFrag(){
+        Bundle bundle = new Bundle();
+        int number =1;
+        bundle.putInt("message", number );
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction t= fm.beginTransaction();
+        ProductsListFragment ProductsFragment= new ProductsListFragment();
+        ProductsFragment.setArguments(bundle);
+        t.replace(R.id.root_layout, ProductsFragment);
+        t.commit();
+                    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

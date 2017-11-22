@@ -19,8 +19,6 @@
     <item>Leisure</item>
   </string-array>
 
-
-
   <array name="images">
   <item>@drawable/lion</item>
   <item>@drawable/tiger</item>
@@ -36,6 +34,23 @@
     <item>@drawable/cat</item>
 </array>
 
+  <array name="cars">
+    <item>@drawable/car1</item>
+    <item>@drawable/car22</item>
+    <item>@drawable/car3</item>
+  </array>
+
+    <array name="car_descriptions">
+        <item>Car 1 test</item>
+        <item>Car 2 test</item>
+        <item>Car 3 test</item>
+    </array>
+
+    <array name="car_names">
+        <item>Toyota</item>
+        <item>Mazda</item>
+        <item>Peugeot</item>
+    </array>
 
   <string-array name="names">
     <item>lion</item>

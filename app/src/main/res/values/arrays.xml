@@ -55,9 +55,9 @@
 
   //home
   <array name="home">
-    <item>@drawable/home-bad</item>
-    <item>@drawable/home-salad</item>
-    <item>@drawable/home-sofa</item>
+    <item>@drawable/homebad</item>
+    <item>@drawable/homesalad</item>
+    <item>@drawable/homesofa</item>
     <item>@drawable/home4</item>
   </array>
 
@@ -189,7 +189,7 @@
 
   //leisure
   <array name="leisure">
-    <item>@drawable/leisure1</item>
+    <item>@drawable/leisure5</item>
     <item>@drawable/leisure2</item>
     <item>@drawable/leisure3</item>
     <item>@drawable/leisure4</item>

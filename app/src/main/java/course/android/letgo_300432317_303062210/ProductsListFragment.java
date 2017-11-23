@@ -24,7 +24,12 @@ public class ProductsListFragment extends Fragment {
     private String[] mDescriptions;
     private TypedArray typedArray;
 
-    public void changeFragment(String[] mNames,String[] mDescriptions,TypedArray typedArray){
+    public void changeFragment(String[] mNames,String[] mDescriptions,TypedArray typedArray,Activity context){
+
+        final Resources resources = context.getResources();
+        this.mNames = resources.getStringArray(R.array.car_names);
+        this.mDescriptions = resources.getStringArray(R.array.car_descriptions);
+        typedArray = resources.obtainTypedArray(R.array.cars);
 
     }
 
@@ -36,19 +41,71 @@ public class ProductsListFragment extends Fragment {
 
         Bundle bundle = this.getArguments();
         final Resources resources = context.getResources();
-        if (bundle!=null){
-            int myValue = bundle.getInt("message");
-            mNames = resources.getStringArray(R.array.car_names);
-            mDescriptions = resources.getStringArray(R.array.car_descriptions);
-            typedArray = resources.obtainTypedArray(R.array.cars);
-        }
 
-        else{
+        if (bundle!=null) {
+            int myValue = bundle.getInt("message");
+            switch (myValue) {
+                case 1:
+                    mNames = resources.getStringArray(R.array.car_names);
+                    mDescriptions = resources.getStringArray(R.array.car_descriptions);
+                    typedArray = resources.obtainTypedArray(R.array.cars);
+                    break;
+                case 2:
+                    mNames = resources.getStringArray(R.array.home_names);
+                    mDescriptions = resources.getStringArray(R.array.home_descriptions);
+                    typedArray = resources.obtainTypedArray(R.array.home);
+                    break;
+                case 3:
+                    mNames = resources.getStringArray(R.array.motors_names);
+                    mDescriptions = resources.getStringArray(R.array.motors_descriptions);
+                    typedArray = resources.obtainTypedArray(R.array.motors);
+                    break;
+                case 4:
+                    mNames = resources.getStringArray(R.array.fashion_names);
+                    mDescriptions = resources.getStringArray(R.array.fashion_descriptions);
+                    typedArray = resources.obtainTypedArray(R.array.fashion);
+                    break;
+                case 5:
+                    mNames = resources.getStringArray(R.array.other_names);
+                    mDescriptions = resources.getStringArray(R.array.other_descriptions);
+                    typedArray = resources.obtainTypedArray(R.array.other);
+                    break;
+                case 6:
+                    mNames = resources.getStringArray(R.array.child_names);
+                    mDescriptions = resources.getStringArray(R.array.child_descriptions);
+                    typedArray = resources.obtainTypedArray(R.array.child);
+                    break;
+                case 7:
+                    mNames = resources.getStringArray(R.array.entertiment_names);
+                    mDescriptions = resources.getStringArray(R.array.entertiment_descriptions);
+                    typedArray = resources.obtainTypedArray(R.array.entertiment);
+                    break;
+                case 8:
+                    mNames = resources.getStringArray(R.array.leisure_names);
+                    mDescriptions = resources.getStringArray(R.array.leisure_descriptions);
+                    typedArray = resources.obtainTypedArray(R.array.leisure);
+                    break;
+            }
+        }
+        else {
             mNames = resources.getStringArray(R.array.names);
             mDescriptions = resources.getStringArray(R.array.descriptions);
             // Get images.
-             typedArray = resources.obtainTypedArray(R.array.images);
+            typedArray = resources.obtainTypedArray(R.array.images);
         }
+//        if (bundle!=null){
+//            int myValue = bundle.getInt("message");
+//            mNames = resources.getStringArray(R.array.car_names);
+//            mDescriptions = resources.getStringArray(R.array.car_descriptions);
+//            typedArray = resources.obtainTypedArray(R.array.cars);
+//        }
+//
+//        else{
+//            mNames = resources.getStringArray(R.array.names);
+//            mDescriptions = resources.getStringArray(R.array.descriptions);
+//            // Get images.
+//             typedArray = resources.obtainTypedArray(R.array.images);
+//        }
 
 
         final int imageCount = mNames.length;

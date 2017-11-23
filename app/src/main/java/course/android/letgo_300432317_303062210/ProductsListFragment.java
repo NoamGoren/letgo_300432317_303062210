@@ -22,12 +22,17 @@ public class ProductsListFragment extends Fragment {
     private int[] mImageResIds;
     private String[] mNames;
     private String[] mDescriptions;
+    private TypedArray typedArray;
+
+    public void changeFragment(String[] mNames,String[] mDescriptions,TypedArray typedArray){
+
+    }
 
 
     @Override
     public void onAttach(Activity context) {
         super.onAttach(context);
-        TypedArray typedArray;
+
 
         Bundle bundle = this.getArguments();
         final Resources resources = context.getResources();

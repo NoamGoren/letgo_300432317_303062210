@@ -49,7 +49,69 @@ public class HomeActivity extends AppCompatActivity
         m1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeFrag();
+                changeFrag(1);
+            }
+        });
+        ImageButton m2=(ImageButton) findViewById(R.id.home);
+        m2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pageNumber= Integer.parseInt(v.getTag().toString());
+                changeFrag(pageNumber);
+            }
+        });
+
+        ImageButton m3 =(ImageButton) findViewById(R.id.motors);
+        m3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pageNumber= Integer.parseInt(v.getTag().toString());
+                changeFrag(pageNumber);
+            }
+        });
+
+        ImageButton m4=(ImageButton) findViewById(R.id.fashion);
+        m4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pageNumber= Integer.parseInt(v.getTag().toString());
+                changeFrag(pageNumber);
+            }
+        });
+
+        ImageButton m5=(ImageButton) findViewById(R.id.other);
+        m5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pageNumber= Integer.parseInt(v.getTag().toString());
+                changeFrag(pageNumber);
+            }
+        });
+
+        ImageButton m6=(ImageButton) findViewById(R.id.child);
+        m6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pageNumber= Integer.parseInt(v.getTag().toString());
+                changeFrag(pageNumber);
+            }
+        });
+
+        ImageButton m7=(ImageButton) findViewById(R.id.entertai);
+        m7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pageNumber= Integer.parseInt(v.getTag().toString());
+                changeFrag(pageNumber);
+            }
+        });
+
+        ImageButton m8=(ImageButton) findViewById(R.id.leisure);
+        m8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pageNumber= Integer.parseInt(v.getTag().toString());
+                changeFrag(pageNumber);
             }
         });
 
@@ -74,9 +136,8 @@ public class HomeActivity extends AppCompatActivity
         }
     }
 
-    public void changeFrag(){
+    public void changeFrag(int number){
         Bundle bundle = new Bundle();
-        int number =1;
         bundle.putInt("message", number );
         FragmentManager fm = getFragmentManager();
         FragmentTransaction t= fm.beginTransaction();

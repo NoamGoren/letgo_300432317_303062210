@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 
 import course.android.letgo_300432317_303062210.R;
 
+import static android.widget.LinearLayout.VERTICAL;
+
 /**
  * Created by Ishai Levi on 11/20/2017.
  */
@@ -93,6 +95,8 @@ public class ProductsListFragment extends Fragment {
             // Get images.
             typedArray = resources.obtainTypedArray(R.array.images);
         }
+
+
 //        if (bundle!=null){
 //            int myValue = bundle.getInt("message");
 //            mNames = resources.getStringArray(R.array.car_names);

@@ -34,6 +34,7 @@
     <item>@drawable/cat</item>
 </array>
 
+  //cars
   <array name="cars">
     <item>@drawable/car1</item>
     <item>@drawable/car22</item>
@@ -51,6 +52,163 @@
         <item>Mazda</item>
         <item>Peugeot</item>
     </array>
+
+  //home
+  <array name="home">
+    <item>@drawable/home-bad</item>
+    <item>@drawable/home-salad</item>
+    <item>@drawable/home-sofa</item>
+    <item>@drawable/home4</item>
+  </array>
+
+  <array name="home_descriptions">
+    <item>home-bad</item>
+    <item>home-salad</item>
+    <item>home-sofa</item>
+    <item>home4</item>
+  </array>
+
+  <array name="motors_names">
+    <item>bad</item>
+    <item>salad</item>
+    <item>sofa</item>
+    <item>home4</item>
+  </array>
+
+  //motors
+  <array name="motors">
+    <item>@drawable/motors1</item>
+    <item>@drawable/motors2</item>
+    <item>@drawable/motors3</item>
+    <item>@drawable/motors4</item>
+  </array>
+
+  <array name="motors_descriptions">
+    <item>motors1</item>
+    <item>motors2</item>
+    <item>motors3</item>
+    <item>motors4</item>
+  </array>
+
+  <array name="home_names">
+    <item>motors1</item>
+    <item>motors2</item>
+    <item>motors3</item>
+    <item>motors4</item>
+  </array>
+
+
+  //fashion
+  <array name="fashion">
+    <item>@drawable/fashion1</item>
+    <item>@drawable/fashion2</item>
+    <item>@drawable/fashion3</item>
+    <item>@drawable/fashion4</item>
+  </array>
+
+  <array name="fashion_descriptions">
+    <item>fashion1</item>
+    <item>fashion2</item>
+    <item>fashion3</item>
+    <item>fashion4</item>
+  </array>
+
+  <array name="fashion_names">
+    <item>fashion1</item>
+    <item>fashion2</item>
+    <item>fashion3</item>
+    <item>fashion4</item>
+  </array>
+
+
+  //other
+  <array name="other">
+    <item>@drawable/other1</item>
+    <item>@drawable/other2</item>
+    <item>@drawable/other3</item>
+    <item>@drawable/other4</item>
+  </array>
+
+  <array name="other_descriptions">
+    <item>other1</item>
+    <item>other2</item>
+    <item>other3</item>
+    <item>other4</item>
+  </array>
+
+  <array name="other_names">
+    <item>other1</item>
+    <item>other2</item>
+    <item>other3</item>
+    <item>other4</item>
+  </array>
+
+  //child
+  <array name="child">
+    <item>@drawable/child1</item>
+    <item>@drawable/child2</item>
+    <item>@drawable/child3</item>
+    <item>@drawable/child4</item>
+  </array>
+
+  <array name="child_descriptions">
+    <item>child1</item>
+    <item>child2</item>
+    <item>child3</item>
+    <item>child4</item>
+  </array>
+
+  <array name="child_names">
+    <item>child1</item>
+    <item>child2</item>
+    <item>child3</item>
+    <item>child4</item>
+  </array>
+
+  //entertiment
+  <array name="entertiment">
+    <item>@drawable/entertiment1</item>
+    <item>@drawable/entertiment2</item>
+    <item>@drawable/entertiment3</item>
+    <item>@drawable/entertiment4</item>
+  </array>
+
+  <array name="entertiment_descriptions">
+    <item>entertiment1</item>
+    <item>entertiment2</item>
+    <item>entertiment3</item>
+    <item>entertiment4</item>
+  </array>
+
+  <array name="entertiment_names">
+    <item>entertiment1</item>
+    <item>entertiment2</item>
+    <item>entertiment3</item>
+    <item>entertiment4</item>
+  </array>
+
+  //leisure
+  <array name="leisure">
+    <item>@drawable/leisure1</item>
+    <item>@drawable/leisure2</item>
+    <item>@drawable/leisure3</item>
+    <item>@drawable/leisure4</item>
+  </array>
+
+  <array name="leisure_descriptions">
+    <item>leisure1</item>
+    <item>leisure2</item>
+    <item>leisure3</item>
+    <item>leisure4</item>
+  </array>
+
+  <array name="leisure_names">
+    <item>leisure1</item>
+    <item>leisure2</item>
+    <item>leisure3</item>
+    <item>leisure4</item>
+  </array>
+
 
   <string-array name="names">
     <item>lion</item>

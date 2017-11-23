@@ -138,6 +138,8 @@ public class HomeActivity extends AppCompatActivity
     }
 
     public void changeFrag(int number){
+
+
         Bundle bundle = new Bundle();
         bundle.putInt("message", number );
         FragmentManager fm = getFragmentManager();

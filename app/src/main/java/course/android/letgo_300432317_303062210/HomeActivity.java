@@ -167,6 +167,9 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
+        else if (id==R.id.app_bar_search){
+
+        }
 
         return super.onOptionsItemSelected(item);
     }

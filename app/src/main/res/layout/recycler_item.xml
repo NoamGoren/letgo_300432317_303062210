@@ -25,7 +25,7 @@
       android:paddingLeft="@dimen/recycler_item_footer_padding"
       android:paddingRight="@dimen/recycler_item_footer_padding"
       android:paddingTop="@dimen/recycler_item_footer_padding"
-      android:background="@color/blue_grey_800_50p"
+      android:background="@color/cardview_light_background"
       tools:text=""/>
 
   </FrameLayout>

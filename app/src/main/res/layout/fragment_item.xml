@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ScrollView
+        android:id="@+id/item_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/item_title_lbl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/item_title_txt"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:text="@string/item_title_lbl_str" />
+
+            <EditText
+                android:id="@+id/item_title_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_title_lbl"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/item_desc_lbl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_title_txt"
+                android:labelFor="@+id/item_desc_txt"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="@string/item_dsc_lbl_str" />
+
+            <EditText
+                android:id="@+id/item_desc_txt"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_desc_lbl"
+                android:inputType="textMultiLine"
+                android:lines="4"
+                android:maxLines="10"
+                android:scrollbars="vertical" >
+            </EditText>
+
+            <ImageView
+                android:id="@+id/item_img1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_desc_txt"
+                android:layout_marginBottom="5dp" />
+        </RelativeLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/buttons_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <Button
+            android:id="@+id/save_item_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/transparent"
+            android:textColor="#2b90d4"
+            android:layout_marginBottom="15dp"
+            android:text="@string/save" />
+
+        <Button
+            android:id="@+id/add_photo_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/camera" />
+
+        <Button
+            android:id="@+id/delete_item_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/garbage_can" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

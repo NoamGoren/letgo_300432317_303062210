@@ -17,11 +17,17 @@ public class Product {
     private Bitmap image1 = null;
     private int UserId = -1;
 
-//    public Product() {
-//
-//    }
+    public Product() {
+
+    }
+
+//constructor with title and des
+public Product(String title,String description) {
+    this.title = title;
+    this.description=description;
 
 
+}
 
     //constructor without description and price
     public Product(String title, Bitmap image1,String loaction,String category) {

@@ -13,4 +13,33 @@
     <string name="section_format">Hello World from section: %1$d</string>
 
 
+    <string name="action_search">Search</string>
+    <string name="search">Search</string>
+    <string name="moreinfo">More Info...</string>
+
+    <string name="description">DESCRIPTION</string>
+    <string name="message">Message</string>
+
+
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="edit">Edit</string>
+    <string name="myinfo">My Info</string>
+
+
+    <string name="new_floder_btn_str">New Folder</string>
+    <string name="edit_folder_btn_str">Edit</string>
+    <string name="new_item_btn_str">New</string>
+    <string name="item_dsc_lbl_str">description</string>
+    <string name="item_title_lbl_str">title</string>
+    <string name="save_item_btn_string">Save</string>
+    <string name="add_photo_btn_string">Photo</string>
+    <string name="edit_item_btn_string">Edit</string>
+    <string name="delete_floder_btn_str">Delete</string>
+    <string name="delete_item_btn_str">Delete Folder</string>
+
+    <string name="ok">close</string>
+
+
+
 </resources>

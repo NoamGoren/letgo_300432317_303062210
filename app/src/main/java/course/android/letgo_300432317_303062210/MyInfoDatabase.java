@@ -135,12 +135,15 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 	    return outputStream.toByteArray();
 	}
 
-	public void createFolder(InfoFolder folder) {
+	public void createFolder(User user) {
 
 		try {
 			// make values to be inserted
 			ContentValues values = new ContentValues();
-			values.put(FOLDER_COLUMN_TITLE, folder.getTitle());
+			values.put(FOLDER_COLUMN_NAME, user.getName());
+			values.put(FOLDER_COLUMN_CITY,user.getCity());
+			values.put(FOLDER_COLUMN_EMAIL,user.getEmail());
+			values.put(FOLDER_COLUMN_PASSWORD,user.getPassword());
 			// insert folder
 			db.insert(TABLE_FOLDER_NAME, null, values);
 		} catch (Throwable t) {
@@ -149,8 +152,8 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
 	}
 
-	public InfoItem readItem(int id) {
-		InfoItem item = null;
+	public Product readItem(int id) {
+		Product item = null;
 		Cursor cursor = null;
 		try {
 			/// get reference of the itemDB database
@@ -169,10 +172,13 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 			
 				cursor.moveToFirst();
 
-				item = new InfoItem();
+				item = new Product();
 				item.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(ITEM_COLUMN_ID))));
 				item.setTitle(cursor.getString(1));
 				item.setDescription(cursor.getString(2));
+				item.setPrice(cursor.getInt(4));
+				item.setCategory(cursor.getString(5));
+				item.setLocation(cursor.getString(6));
 				
 				//images
 				byte[] img1Byte = cursor.getBlob(3);
@@ -184,7 +190,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 				}
 				
 
-				item.setFolderId(Integer.parseInt(cursor.getString(4)));
+				item.setUserId(Integer.parseInt(cursor.getString(7)));
 			}
 		} catch (Throwable t) {
 			t.printStackTrace();
@@ -197,8 +203,8 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 		return item;
 	}
 
-	public InfoFolder readFolder(int id) {
-		InfoFolder folder = null;
+	public User readFolder(int id) {
+		User folder = null;
 		Cursor cursor = null;
 		try {
 			// get reference of the folderDB database
@@ -214,9 +220,12 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 			if (cursor != null)
 				cursor.moveToFirst();
 
-			folder = new InfoFolder();
+			folder = new User();
 			folder.setId(Integer.parseInt(cursor.getString(0)));
-			folder.setTitle(cursor.getString(1));
+			folder.setName(cursor.getString(1));
+			folder.setCity(cursor.getString(2));
+			folder.setEmail(cursor.getString(3));
+			folder.setPassword(cursor.getString(4));
 			
 		} catch (Throwable t) {
 			t.printStackTrace();
@@ -229,8 +238,8 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 		return folder;
 	}
 
-	public List<InfoItem> getAllItems() {
-		List<InfoItem> result = new ArrayList<InfoItem>();
+	public List<Product> getAllItems() {
+		List<Product> result = new ArrayList<Product>();
 		Cursor cursor = null;
 		try {
 			cursor = db.query(TABLE_ITEMS_NAME, TABLE_ITEM_COLUMNS, null, null,
@@ -238,7 +247,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
 			cursor.moveToFirst();
 			while (!cursor.isAfterLast()) {
-				InfoItem item = cursorToItem(cursor);
+				Product item = cursorToItem(cursor);
 				result.add(item);
 				cursor.moveToNext();
 			}
@@ -256,12 +265,15 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 		return result;
 	}
 	
-	private InfoItem cursorToItem(Cursor cursor) {
-		InfoItem result = new InfoItem();
+	private Product cursorToItem(Cursor cursor) {
+		Product result = new Product();
 		try {
 			result.setId(Integer.parseInt(cursor.getString(0)));
 			result.setTitle(cursor.getString(1));
 			result.setDescription(cursor.getString(2));
+			result.setPrice(cursor.getInt(4));
+			result.setCategory(cursor.getString(5));
+			result.setLocation(cursor.getString(6));
 			
 			//images
 			byte[] img1Byte = cursor.getBlob(3);
@@ -272,7 +284,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 				}
 			}
 
-			result.setFolderId(Integer.parseInt(cursor.getString(4)));
+			result.setUserId(Integer.parseInt(cursor.getString(7)));
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}
@@ -280,8 +292,8 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 		return result;
 	}
 
-	public List<InfoFolder> getAllFolders() {
-		List<InfoFolder> result = new ArrayList<InfoFolder>();
+	public List<User> getAllFolders() {
+		List<User> result = new ArrayList<User>();
 		Cursor cursor = null;
 		try {
 			cursor = db.query(TABLE_FOLDER_NAME, TABLE_FOLDER_COLUMNS, null, null,
@@ -289,7 +301,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
 			cursor.moveToFirst();
 			while (!cursor.isAfterLast()) {
-				InfoFolder folder = cursorToFolder(cursor);
+				User folder = cursorToFolder(cursor);
 				result.add(folder);
 				cursor.moveToNext();
 			}
@@ -306,18 +318,21 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 		return result;
 	}
 
-	private InfoFolder cursorToFolder(Cursor cursor) {
-		InfoFolder result = new InfoFolder();
+	private User cursorToFolder(Cursor cursor) {
+		User result = new User();
 		try {
 			result.setId(Integer.parseInt(cursor.getString(0)));
-			result.setTitle(cursor.getString(1));
+			result.setName(cursor.getString(1));
+			result.setCity(cursor.getString(2));
+			result.setEmail(cursor.getString(3));
+			result.setPassword(cursor.getString(4));
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}
 		return result;
 	}
 
-	public int updateItem(InfoItem item) {
+	public int updateItem(Product item) {
 		int cnt = 0;
 		try {
 
@@ -325,6 +340,9 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 			ContentValues values = new ContentValues();
 			values.put(ITEM_COLUMN_NAME, item.getTitle());
 			values.put(ITEM_COLUMN_DESCRIPTION, item.getDescription());
+			values.put(ITEM_COLUMN_CATEGORY,item.getCategory());
+			values.put(ITEM_COLUMN_LOCATION,item.getLocation());
+			values.put(ITEM_COLUMN_PRICE,item.getPrice());
 			
 			//images
 			Bitmap image1 = item.getImage1();
@@ -348,15 +366,17 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 		return cnt;
 	}
 
-	public int updateFolder(InfoFolder folder) {
+	public int updateFolder(User folder) {
 		int i = 0;
 		try {
 			
 
 			// make values to be inserted
 			ContentValues values = new ContentValues();
-			values.put(FOLDER_COLUMN_TITLE, folder.getTitle());
-
+			values.put(FOLDER_COLUMN_NAME, folder.getName());
+			values.put(FOLDER_COLUMN_CITY,folder.getCity());
+			values.put(FOLDER_COLUMN_EMAIL,folder.getEmail());
+			values.put(FOLDER_COLUMN_PASSWORD,folder.getPassword());
 			// update
 			i = db.update(TABLE_FOLDER_NAME, values, FOLDER_COLUMN_ID + " = ?",
 					new String[] { String.valueOf(folder.getId()) });
@@ -367,7 +387,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 		return i;
 	}
 
-	public void deleteItem(InfoItem item) {
+	public void deleteItem(Product item) {
 
 		try {
 
@@ -380,7 +400,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
 	}
 
-	public void deleteFolder(InfoFolder folder) {
+	public void deleteFolder(User folder) {
 		boolean succeded = false;
 		try {
 
@@ -402,7 +422,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
 	}
 
-	private void deleteFolderItems(InfoFolder folder) {
+	private void deleteFolderItems(User folder) {
 
 		try {
 
@@ -429,8 +449,8 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 	}
 
 	
-	public List<InfoItem> getAllItemsOfFolder(InfoFolder folder) {
-		List<InfoItem> result = new ArrayList<InfoItem>();
+	public List<Product> getAllItemsOfFolder(User folder) {
+		List<Product> result = new ArrayList<Product>();
 		Cursor cursor = null;
 		try {
 			int floderId = folder.getId();
@@ -441,7 +461,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 			if(cursor!=null && cursor.getCount()>0){
 				cursor.moveToFirst();
 				while (!cursor.isAfterLast()) {
-					InfoItem item = cursorToItem(cursor);
+					Product item = cursorToItem(cursor);
 					result.add(item);
 					cursor.moveToNext();
 				}

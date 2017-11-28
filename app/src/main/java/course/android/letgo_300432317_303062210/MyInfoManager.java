@@ -10,8 +10,9 @@ public class MyInfoManager {
 	private static MyInfoManager instance = null;
 	private Context context = null;
 	private MyInfoDatabase db = null;
-	private InfoFolder selectedFolder = null;
-	private InfoItem selectedItem = null;
+	private User selectedFolder = null;
+	private Product selectedItem = null;
+
 	
 
 	public static MyInfoManager getInstance() {
@@ -51,95 +52,95 @@ public class MyInfoManager {
 			}
 		}
 		
-		public void createItem(InfoItem item) {
+		public void createItem(Product item) {
 			if (db != null) {
 					db.createItem(getSelectedFolder(), item);
 			}
 		}
 		
-		public void createFolder(InfoFolder folder) {
+		public void createFolder(User folder) {
 			if (db != null) {
 				db.createFolder(folder);
 			}
 		}
 		
-		public InfoItem readItem(int id) {
-			InfoItem result = null;
+		public Product readItem(int id) {
+			Product result = null;
 			if (db != null) {
 				result = db.readItem(id);
 			}
 			return result;
 		}
 		
-		public InfoFolder readFolder(int id) {
-			InfoFolder result = null;
+		public User readFolder(int id) {
+			User result = null;
 			if (db != null) {
 				result = db.readFolder(id);
 			}
 			return result;
 		}
 		
-		public List<InfoItem> getAllItems() {
-			List<InfoItem> result = new ArrayList<InfoItem>();
+		public List<Product> getAllItems() {
+			List<Product> result = new ArrayList<Product>();
 			if (db != null) {
 				result = db.getAllItems();
 			}
 			return result;
 		}
 		
-		public List<InfoFolder> getAllFolders() {
-			List<InfoFolder> result = new ArrayList<InfoFolder>();
+		public List<User> getAllFolders() {
+			List<User> result = new ArrayList<User>();
 			if (db != null) {
 				result = db.getAllFolders();
 			}
 			return result;
 		}
 		
-		public void updateItem(InfoItem item) {
+		public void updateItem(Product item) {
 			if (db != null && item != null) {
 				db.updateItem(item);
 			}
 		}
 		
-		public void updateFolder(InfoFolder folder) {
+		public void updateFolder(User folder) {
 			if (db != null && folder != null) {
 				db.updateFolder(folder);
 			}
 		}
 		
-		public void deleteItem(InfoItem item) {
+		public void deleteItem(Product item) {
 			if (db != null) {
 				db.deleteItem(item);
 			}
 		}
 		
-		public void deleteFolder(InfoFolder folder) {
+		public void deleteFolder(User folder) {
 			if (db != null) {
 				db.deleteFolder(folder);
 			}
 		}
 		
-		public List<InfoItem> getFolderItems(InfoFolder folder) {
-			List<InfoItem> result = new ArrayList<InfoItem>();
+		public List<Product> getFolderItems(User folder) {
+			List<Product> result = new ArrayList<Product>();
 			if (db != null && folder != null) {
 				result = db.getAllItemsOfFolder(folder);
 			}
 			return result;
 		}
 
-		public InfoFolder getSelectedFolder() {
+		public User getSelectedFolder() {
 			return selectedFolder;
 		}
 
-		public void setSelectedFolder(InfoFolder selectedFolder) {
+		public void setSelectedFolder(User selectedFolder) {
 			this.selectedFolder = selectedFolder;
 		}
 
-		public InfoItem getSelectedItem() {
+		public Product getSelectedItem() {
 			return selectedItem;
 		}
 
-		public void setSelectedItem(InfoItem selectedItem) {
+		public void setSelectedItem(Product selectedItem) {
 			this.selectedItem = selectedItem;
 		}
 

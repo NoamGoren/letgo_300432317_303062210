@@ -15,9 +15,9 @@ public class User {
 //    private Product[] userProducts;
 //    private Product[] favProducts;
 
-//    public InfoFolder() {
-//
-//    }
+    public User() {
+
+    }
     //constructor without password
     public User(String name,String city,String email) {
 
@@ -39,7 +39,12 @@ public class User {
 
     }
 
-//getters and setters
+    public User(String name) {
+        this.name=name;
+
+    }
+
+    //getters and setters
     public int getId() {
         return id;
     }
@@ -72,5 +77,16 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
 }
 

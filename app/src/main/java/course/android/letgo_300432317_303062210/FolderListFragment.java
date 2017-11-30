@@ -65,8 +65,8 @@ public class FolderListFragment extends Fragment {
 		
 		@Override
 		public void onClick(View arg0) {
-			final String title = "New Folder";
-			final String msg = "Enter a new name for this folder";
+			final String title = "Uploading Item To Letgo";
+			final String msg = "Enter Your Name";
 			
 			final EditText answerText = new EditText(context);
 			AlertDialog.Builder  builder=  new AlertDialog.Builder(context);

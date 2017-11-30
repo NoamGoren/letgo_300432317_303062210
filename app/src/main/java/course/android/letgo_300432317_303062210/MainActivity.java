@@ -1,14 +1,15 @@
 package course.android.letgo_300432317_303062210;
 
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -16,6 +17,7 @@ import android.widget.Spinner;
 public class MainActivity extends AppCompatActivity {
 
     FragmentManager fManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
 
         hideKeyboard();
-
     }
+
 
 
     @Override

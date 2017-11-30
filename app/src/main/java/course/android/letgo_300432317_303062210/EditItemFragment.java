@@ -18,9 +18,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.io.File;
@@ -28,9 +30,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class EditItemFragment extends Fragment {
-	
+
 	private EditText itemTitleView = null;
 	private EditText itemDescriptionView = null;
+	//private EditText itemPriceView = null;
+	private EditText itemLocationView = null;
 	private Button itemSaveBtn = null;
 	private ImageView itemImage1 = null;
 	private TextView titleLblView = null;
@@ -40,7 +44,6 @@ public class EditItemFragment extends Fragment {
     static final int REQUEST_TAKE_PHOTO = 111;
 	private static final int PHOTO_W = 500;
 	private static final int PHOTO_H = 300;
-
 
 	protected static final int NEW_ITEM_TAG = -111;
 	private File output=null;
@@ -55,9 +58,12 @@ public class EditItemFragment extends Fragment {
 		
 		itemTitleView = (EditText) rootView.findViewById(R.id.item_title_txt);
 		itemDescriptionView = (EditText) rootView.findViewById(R.id.item_desc_txt);
+		itemLocationView = (EditText) rootView.findViewById(R.id.item_location_txt);
+		//itemPriceView = (EditText) rootView.findViewById(R.id.item_price_txt);
+
+
 		
-		titleLblView  =(TextView) rootView.findViewById(R.id.item_title_lbl);
-		descriptionLblView = (TextView) rootView.findViewById(R.id.item_desc_lbl);
+
 		
 		itemSaveBtn = (Button) rootView.findViewById(R.id.save_item_btn);
 		itemImage1 = (ImageView) rootView.findViewById(R.id.item_img1);
@@ -76,6 +82,8 @@ public class EditItemFragment extends Fragment {
 		if(infoItem!=null){
 			itemTitleView.setText(infoItem.getTitle());
 			itemDescriptionView.setText(infoItem.getDescription());
+			itemLocationView.setText(infoItem.getLocation());
+			//itemPriceView.setText(infoItem.getPrice());
 			Bitmap img1 =infoItem.getImage1();
 			if(img1!=null){
 				itemImage1.setImageBitmap(img1);
@@ -84,7 +92,9 @@ public class EditItemFragment extends Fragment {
 			}
 		}
 		
-		return rootView; 
+		return rootView;
+
+
 	}
 	
 
@@ -146,24 +156,27 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 	
 	
 	private OnClickListener saveItemListener = new OnClickListener() {
-		
+
 		@Override
 		public void onClick(View arg0) {
-			
+
 			try {
 				String title=itemTitleView.getText().toString();
 				String description = itemDescriptionView.getText().toString();
+				String location = itemLocationView.getText().toString();
+				//String price= itemPriceView.getText().toString();
 
-				
 				Product item =MyInfoManager.getInstance().getSelectedItem();
 				if(item==null){
-					 item = new Product(title, description);
-			
+					 item = new Product(title, description,location);
+
 					 MyInfoManager.getInstance().createItem(item);
 				}
 				else{
 					 item.setTitle(title);
 					 item.setDescription(description);
+					 //item.setPrice(price);
+					 item.setLocation(location);
 					 if(item.getId() == NEW_ITEM_TAG){
 						 MyInfoManager.getInstance().createItem(item);
 					 }
@@ -171,8 +184,8 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 						 MyInfoManager.getInstance().updateItem(item);
 					 }
 				}
-				
-				
+
+
 				ItemListFragment itemlistfragment = new ItemListFragment();
 				FragmentManager fManager =ctx.getFragmentManager();
 				FragmentTransaction ft = fManager.beginTransaction();
@@ -180,15 +193,15 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 				ft.addToBackStack(null);
 				ft.commit();
 
-				
+
 			} catch (Throwable e) {
 				e.printStackTrace();
-			}	
-			
+			}
+
 		}
 	};
-	
-	
+
+
 	private OnClickListener deleteItemListener = new OnClickListener() {
 		
 		@Override

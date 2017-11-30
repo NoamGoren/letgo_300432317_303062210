@@ -19,8 +19,13 @@ public class DisplayItemDetailsFragment extends Fragment {
 	
 	
 	private TextView itemDescriptionView;
+	private TextView itemTitleView;
+	//private TextView itemPriceView;
+	private TextView itemLocationView;
+	//private TextView itemCategoryView;
 	private ImageView itemImage1;
 	Activity ctx;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -35,6 +40,16 @@ public class DisplayItemDetailsFragment extends Fragment {
 		
 		itemDescriptionView = (TextView) rootView.findViewById(R.id.item_desc_txt);
 		itemDescriptionView.setText(item.getDescription());
+
+		itemTitleView = (TextView) rootView.findViewById(R.id.item_title_txt);
+		itemTitleView.setText(item.getTitle());
+
+		//itemPriceView = (TextView) rootView.findViewById(R.id.item_price_txt);
+		//itemPriceView.setText(item.getPrice());
+
+		itemLocationView = (TextView) rootView.findViewById(R.id.item_location_txt);
+		itemLocationView.setText(item.getLocation());
+
 
 		itemImage1 = (ImageView) rootView.findViewById(R.id.item_img1);
 		Bitmap drawable1 = item.getImage1();

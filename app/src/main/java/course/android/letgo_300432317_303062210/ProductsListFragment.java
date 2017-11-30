@@ -90,10 +90,10 @@ public class ProductsListFragment extends Fragment {
             }
         }
         else {
-            mNames = resources.getStringArray(R.array.names);
-            mDescriptions = resources.getStringArray(R.array.descriptions);
+            mNames = resources.getStringArray(R.array.all_names);
+            mDescriptions = resources.getStringArray(R.array.all_descriptions);
             // Get images.
-            typedArray = resources.obtainTypedArray(R.array.images);
+            typedArray = resources.obtainTypedArray(R.array.all);
         }
 
 

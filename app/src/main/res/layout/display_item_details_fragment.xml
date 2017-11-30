@@ -15,19 +15,56 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/item_desc_txt"
+                android:id="@+id/item_title_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/item_title_txt"
                 android:textSize="16dp"
                 android:layout_marginBottom="20dp" >
             </TextView>
 
-            <ImageView
-                android:id="@+id/item_img1"
-                android:layout_width="wrap_content"
+            <TextView
+            android:id="@+id/item_desc_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_title_txt"
+            android:textSize="16dp"
+            android:layout_marginBottom="20dp" >
+        </TextView>
+
+            <TextView
+                android:id="@+id/item_price_txt"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/item_desc_txt"
+                android:textSize="16dp"
+                android:layout_marginBottom="20dp" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/item_category_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_price_txt"
+                android:textSize="16dp"
+                android:layout_marginBottom="20dp" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/item_location_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_category_txt"
+                android:textSize="16dp"
+                android:layout_marginBottom="20dp" >
+            </TextView>
+
+
+            <ImageView
+                android:id="@+id/item_img1"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_location_txt"
                 android:layout_marginBottom="20dp" />
 
 

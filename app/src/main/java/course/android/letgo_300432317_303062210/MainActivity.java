@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
 //        ActionBar actionBar = getActionBar();
 //        actionBar.setDisplayHomeAsUpEnabled(true);
 //        actionBar.setHomeButtonEnabled(true);
@@ -34,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
 
         hideKeyboard();
-
 
     }
 

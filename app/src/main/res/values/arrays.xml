@@ -34,6 +34,56 @@
     <item>@drawable/cat</item>
 </array>
 
+  <string-array name="names">
+    <item>lion</item>
+    <item>tiger</item>
+    <item>elephant</item>
+    <item>cow</item>
+    <item>zebra</item>
+    <item>kangaro</item>
+    <item>panda</item>
+    <item>fox</item>
+    <item>squarl</item>
+    <item>rabbit</item>
+    <item>toky</item>
+    <item>cat</item>
+  </string-array>
+
+  //first page- all
+  <array name="all">
+    <item>@drawable/car1</item>
+    <item>@drawable/homebad</item>
+    <item>@drawable/motors1</item>
+    <item>@drawable/fashion1</item>
+    <item>@drawable/other1</item>
+    <item>@drawable/child1</item>
+    <item>@drawable/entertiment1</item>
+    <item>@drawable/leisure5</item>
+
+  </array>
+
+  <array name="all_descriptions">
+    <item>Car 1 test</item>
+    <item>home-bad</item>
+    <item>motors1</item>
+    <item>fashion1</item>
+    <item>other1</item>
+    <item>child1</item>
+    <item>entertiment1</item>
+    <item>leisure5</item>
+  </array>
+
+  <array name="all_names">
+    <item>Toyota</item>
+    <item>bad</item>
+    <item>motors1</item>
+    <item>fashion1</item>
+    <item>other1</item>
+    <item>child1</item>
+    <item>entertiment1</item>
+    <item>leisure5</item>
+  </array>
+
   //cars
   <array name="cars">
     <item>@drawable/car1</item>
@@ -68,7 +118,7 @@
     <item>home4</item>
   </array>
 
-  <array name="motors_names">
+  <array name="home_names">
     <item>bad</item>
     <item>salad</item>
     <item>sofa</item>
@@ -90,7 +140,7 @@
     <item>motors4</item>
   </array>
 
-  <array name="home_names">
+  <array name="motors_names">
     <item>motors1</item>
     <item>motors2</item>
     <item>motors3</item>
@@ -210,20 +260,7 @@
   </array>
 
 
-  <string-array name="names">
-    <item>lion</item>
-    <item>tiger</item>
-    <item>elephant</item>
-    <item>cow</item>
-    <item>zebra</item>
-    <item>kangaro</item>
-    <item>panda</item>
-    <item>fox</item>
-    <item>squarl</item>
-    <item>rabbit</item>
-    <item>toky</item>
-    <item>cat</item>
-  </string-array>
+
 
   <string-array name="descriptions">
     <item>The lion (Panthera leo) is one of the big cats in the genus Panthera and a member of the family Felidae. The commonly used term African lion collectively denotes the several subspecies in Africa.</item>

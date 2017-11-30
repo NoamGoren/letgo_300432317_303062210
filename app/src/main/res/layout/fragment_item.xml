@@ -1,101 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-    <ScrollView
-        android:id="@+id/item_scroll_view"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="14dp"
+        android:text="Upload your item to letgo" />
+
+    <Button
+        android:id="@+id/add_photo_btn"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="20dp" >
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:text="ADD PICTURE"
+        android:background="@android:color/transparent"
+        android:drawableBottom="@drawable/camera" />
 
-        <RelativeLayout
+
+    <ImageView
+        android:id="@+id/item_img1"
+        android:layout_width="144dp"
+        android:layout_height="148dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/icon"
+        />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/item_title_lbl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:labelFor="@+id/item_title_txt"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"
-                android:text="@string/item_title_lbl_str" />
+            android:layout_height="match_parent"
+
+            android:orientation="vertical">
 
             <EditText
                 android:id="@+id/item_title_txt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/item_title_lbl"
-                android:inputType="text" />
-
-            <TextView
-                android:id="@+id/item_desc_lbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/item_title_txt"
-                android:labelFor="@+id/item_desc_txt"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:text="@string/item_dsc_lbl_str" />
+                android:layout_marginLeft="5dp"
+                android:ems="20"
+                android:hint="Title (optional)"
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/item_desc_txt"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/item_desc_lbl"
-                android:inputType="textMultiLine"
-                android:lines="4"
-                android:maxLines="10"
-                android:scrollbars="vertical" >
-            </EditText>
+                android:layout_marginLeft="5dp"
+                android:ems="1500"
+                android:hint="Description (optional)"
+                android:inputType="textMultiLine" />
 
-            <ImageView
-                android:id="@+id/item_img1"
+            <Spinner
+                android:id="@+id/coin_spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/item_price_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:ems="10"
+                android:hint="Enter price"
+                android:inputType="number" />
+
+
+            <TextView
+                android:id="@+id/item_category_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Choose category"
+                android:textColor="@color/red" />
+
+            <Spinner
+                android:id="@+id/category_spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+
+
+            <EditText
+                android:id="@+id/item_location_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/item_desc_txt"
-                android:layout_marginBottom="5dp" />
-        </RelativeLayout>
-    </ScrollView>
+                android:layout_marginLeft="5dp"
+                android:ems="20"
+                android:hint="Location"
+                android:inputType="textPersonName" />
 
-    <RelativeLayout
-        android:id="@+id/buttons_ll"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+            <Button
+                android:id="@+id/save_item_btn"
+                android:background="@color/lightRed"
+                android:textColor="#ffff"
+                android:fontFamily="casual"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save @ Publish" />
 
-        <Button
-            android:id="@+id/save_item_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:background="@android:color/transparent"
-            android:textColor="#2b90d4"
-            android:layout_marginBottom="15dp"
-            android:text="@string/save" />
 
-        <Button
-            android:id="@+id/add_photo_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:background="@android:color/transparent"
-            android:drawableTop="@drawable/camera" />
+            <Button
+                android:id="@+id/delete_item_btn"
+                android:background="@color/lightRed"
+                android:textColor="#ffff"
+                android:fontFamily="casual"
+                android:textStyle="bold"
+                android:layout_width="120dp"
+                android:layout_height="35dp"
+                android:layout_gravity="bottom|center"
+                android:layout_marginTop="5dp"
+                android:text="Delete Item"
+                android:drawableRight="@drawable/garbage_can"
+                />
 
-        <Button
-            android:id="@+id/delete_item_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:background="@android:color/transparent"
-            android:drawableTop="@drawable/garbage_can" />
+        </LinearLayout>
 
-    </RelativeLayout>
 
-</RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+
+
+
+</LinearLayout>
+
+
+
+
+
+
+

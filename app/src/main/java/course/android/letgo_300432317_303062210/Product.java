@@ -22,9 +22,10 @@ public class Product {
     }
 
 //constructor with title and des
-public Product(String title,String description) {
+public Product(String title, String description, String location) {
     this.title = title;
     this.description=description;
+    this.location=location;
 
 
 }
@@ -53,6 +54,23 @@ public Product(String title,String description) {
         this.category=category;
         this.image1 = image1;
     }
+    // costructor without image
+    public Product(String title, String description,String location,String category,int price) {
+        this.title = title;
+        this.description = description;
+        this.location = location;
+        this.price = price;
+        this.category = category;
+    }
+
+    // costructor without image&category
+    public Product(String title, String description,String location,int price) {
+        this.title = title;
+        this.description = description;
+        this.location = location;
+        this.price = price;
+    }
+
 //full costructor
     public Product(String title, String description, Bitmap image1,String location,String category,int price) {
         this.title = title;

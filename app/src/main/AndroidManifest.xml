@@ -45,7 +45,8 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="adjustNothing" ></activity>
+            android:windowSoftInputMode="adjustNothing">
+        </activity>
 
     </application>
 

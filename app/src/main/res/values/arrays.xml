@@ -19,36 +19,6 @@
     <item>Leisure</item>
   </string-array>
 
-  <array name="images">
-  <item>@drawable/lion</item>
-  <item>@drawable/tiger</item>
-  <item>@drawable/elephant</item>
-  <item>@drawable/cow</item>
-  <item>@drawable/zebra</item>
-  <item>@drawable/kangaro</item>
-  <item>@drawable/panda</item>
-    <item>@drawable/fox</item>
-    <item>@drawable/squarl</item>
-    <item>@drawable/rabbit</item>
-    <item>@drawable/toky</item>
-    <item>@drawable/cat</item>
-</array>
-
-  <string-array name="names">
-    <item>lion</item>
-    <item>tiger</item>
-    <item>elephant</item>
-    <item>cow</item>
-    <item>zebra</item>
-    <item>kangaro</item>
-    <item>panda</item>
-    <item>fox</item>
-    <item>squarl</item>
-    <item>rabbit</item>
-    <item>toky</item>
-    <item>cat</item>
-  </string-array>
-
   //first page- all
   <array name="all">
     <item>@drawable/car1</item>

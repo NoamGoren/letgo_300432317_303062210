@@ -13,7 +13,7 @@
       android:adjustViewBounds="true"
       android:contentDescription="@null"
       android:scaleType="centerCrop"
-      tools:src="@drawable/squarl"/>
+      tools:src="@drawable/car1"/>
 
   <TextView
       android:id="@+id/name"

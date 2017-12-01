@@ -37,7 +37,7 @@ public class HomeActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this,CameraActivity.class));
+                startActivity(new Intent(HomeActivity.this,MainActivity.class));
 
             }
         });
@@ -182,7 +182,7 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent i = new Intent(HomeActivity.this,CameraActivity.class);
+            Intent i = new Intent(HomeActivity.this,MainActivity.class);
             startActivity(i);
         } else if (id == R.id.nav_gallery) {
 
@@ -211,8 +211,7 @@ public class HomeActivity extends AppCompatActivity
 
         }
         else if (id == R.id.nav_help) {
-            Intent i = new Intent(HomeActivity.this,MainActivity.class);
-            startActivity(i);
+            startActivity(new Intent(HomeActivity.this,CameraActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -26,7 +26,7 @@ public class ProductsListFragment extends Fragment {
     private String[] mDescriptions;
     private String[] mLocations;
     private String[] mCategories;
-    private String[] mPrices;
+    private int[] mPrices;
     private TypedArray typedArray;
 
     public void changeFragment(String[] mNames,String[] mDescriptions,TypedArray typedArray,Activity context){
@@ -56,7 +56,7 @@ public class ProductsListFragment extends Fragment {
                     typedArray = resources.obtainTypedArray(R.array.cars);
                     mLocations= resources.getStringArray(R.array.car_locations);
                     mCategories= resources.getStringArray(R.array.car_cagegories);
-                    mPrices= resources.getStringArray(R.array.car_prices);
+                    mPrices= resources.getIntArray(R.array.car_prices);
                     break;
                 case 2:
                     mNames = resources.getStringArray(R.array.home_names);
@@ -64,7 +64,7 @@ public class ProductsListFragment extends Fragment {
                     typedArray = resources.obtainTypedArray(R.array.home);
                     mLocations= resources.getStringArray(R.array.home_locations);
                     mCategories= resources.getStringArray(R.array.home_cagegories);
-                    mPrices= resources.getStringArray(R.array.home_prices);
+                    mPrices= resources.getIntArray(R.array.home_prices);
                     break;
                 case 3:
                     mNames = resources.getStringArray(R.array.motors_names);
@@ -72,7 +72,7 @@ public class ProductsListFragment extends Fragment {
                     typedArray = resources.obtainTypedArray(R.array.motors);
                     mLocations= resources.getStringArray(R.array.motors_locations);
                     mCategories= resources.getStringArray(R.array.motors_cagegories);
-                    mPrices= resources.getStringArray(R.array.motors_prices);
+                    mPrices= resources.getIntArray(R.array.motors_prices);
                     break;
                 case 4:
                     mNames = resources.getStringArray(R.array.fashion_names);
@@ -80,7 +80,7 @@ public class ProductsListFragment extends Fragment {
                     typedArray = resources.obtainTypedArray(R.array.fashion);
                     mLocations= resources.getStringArray(R.array.fashion_locations);
                     mCategories= resources.getStringArray(R.array.fashion_cagegories);
-                    mPrices= resources.getStringArray(R.array.fashion_prices);
+                    mPrices= resources.getIntArray(R.array.fashion_prices);
                     break;
                 case 5:
                     mNames = resources.getStringArray(R.array.other_names);
@@ -88,7 +88,7 @@ public class ProductsListFragment extends Fragment {
                     typedArray = resources.obtainTypedArray(R.array.other);
                     mLocations= resources.getStringArray(R.array.other_locations);
                     mCategories= resources.getStringArray(R.array.other_cagegories);
-                    mPrices= resources.getStringArray(R.array.other_prices);
+                    mPrices= resources.getIntArray(R.array.other_prices);
                     break;
                 case 6:
                     mNames = resources.getStringArray(R.array.child_names);
@@ -96,7 +96,7 @@ public class ProductsListFragment extends Fragment {
                     typedArray = resources.obtainTypedArray(R.array.child);
                     mLocations= resources.getStringArray(R.array.child_locations);
                     mCategories= resources.getStringArray(R.array.child_cagegories);
-                    mPrices= resources.getStringArray(R.array.child_prices);
+                    mPrices= resources.getIntArray(R.array.child_prices);
                     break;
                 case 7:
                     mNames = resources.getStringArray(R.array.entertiment_names);
@@ -104,7 +104,7 @@ public class ProductsListFragment extends Fragment {
                     typedArray = resources.obtainTypedArray(R.array.entertiment);
                     mLocations= resources.getStringArray(R.array.entertiment_locations);
                     mCategories= resources.getStringArray(R.array.entertiment_cagegories);
-                    mPrices= resources.getStringArray(R.array.entertiment_prices);
+                    mPrices= resources.getIntArray(R.array.entertiment_prices);
                     break;
                 case 8:
                     mNames = resources.getStringArray(R.array.leisure_names);
@@ -112,7 +112,7 @@ public class ProductsListFragment extends Fragment {
                     typedArray = resources.obtainTypedArray(R.array.leisure);
                     mLocations= resources.getStringArray(R.array.leisure_locations);
                     mCategories= resources.getStringArray(R.array.leisure_cagegories);
-                    mPrices= resources.getStringArray(R.array.leisure_prices);
+                    mPrices= resources.getIntArray(R.array.leisure_prices);
                     break;
             }
         }
@@ -121,7 +121,7 @@ public class ProductsListFragment extends Fragment {
             mDescriptions = resources.getStringArray(R.array.all_descriptions);
             mLocations= resources.getStringArray(R.array.all_locations);
             mCategories= resources.getStringArray(R.array.all_cagegories);
-            mPrices= resources.getStringArray(R.array.all_prices);
+            mPrices= resources.getIntArray(R.array.all_prices);
 
             // Get images.
             typedArray = resources.obtainTypedArray(R.array.all);

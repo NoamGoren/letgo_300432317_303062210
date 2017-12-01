@@ -26,11 +26,11 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
     protected String[] mDescriptions;
     protected String[] mLocations;
     protected String[] mCategories;
-    protected String[] mPrices;
+    protected int[] mPrices;
     protected Context context;
 
 
-    public ProductsDataAdapter(Context context, int[] mImageResIds, String[] mNames, String[] mDescriptions,String[] mLocations,String[] mCategories,String[] mPrices) {
+    public ProductsDataAdapter(Context context, int[] mImageResIds, String[] mNames, String[] mDescriptions,String[] mLocations,String[] mCategories,int[] mPrices) {
         mLayoutInflater = LayoutInflater.from(context);
         this.context = context;
         this.mImageResIds=mImageResIds;
@@ -39,7 +39,6 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
         this.mLocations = mLocations;
         this.mCategories = mCategories;
         this.mPrices = mPrices;
-
     }
 
     @Override
@@ -55,7 +54,7 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
         final String description = mDescriptions[position];
         final String location = mLocations[position];
         final String category = mCategories[position];
-        final String price = mPrices[position];
+        final int price = mPrices[position];
         viewHolder.setData(imageResId, name);
 
         viewHolder.mImageView.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +69,7 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
                 args.putString(ProductsDetailsFragment.ARGUMENT_DESCRIPTION, description);
                 args.putString(ProductsDetailsFragment.ARGUMENT_LOCATION, location);
                 args.putString(ProductsDetailsFragment.ARGUMENT_CATEGORY, category);
-                args.putString(ProductsDetailsFragment.ARGUMENT_PRICE, price);
+                args.putInt(ProductsDetailsFragment.ARGUMENT_PRICE, price);
                 detailsFragment.setArguments(args);
                 // open fragment
                 FragmentManager fm = ((Activity)context).getFragmentManager();

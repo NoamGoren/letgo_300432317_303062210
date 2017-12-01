@@ -24,15 +24,21 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
     protected int[] mImageResIds;
     protected String[] mNames;
     protected String[] mDescriptions;
+    protected String[] mLocations;
+    protected String[] mCategories;
+    protected String[] mPrices;
     protected Context context;
 
 
-    public ProductsDataAdapter(Context context, int[] mImageResIds, String[] mNames, String[] mDescriptions) {
+    public ProductsDataAdapter(Context context, int[] mImageResIds, String[] mNames, String[] mDescriptions,String[] mLocations,String[] mCategories,String[] mPrices) {
         mLayoutInflater = LayoutInflater.from(context);
         this.context = context;
         this.mImageResIds=mImageResIds;
         this.mNames = mNames;
         this.mDescriptions = mDescriptions;
+        this.mLocations = mLocations;
+        this.mCategories = mCategories;
+        this.mPrices = mPrices;
 
     }
 
@@ -47,6 +53,9 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
         final int imageResId = mImageResIds[position];
         final String name = mNames[position];
         final String description = mDescriptions[position];
+        final String location = mLocations[position];
+        final String category = mCategories[position];
+        final String price = mPrices[position];
         viewHolder.setData(imageResId, name);
 
         viewHolder.mImageView.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +68,9 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
                 args.putInt(ProductsDetailsFragment.ARGUMENT_IMAGE_RES_ID, imageResId);
                 args.putString(ProductsDetailsFragment.ARGUMENT_NAME, name);
                 args.putString(ProductsDetailsFragment.ARGUMENT_DESCRIPTION, description);
+                args.putString(ProductsDetailsFragment.ARGUMENT_LOCATION, location);
+                args.putString(ProductsDetailsFragment.ARGUMENT_CATEGORY, category);
+                args.putString(ProductsDetailsFragment.ARGUMENT_PRICE, price);
                 detailsFragment.setArguments(args);
                 // open fragment
                 FragmentManager fm = ((Activity)context).getFragmentManager();

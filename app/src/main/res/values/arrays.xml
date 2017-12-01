@@ -54,6 +54,39 @@
     <item>leisure5</item>
   </array>
 
+  <array name="all_locations">
+    <item>Afula</item>
+    <item>Haifa</item>
+    <item>Tel Aviv</item>
+    <item>Bat Yam</item>
+    <item>Mizra</item>
+    <item>Ramla</item>
+    <item>Genin</item>
+    <item>Gan Ner</item>
+  </array>
+
+  <array name="all_cagegories">
+    <item>Cars</item>
+    <item>Home</item>
+    <item>Motors</item>
+    <item>Fashion</item>
+    <item>other</item>
+    <item>Child</item>
+    <item>Entertiment</item>
+    <item>Leisure</item>
+  </array>
+
+  <array name="all_prices">
+    <item>55</item>
+    <item>123</item>
+    <item>345</item>
+    <item>699</item>
+    <item>54</item>
+    <item>23</item>
+    <item>178</item>
+    <item>90</item>
+  </array>
+
   //cars
   <array name="cars">
     <item>@drawable/car1</item>
@@ -72,6 +105,25 @@
         <item>Mazda</item>
         <item>Peugeot</item>
     </array>
+
+  <array name="car_locations">
+    <item>Afula</item>
+    <item>Haifa</item>
+    <item>Tel Aviv</item>
+  </array>
+
+  <array name="car_cagegories">
+    <item>Cars</item>
+    <item>Cars</item>
+    <item>Cars</item>
+  </array>
+
+  <array name="car_prices">
+    <item>55000</item>
+    <item>123000</item>
+    <item>34500</item>
+  </array>
+
 
   //home
   <array name="home">
@@ -95,6 +147,27 @@
     <item>home4</item>
   </array>
 
+  <array name="home_locations">
+    <item>Afula</item>
+    <item>Haifa</item>
+    <item>Tel Aviv</item>
+    <item>Bat Yam</item>
+  </array>
+
+  <array name="home_cagegories">
+    <item>Home</item>
+    <item>Home</item>
+    <item>Home</item>
+    <item>Home</item>
+  </array>
+
+  <array name="home_prices">
+    <item>55</item>
+    <item>123</item>
+    <item>345</item>
+    <item>699</item>
+  </array>
+
   //motors
   <array name="motors">
     <item>@drawable/motors1</item>
@@ -115,6 +188,27 @@
     <item>motors2</item>
     <item>motors3</item>
     <item>motors4</item>
+  </array>
+
+  <array name="motors_locations">
+    <item>Afula</item>
+    <item>Haifa</item>
+    <item>Tel Aviv</item>
+    <item>Bat Yam</item>
+  </array>
+
+  <array name="motors_cagegories">
+    <item>Motors</item>
+    <item>Motors</item>
+    <item>Motors</item>
+    <item>Motors</item>
+  </array>
+
+  <array name="motors_prices">
+    <item>45000</item>
+    <item>88000</item>
+    <item>45600</item>
+    <item>80000</item>
   </array>
 
 
@@ -140,6 +234,26 @@
     <item>fashion4</item>
   </array>
 
+  <array name="fashion_locations">
+    <item>Afula</item>
+    <item>Haifa</item>
+    <item>Tel Aviv</item>
+    <item>Bat Yam</item>
+  </array>
+
+  <array name="fashion_cagegories">
+    <item>Fashion</item>
+    <item>Fashion</item>
+    <item>Fashion</item>
+    <item>Fashion</item>
+  </array>
+
+  <array name="fashion_prices">
+    <item>36</item>
+    <item>44</item>
+    <item>25</item>
+    <item>155</item>
+  </array>
 
   //other
   <array name="other">
@@ -161,6 +275,27 @@
     <item>other2</item>
     <item>other3</item>
     <item>other4</item>
+  </array>
+
+  <array name="other_locations">
+    <item>Afula</item>
+    <item>Haifa</item>
+    <item>Tel Aviv</item>
+    <item>Bat Yam</item>
+  </array>
+
+  <array name="other_cagegories">
+    <item>Other</item>
+    <item>Other</item>
+    <item>Other</item>
+    <item>Other</item>
+  </array>
+
+  <array name="other_prices">
+    <item>36</item>
+    <item>44</item>
+    <item>25</item>
+    <item>155</item>
   </array>
 
   //child
@@ -185,6 +320,28 @@
     <item>child4</item>
   </array>
 
+  <array name="child_locations">
+    <item>Afula</item>
+    <item>Haifa</item>
+    <item>Tel Aviv</item>
+    <item>Bat Yam</item>
+  </array>
+
+  <array name="child_cagegories">
+    <item>Child</item>
+    <item>Child</item>
+    <item>Child</item>
+    <item>Child</item>
+  </array>
+
+  <array name="child_prices">
+    <item>36</item>
+    <item>44</item>
+    <item>25</item>
+    <item>155</item>
+  </array>
+
+
   //entertiment
   <array name="entertiment">
     <item>@drawable/entertiment1</item>
@@ -205,6 +362,27 @@
     <item>entertiment2</item>
     <item>entertiment3</item>
     <item>entertiment4</item>
+  </array>
+
+  <array name="entertiment_locations">
+    <item>Afula</item>
+    <item>Haifa</item>
+    <item>Tel Aviv</item>
+    <item>Bat Yam</item>
+  </array>
+
+  <array name="entertiment_cagegories">
+    <item>Entertiment</item>
+    <item>Entertiment</item>
+    <item>Entertiment</item>
+    <item>Entertiment</item>
+  </array>
+
+  <array name="entertiment_prices">
+    <item>36</item>
+    <item>44</item>
+    <item>25</item>
+    <item>155</item>
   </array>
 
   //leisure
@@ -229,23 +407,26 @@
     <item>leisure4</item>
   </array>
 
+  <array name="leisure_locations">
+    <item>Afula</item>
+    <item>Haifa</item>
+    <item>Tel Aviv</item>
+    <item>Bat Yam</item>
+  </array>
 
+  <array name="leisure_cagegories">
+    <item>Leisure</item>
+    <item>Leisure</item>
+    <item>Leisure</item>
+    <item>Leisure</item>
+  </array>
 
-
-  <string-array name="descriptions">
-    <item>The lion (Panthera leo) is one of the big cats in the genus Panthera and a member of the family Felidae. The commonly used term African lion collectively denotes the several subspecies in Africa.</item>
-    <item>The tiger (Panthera tigris) is the largest cat species, most recognisable for their pattern of dark vertical stripes on reddish-orange fur with a lighter underside. The species is classified in the genus Panthera with the lion, leopard, jaguar and snow leopard. </item>
-    <item>Elephants are large mammals of the family Elephantidae and the order Proboscidea. Two species are traditionally recognised, the African elephant (Loxodonta africana) and the Asian elephant (Elephas maximus), although some evidence suggests that African bush elephants and African forest elephants are separate species</item>
-    <item>Foxes are small-to-medium-sized, omnivorous mammals belonging to several genera of the family Canidae. Foxes are slightly smaller than a medium-size domestic dog, with a flattened skull, upright triangular ears, a pointed, slightly upturned snout, and a long bushy tail (or brush).</item>
-    <item>Squirrels are members of the family Sciuridae, a family that includes small or medium-size rodents. The squirrel family includes tree squirrels, ground squirrels, chipmunks, marmots (including woodchucks), flying squirrels, and prairie dogs amongst other rodents. </item>
-    <item>Cattle—colloquially cows—are the most common type of large domesticated ungulates. They are a prominent modern member of the subfamily Bovinae, are the most widespread species of the genus Bos, and are most commonly classified collectively as Bos taurus</item>
-    <item>Rabbits are small mammals in the family Leporidae of the order Lagomorpha, found in several parts of the world. There are eight different genera in the family classified as rabbits, including the European rabbit (Oryctolagus cuniculus), cottontail rabbits </item>
-    <item>Parrots, also known as psittacines are birds of the roughly 393 species in 92 genera that make up the order Psittaciformes, found in most tropical and subtropical regions. The order is subdivided into three superfamilies: the Psittacoidea ("true" parrots), the Cacatuoidea (cockatoos), and the Strigopoidea (New Zealand parrots).</item>
-    <item>Zebras are several species of African equids (horse family) united by their distinctive black and white striped coats. Their stripes come in different patterns, unique to each individual. They are generally social animals that live in small harems to large herds. Unlike their closest relatives, horses and donkeys, zebras have never been truly domesticated.</item>
-    <item>The kangaroo is a marsupial from the family Macropodidae (macropods, meaning "large foot"). In common use the term is used to describe the largest species from this family, especially those of the genus Macropus: the red kangaroo, antilopine kangaroo, eastern grey kangaroo, and western grey kangaroo.</item>
-    <item>The giant panda (Ailuropoda melanoleuca, literally "black and white cat-foot";  literally "big bear cat"), also known as panda bear or simply panda, is a bear native to south central China. It is easily recognized by the large, distinctive black patches around its eyes, over the ears, and across its round body.</item>
-    <item>The domestic cat (Latin: Felis catus) is a small, typically furry, carnivorous mammal. They are often called house cats when kept as indoor pets or simply cats when there is no need to distinguish them from other felids and felines.[6] Cats are often valued by humans for companionship and for their ability to hunt vermin. </item>
-     </string-array>
+  <array name="leisure_prices">
+    <item>36</item>
+    <item>44</item>
+    <item>25</item>
+    <item>155</item>
+  </array>
 
 
 </resources>

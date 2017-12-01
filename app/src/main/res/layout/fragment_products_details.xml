@@ -1,54 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            tools:ignore="RtlHardcoded">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="450dp"
+    android:fillViewport="true"
+    tools:ignore="RtlHardcoded">
+
 
   <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:gravity="center"
+      android:layout_height="match_parent"
       android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/name"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
-        android:textColor="@color/lightRed"
-        android:layout_marginTop="@dimen/rage_comic_name_margin_top"/>
+        android:orientation="horizontal">
+
+      <TextView
+          android:id="@+id/item_title"
+          android:layout_width="wrap_content"
+          android:textSize="16dp"
+          android:layout_marginTop="10dp"
+          android:textColor="@color/black"
+          android:layout_marginLeft="20dp"
+          android:text="Item Name's:"
+          android:layout_height="wrap_content" >
+      </TextView>
+
+      <TextView
+          android:id="@+id/name"
+          android:layout_width="wrap_content"
+          android:textSize="16dp"
+          android:layout_marginTop="10dp"
+          android:textColor="@color/red"
+          android:layout_marginLeft="20dp"
+          android:layout_height="wrap_content" >
+      </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+      <TextView
+          android:id="@+id/item_cat"
+          android:layout_width="wrap_content"
+          android:textSize="16dp"
+          android:layout_marginTop="10dp"
+          android:textColor="@color/black"
+          android:layout_marginLeft="20dp"
+          android:text="Category:"
+          android:layout_height="wrap_content" >
+      </TextView>
+
+      <TextView
+          android:id="@+id/category"
+          android:layout_width="wrap_content"
+          android:textSize="16dp"
+          android:layout_marginTop="10dp"
+          android:textColor="@color/red"
+          android:layout_marginLeft="20dp"
+          android:layout_height="wrap_content" >
+      </TextView>
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/rage_comic_image_size"
-        android:layout_marginBottom="@dimen/rage_comic_image_margin_vertical"
-        android:layout_marginTop="@dimen/rage_comic_image_margin_vertical"
-        android:adjustViewBounds="true"
-        android:contentDescription="@null"
-        android:scaleType="centerCrop"/>
-
-    <TextView
-        android:id="@+id/description"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/rage_comic_description_margin_bottom"
-        android:layout_marginLeft="@dimen/rage_comic_description_margin_left"
-        android:layout_marginRight="@dimen/rage_comic_description_margin_right"
-        android:textColor="@color/lightRed"
-        android:layout_marginTop="0dp"/>
+        android:layout_marginTop="10dp" />
 
-    <TextView
-        android:id="@+id/location"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/rage_comic_description_margin_bottom"
-        android:layout_marginLeft="@dimen/rage_comic_description_margin_left"
-        android:layout_marginRight="@dimen/rage_comic_description_margin_right"
-        android:layout_marginTop="0dp"/>
+        android:orientation="horizontal">
+
+      <TextView
+          android:id="@+id/item_des"
+          android:layout_width="wrap_content"
+          android:textSize="16dp"
+          android:layout_marginTop="10dp"
+          android:textColor="@color/black"
+          android:layout_marginLeft="20dp"
+          android:text="Description:"
+          android:layout_height="wrap_content" >
+      </TextView>
+
+      <TextView
+          android:id="@+id/description"
+          android:layout_width="wrap_content"
+          android:textSize="16dp"
+          android:layout_marginTop="10dp"
+          android:textColor="@color/red"
+          android:layout_marginLeft="20dp"
+          android:layout_height="wrap_content" >
+      </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+      <TextView
+          android:id="@+id/item_price"
+          android:layout_width="wrap_content"
+          android:textSize="16dp"
+          android:layout_marginTop="10dp"
+          android:textColor="@color/black"
+          android:layout_marginLeft="20dp"
+          android:text="Price:"
+          android:layout_height="wrap_content" >
+      </TextView>
+
+      <TextView
+          android:id="@+id/price"
+          android:layout_width="wrap_content"
+          android:textSize="16dp"
+          android:layout_marginTop="10dp"
+          android:textColor="@color/red"
+          android:layout_marginLeft="20dp"
+          android:layout_height="wrap_content" >
+      </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+      <TextView
+          android:id="@+id/item_location"
+          android:layout_width="wrap_content"
+          android:textSize="16dp"
+          android:layout_marginTop="10dp"
+          android:textColor="@color/black"
+          android:layout_marginLeft="20dp"
+          android:text="Location:"
+          android:layout_height="wrap_content" >
+      </TextView>
+
+      <TextView
+          android:id="@+id/location"
+          android:layout_width="wrap_content"
+          android:textSize="16dp"
+          android:layout_marginTop="10dp"
+          android:textColor="@color/red"
+          android:layout_marginLeft="20dp"
+          android:layout_height="wrap_content" >
+      </TextView>
+
+    </LinearLayout>
 
   </LinearLayout>
 
+
+
 </ScrollView>
+

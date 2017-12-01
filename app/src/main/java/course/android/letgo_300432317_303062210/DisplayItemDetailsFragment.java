@@ -20,9 +20,9 @@ public class DisplayItemDetailsFragment extends Fragment {
 	
 	private TextView itemDescriptionView;
 	private TextView itemTitleView;
-	//private TextView itemPriceView;
+	private TextView itemPriceView;
 	private TextView itemLocationView;
-	//private TextView itemCategoryView;
+	private TextView itemCategoryView;
 	private ImageView itemImage1;
 	Activity ctx;
 
@@ -43,6 +43,9 @@ public class DisplayItemDetailsFragment extends Fragment {
 
 		itemTitleView = (TextView) rootView.findViewById(R.id.item_title_txt);
 		itemTitleView.setText(item.getTitle());
+
+		//itemCategoryView = (TextView) rootView.findViewById(R.id.category_spinner);
+		//itemCategoryView.setText(item.getCategory());
 
 		//itemPriceView = (TextView) rootView.findViewById(R.id.item_price_txt);
 		//itemPriceView.setText(item.getPrice());

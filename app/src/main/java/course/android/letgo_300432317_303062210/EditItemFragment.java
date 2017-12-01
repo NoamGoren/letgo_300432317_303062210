@@ -33,8 +33,9 @@ public class EditItemFragment extends Fragment {
 
 	private EditText itemTitleView = null;
 	private EditText itemDescriptionView = null;
-	//private EditText itemPriceView = null;
+	private EditText itemPriceView = null;
 	private EditText itemLocationView = null;
+	//private String itemCategoryView = null;
 	private Button itemSaveBtn = null;
 	private ImageView itemImage1 = null;
 	private TextView titleLblView = null;
@@ -59,6 +60,8 @@ public class EditItemFragment extends Fragment {
 		itemTitleView = (EditText) rootView.findViewById(R.id.item_title_txt);
 		itemDescriptionView = (EditText) rootView.findViewById(R.id.item_desc_txt);
 		itemLocationView = (EditText) rootView.findViewById(R.id.item_location_txt);
+		//String cat=rootView.findViewById(R.id.category_spinner).toString();
+		//itemCategoryView =  cat;
 		//itemPriceView = (EditText) rootView.findViewById(R.id.item_price_txt);
 
 		
@@ -80,6 +83,7 @@ public class EditItemFragment extends Fragment {
 			itemTitleView.setText(infoItem.getTitle());
 			itemDescriptionView.setText(infoItem.getDescription());
 			itemLocationView.setText(infoItem.getLocation());
+			//itemCategoryView.setText(infoItem.getCategory());
 			//itemPriceView.setText(infoItem.getPrice());
 			Bitmap img1 =infoItem.getImage1();
 			if(img1!=null){
@@ -172,9 +176,9 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 		}
 	};
 
-	
-	
-	
+
+
+
 	private OnClickListener saveItemListener = new OnClickListener() {
 
 		@Override
@@ -184,11 +188,12 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 				String title=itemTitleView.getText().toString();
 				String description = itemDescriptionView.getText().toString();
 				String location = itemLocationView.getText().toString();
-				//String price= itemPriceView.getText().toString();
+				//String category = itemCategoryView.toString();
+				//int price= Integer.parseInt(itemPriceView.getText().toString());
 
 				Product item =MyInfoManager.getInstance().getSelectedItem();
 				if(item==null){
-					 item = new Product(title, description,location);
+					 item = new Product(title,description,location);
 
 					 MyInfoManager.getInstance().createItem(item);
 				}
@@ -197,6 +202,8 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 					 item.setDescription(description);
 					 //item.setPrice(price);
 					 item.setLocation(location);
+					 //item.setCategory(category);
+
 					 if(item.getId() == NEW_ITEM_TAG){
 						 MyInfoManager.getInstance().createItem(item);
 					 }

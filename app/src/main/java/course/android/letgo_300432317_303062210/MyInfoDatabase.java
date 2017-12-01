@@ -61,9 +61,9 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 					+ ITEM_COLUMN_NAME +" TEXT, "
 					+ ITEM_COLUMN_DESCRIPTION + " TEXT, "
 					+ ITEM_COLUMN__IMAGE1 + " BLOB, "
-					+ ITEM_COLUMN_PRICE+" INTEGER, "
-					+ ITEM_COLUMN_CATEGORY + " TEXT, "
 					+ ITEM_COLUMN_LOCATION + " TEXT, "
+					+ ITEM_COLUMN_CATEGORY + " TEXT, "
+					+ ITEM_COLUMN_PRICE+" INTEGER, "
 					+ ITEM_COLUMN_FOLDERID + " INTEGER)";
 			db.execSQL(CREATE_ITEM_TABLE);
 
@@ -104,9 +104,9 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 			ContentValues values = new ContentValues();
 			values.put(ITEM_COLUMN_NAME, product.getTitle());
 			values.put(ITEM_COLUMN_DESCRIPTION, product.getDescription());
-			values.put(ITEM_COLUMN_PRICE, product.getPrice());
 			values.put(ITEM_COLUMN_LOCATION, product.getLocation());
 			values.put(ITEM_COLUMN_CATEGORY, product.getCategory());
+			values.put(ITEM_COLUMN_PRICE, product.getPrice());
 			values.put(ITEM_COLUMN_FOLDERID, user.getId());
 			
 			//images
@@ -176,9 +176,11 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 				item.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(ITEM_COLUMN_ID))));
 				item.setTitle(cursor.getString(1));
 				item.setDescription(cursor.getString(2));
-				item.setPrice(cursor.getInt(4));
+				item.setLocation(cursor.getString(4));
 				item.setCategory(cursor.getString(5));
-				item.setLocation(cursor.getString(6));
+				item.setPrice(cursor.getInt(6));
+
+
 				
 				//images
 				byte[] img1Byte = cursor.getBlob(3);
@@ -271,9 +273,11 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 			result.setId(Integer.parseInt(cursor.getString(0)));
 			result.setTitle(cursor.getString(1));
 			result.setDescription(cursor.getString(2));
-			result.setPrice(cursor.getInt(4));
+			result.setLocation(cursor.getString(4));
 			result.setCategory(cursor.getString(5));
-			result.setLocation(cursor.getString(6));
+			result.setPrice(cursor.getInt(6));
+
+
 			
 			//images
 			byte[] img1Byte = cursor.getBlob(3);
@@ -284,6 +288,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 				}
 			}
 
+			//there is a problem with the next line
 			result.setUserId(Integer.parseInt(cursor.getString(7)));
 		} catch (Throwable t) {
 			t.printStackTrace();
@@ -340,8 +345,8 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 			ContentValues values = new ContentValues();
 			values.put(ITEM_COLUMN_NAME, item.getTitle());
 			values.put(ITEM_COLUMN_DESCRIPTION, item.getDescription());
-			values.put(ITEM_COLUMN_CATEGORY,item.getCategory());
 			values.put(ITEM_COLUMN_LOCATION,item.getLocation());
+			values.put(ITEM_COLUMN_CATEGORY,item.getCategory());
 			values.put(ITEM_COLUMN_PRICE,item.getPrice());
 			
 			//images

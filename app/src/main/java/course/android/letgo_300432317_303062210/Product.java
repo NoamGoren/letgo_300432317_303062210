@@ -21,13 +21,17 @@ public class Product {
 
     }
 
-//constructor with title and des
+    //constructor with title and des
+    public Product(String title, String description) {
+        this.title = title;
+        this.description=description;
+    }
+
+//constructor with title, desc , location
 public Product(String title, String description, String location) {
     this.title = title;
     this.description=description;
     this.location=location;
-
-
 }
 
     //constructor without description and price
@@ -54,6 +58,7 @@ public Product(String title, String description, String location) {
         this.category=category;
         this.image1 = image1;
     }
+
     // costructor without image
     public Product(String title, String description,String location,String category,int price) {
         this.title = title;
@@ -61,6 +66,15 @@ public Product(String title, String description, String location) {
         this.location = location;
         this.price = price;
         this.category = category;
+    }
+
+    //constructor without price&image
+    public Product(String title, String description,String location,String category) {
+        this.title = title;
+        this.description = description;
+        this.location=location;
+        this.category=category;
+        this.image1 = image1;
     }
 
     // costructor without image&category
@@ -85,7 +99,6 @@ public Product(String title, String description, String location) {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -93,7 +106,6 @@ public Product(String title, String description, String location) {
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
@@ -101,7 +113,6 @@ public Product(String title, String description, String location) {
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -109,7 +120,6 @@ public Product(String title, String description, String location) {
     public Bitmap getImage1() {
         return image1;
     }
-
     public void setImage1(Bitmap image1) {
         this.image1 = image1;
     }
@@ -117,7 +127,6 @@ public Product(String title, String description, String location) {
     public void setPrice(int price) {
         this.price = price;
     }
-
     public int getPrice() {
         return price;
     }
@@ -129,21 +138,12 @@ public Product(String title, String description, String location) {
         this.category = category;
     }
 
-
-
-
-
-
-
     public String getLocation() {
         return location;
     }
     public void setLocation(String location) {
         this.location = location;
     }
-
-
-
 
     public void setUserId(int folderId) {
         this.UserId  = folderId;

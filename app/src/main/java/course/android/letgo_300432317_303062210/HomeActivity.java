@@ -208,6 +208,7 @@ public class HomeActivity extends AppCompatActivity
         }
         else if (id == R.id.nav_invite) {
 
+
         }
         else if (id == R.id.nav_help) {
             Intent i = new Intent(HomeActivity.this,MainActivity.class);

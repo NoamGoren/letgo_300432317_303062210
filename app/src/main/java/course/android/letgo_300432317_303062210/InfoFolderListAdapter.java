@@ -44,12 +44,12 @@ public class InfoFolderListAdapter extends ArrayAdapter<User> {
 			@Override
 			public void onClick(View view) {
 				final String title = "Delete Folder";
-				final String msg = "Are you sure?";
+				final String msg = "Are you sure? (all your data inside this folder will be gone)";
 				AlertDialog.Builder  builder=  new AlertDialog.Builder(context);
 				builder.setTitle(title);
 				builder.setMessage(msg);
 
-				builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+				builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
 						MyInfoManager.getInstance().deleteFolder(currentFolder);
 						InfoFolderListAdapter.this.remove(currentFolder);

@@ -86,7 +86,7 @@ class ViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
 
         // Get references to image and name.
-        mImageView = (ImageView) itemView.findViewById(R.id.animal_image);
+        mImageView = (ImageView) itemView.findViewById(R.id.image);
         mNameTextView = (TextView) itemView.findViewById(R.id.name);
     }
 

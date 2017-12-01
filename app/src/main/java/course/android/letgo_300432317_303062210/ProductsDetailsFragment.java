@@ -13,6 +13,7 @@ public class ProductsDetailsFragment extends Fragment {
   public static final String ARGUMENT_IMAGE_RES_ID = "imageResId";
   public static final String ARGUMENT_NAME = "name";
   public static final String ARGUMENT_DESCRIPTION = "description";
+  public static final String ARGUMENT_LOCATION = "location";
 
 
   @Override
@@ -20,15 +21,18 @@ public class ProductsDetailsFragment extends Fragment {
 
      View view = inflater.inflate(R.layout.fragment_products_details, container, false);
 
-     ImageView imageView = (ImageView) view.findViewById(R.id.animal_image);
+     ImageView imageView = (ImageView) view.findViewById(R.id.image);
      TextView nameTextView = (TextView) view.findViewById(R.id.name);
      TextView descriptionTextView = (TextView) view.findViewById(R.id.description);
+      TextView locationTextView = (TextView) view.findViewById(R.id.location);
 
     Bundle args = getArguments();
     imageView.setImageResource(args.getInt(ARGUMENT_IMAGE_RES_ID));
     nameTextView.setText(args.getString(ARGUMENT_NAME));
     String descText=  args.getString(ARGUMENT_DESCRIPTION);
-    descriptionTextView.setText(descText);
+      descriptionTextView.setText(descText);
+      String locText=  args.getString(ARGUMENT_LOCATION);
+      locationTextView.setText(locText);
     return view;
   }
 }

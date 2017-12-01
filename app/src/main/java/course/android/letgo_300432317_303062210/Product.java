@@ -11,10 +11,10 @@ public class Product {
     private int id;
     private String title;
     private String description;
-    private int price;
-    private String category;
-    private String location;
     private Bitmap image1 = null;
+    private String location;
+    private String category;
+    private int price;
     private int UserId = -1;
 
     public Product() {
@@ -149,7 +149,6 @@ public class Product {
         this.UserId  = folderId;
 
     }
-
     public int getUserId() {
         return UserId;
     }

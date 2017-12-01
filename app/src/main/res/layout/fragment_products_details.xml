@@ -17,10 +17,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
+        android:textColor="@color/lightRed"
         android:layout_marginTop="@dimen/rage_comic_name_margin_top"/>
 
     <ImageView
-        android:id="@+id/animal_image"
+        android:id="@+id/image"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/rage_comic_image_size"
         android:layout_marginBottom="@dimen/rage_comic_image_margin_vertical"
@@ -31,8 +32,18 @@
 
     <TextView
         android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/rage_comic_description_margin_bottom"
+        android:layout_marginLeft="@dimen/rage_comic_description_margin_left"
+        android:layout_marginRight="@dimen/rage_comic_description_margin_right"
+        android:textColor="@color/lightRed"
+        android:layout_marginTop="0dp"/>
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/rage_comic_description_margin_bottom"
         android:layout_marginLeft="@dimen/rage_comic_description_margin_left"
         android:layout_marginRight="@dimen/rage_comic_description_margin_right"

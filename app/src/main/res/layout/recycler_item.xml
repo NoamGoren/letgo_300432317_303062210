@@ -1,32 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
              android:layout_margin="@dimen/recycler_layout_spacing">
 
-  <ImageView
-
-      android:id="@+id/animal_image"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:adjustViewBounds="true"
-      android:contentDescription="@null"
-      android:scaleType="centerCrop"
-      tools:src="@drawable/car1"/>
-
-  <TextView
-      android:id="@+id/name"
-      android:layout_width="match_parent"
+  <LinearLayout
+      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_gravity="bottom"
-      android:minHeight="@dimen/recycler_item_footer_height_min"
-      android:paddingBottom="@dimen/recycler_item_footer_padding"
-      android:paddingLeft="@dimen/recycler_item_footer_padding"
-      android:paddingRight="@dimen/recycler_item_footer_padding"
-      android:paddingTop="@dimen/recycler_item_footer_padding"
-      android:background="@color/cardview_light_background"
-      tools:text=""/>
+      android:orientation="vertical">
+
+
+    <ImageView
+
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/rage_comic_image_size"
+        android:adjustViewBounds="true"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/car1"/>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:minHeight="@dimen/recycler_item_footer_height_min"
+        android:paddingBottom="@dimen/recycler_item_footer_padding"
+        android:paddingLeft="@dimen/recycler_item_footer_padding"
+        android:paddingRight="@dimen/recycler_item_footer_padding"
+        android:paddingTop="@dimen/recycler_item_footer_padding"
+        android:background="@color/cardview_light_background"
+        tools:text=""/>
+
+  </LinearLayout>
+
+
 
   </FrameLayout>
 

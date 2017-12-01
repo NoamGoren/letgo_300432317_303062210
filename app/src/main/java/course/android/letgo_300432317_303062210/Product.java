@@ -27,8 +27,8 @@ public class Product {
         this.description=description;
     }
 
-//constructor with title, desc , location
-public Product(String title, String description, String location) {
+    //constructor with title, desc , location
+    public Product(String title, String description, String location) {
     this.title = title;
     this.description=description;
     this.location=location;
@@ -117,6 +117,13 @@ public Product(String title, String description, String location) {
         this.description = description;
     }
 
+    public String getLocation() {
+        return location;
+    }
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     public Bitmap getImage1() {
         return image1;
     }
@@ -136,13 +143,6 @@ public Product(String title, String description, String location) {
     }
     public void setCategory(String category) {
         this.category = category;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public void setUserId(int folderId) {

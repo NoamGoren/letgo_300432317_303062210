@@ -198,11 +198,12 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 					 MyInfoManager.getInstance().createItem(item);
 				}
 				else{
-					 item.setTitle(title);
-					 item.setDescription(description);
-					 //item.setPrice(price);
-					 item.setLocation(location);
-					 //item.setCategory(category);
+					item.setTitle(title);
+					item.setDescription(description);
+					item.setLocation(location);
+					//item.setPrice(price);
+					//item.setCategory(category);
+
 
 					 if(item.getId() == NEW_ITEM_TAG){
 						 MyInfoManager.getInstance().createItem(item);

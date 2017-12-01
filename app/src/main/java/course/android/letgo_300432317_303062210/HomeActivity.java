@@ -199,7 +199,8 @@ public class HomeActivity extends AppCompatActivity
         }  else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_notifaction) {
-
+            Intent i = new Intent(HomeActivity.this,NotificationActivity.class);
+            startActivity(i);
         }
         else if (id == R.id.nav_categories) {
             Intent i = new Intent(HomeActivity.this,CategoriesActivity.class);

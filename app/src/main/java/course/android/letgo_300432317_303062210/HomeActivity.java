@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 public class HomeActivity extends AppCompatActivity
@@ -25,6 +26,7 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         FragmentManager fm = getFragmentManager();
         FragmentTransaction t= fm.beginTransaction();
@@ -123,6 +125,9 @@ public class HomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+
+
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -169,7 +174,8 @@ public class HomeActivity extends AppCompatActivity
             return true;
         }
         else if (id==R.id.app_bar_search){
-
+            EditText editText=(EditText) findViewById(R.id.searchEditText);
+            editText.setVisibility(View.INVISIBLE);
         }
 
         return super.onOptionsItemSelected(item);

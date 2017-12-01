@@ -61,7 +61,7 @@ public class FolderListFragment extends Fragment {
 
 
 
-	private OnClickListener newFloderListener = new OnClickListener() {
+	public OnClickListener newFloderListener = new OnClickListener() {
 		
 		@Override
 		public void onClick(View arg0) {

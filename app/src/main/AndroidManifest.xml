@@ -14,26 +14,31 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".HomeActivity"
-            android:label="letgo"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".Main3Activity"
+            android:screenOrientation="portrait">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+    <activity
+        android:name=".HomeActivity"
+        android:label="letgo"
+        android:screenOrientation="portrait"
+        android:theme="@style/AppTheme.NoActionBar">
+    </activity>
         <activity
             android:name=".TestActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".CameraActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".Main3Activity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".CategoriesActivity"
             android:screenOrientation="portrait"></activity>

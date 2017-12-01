@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -21,6 +23,13 @@ public class ItemListFragment extends Fragment {
 	private InfoItemListAdapter adapter;
 	private Button newItemBtn = null;
 	private Activity ctx;
+
+	private ListView foldersList;
+
+	private Context context = null;
+	private Button newFolderBtn = null;
+
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -29,7 +38,12 @@ public class ItemListFragment extends Fragment {
 		ctx = getActivity();
 
 		User folder = MyInfoManager.getInstance().getSelectedFolder();
+
+
+
+
 		if (folder != null) {
+
 			String txt = folder.getName();
 			ctx.setTitle(txt);
 		}

@@ -1,6 +1,7 @@
 package course.android.letgo_300432317_303062210;
 
 import android.graphics.Bitmap;
+import android.widget.Spinner;
 
 /**
  * Created by Noam on 11/27/2017.
@@ -35,45 +36,45 @@ public class Product {
 }
 
     //constructor without description and price
-    public Product(String title, Bitmap image1,String loaction,String category) {
+    public Product(String title, Bitmap image1,String loaction,Spinner category) {
         this.title = title;
         this.location=loaction;
-        this.category=category;
+        this.category=category.getSelectedItem().toString();
         this.image1 = image1;
 
     }
     //constructor without description
-    public Product(String title, Bitmap image1,String location,String category,int price) {
+    public Product(String title, Bitmap image1,String location,Spinner category,int price) {
         this.title = title;
         this.location=location;
-        this.category=category;
+        this.category=category.getSelectedItem().toString();
         this.image1 = image1;
         this.price=price;
     }
 //constructor without price
-    public Product(String title, String description, Bitmap image1,String location,String category) {
+    public Product(String title, String description, Bitmap image1,String location,Spinner category) {
         this.title = title;
         this.description = description;
         this.location=location;
-        this.category=category;
+        this.category=category.getSelectedItem().toString();
         this.image1 = image1;
     }
 
     // costructor without image
-    public Product(String title, String description,String location,String category,int price) {
+    public Product(String title, String description,String location,Spinner category,int price) {
         this.title = title;
         this.description = description;
         this.location = location;
         this.price = price;
-        this.category = category;
+        this.category=category.getSelectedItem().toString();
     }
 
     //constructor without price&image
-    public Product(String title, String description,String location,String category) {
+    public Product(String title, String description,String location,Spinner category) {
         this.title = title;
         this.description = description;
         this.location=location;
-        this.category=category;
+        this.category=category.getSelectedItem().toString();
         this.image1 = image1;
     }
 
@@ -86,12 +87,12 @@ public class Product {
     }
 
 //full costructor
-    public Product(String title, String description, Bitmap image1,String location,String category,int price) {
+    public Product(String title, String description, Bitmap image1,String location,Spinner category,int price) {
         this.title = title;
         this.description = description;
         this.location=location;
         this.price=price;
-        this.category=category;
+        this.category=category.getSelectedItem().toString();
         this.image1 = image1;
     }
 
@@ -139,10 +140,10 @@ public class Product {
     }
 
     public String getCategory() {
-        return category;
+        return String.valueOf(category);
     }
     public void setCategory(String category) {
-        this.category = category;
+        this.category = String.valueOf(category);
     }
 
     public void setUserId(int folderId) {

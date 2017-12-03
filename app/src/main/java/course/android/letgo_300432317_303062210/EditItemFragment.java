@@ -35,7 +35,10 @@ public class EditItemFragment extends Fragment {
 	private EditText itemDescriptionView = null;
 	private EditText itemPriceView = null;
 	private EditText itemLocationView = null;
-	//private String itemCategoryView = null;
+
+	private Spinner catSpi=null;
+	private EditText itemCategoryView = null;
+
 	private Button itemSaveBtn = null;
 	private ImageView itemImage1 = null;
 	private TextView titleLblView = null;
@@ -60,8 +63,11 @@ public class EditItemFragment extends Fragment {
 		itemTitleView = (EditText) rootView.findViewById(R.id.item_title_txt);
 		itemDescriptionView = (EditText) rootView.findViewById(R.id.item_desc_txt);
 		itemLocationView = (EditText) rootView.findViewById(R.id.item_location_txt);
-		//String cat=rootView.findViewById(R.id.category_spinner).toString();
-		//itemCategoryView =  cat;
+
+		//catSpi= (Spinner) rootView.findViewById(R.id.category_spinner);
+		//String category=catSpi.getSelectedItem().toString();
+		//itemCategoryView =(EditText) category;
+
 		//itemPriceView = (EditText) rootView.findViewById(R.id.item_price_txt);
 
 		
@@ -83,6 +89,7 @@ public class EditItemFragment extends Fragment {
 			itemTitleView.setText(infoItem.getTitle());
 			itemDescriptionView.setText(infoItem.getDescription());
 			itemLocationView.setText(infoItem.getLocation());
+			//catSpi.setTag(infoItem.getCategory());
 			//itemCategoryView.setText(infoItem.getCategory());
 			//itemPriceView.setText(infoItem.getPrice());
 			Bitmap img1 =infoItem.getImage1();
@@ -188,7 +195,8 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 				String title=itemTitleView.getText().toString();
 				String description = itemDescriptionView.getText().toString();
 				String location = itemLocationView.getText().toString();
-				//String category = itemCategoryView.toString();
+				//Spinner categoryS = catSpi;
+				//String category= catSpi.getSelectedItem().toString();
 				//int price= Integer.parseInt(itemPriceView.getText().toString());
 
 				Product item =MyInfoManager.getInstance().getSelectedItem();

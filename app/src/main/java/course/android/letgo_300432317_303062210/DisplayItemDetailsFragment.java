@@ -6,6 +6,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.renderscript.Sampler;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,7 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DisplayItemDetailsFragment extends Fragment {
 	
@@ -24,6 +27,9 @@ public class DisplayItemDetailsFragment extends Fragment {
 	private TextView itemLocationView;
 	private TextView itemCategoryView;
 	private ImageView itemImage1;
+
+	private Spinner catSpi;
+	private TextView cat;
 	Activity ctx;
 
 	@Override
@@ -44,7 +50,7 @@ public class DisplayItemDetailsFragment extends Fragment {
 		itemTitleView = (TextView) rootView.findViewById(R.id.item_title_txt);
 		itemTitleView.setText(item.getTitle());
 
-		//itemCategoryView = (TextView) rootView.findViewById(R.id.category_spinner);
+		//catSpi=(Spinner)rootView.findViewById(R.id.category_spinner);
 		//itemCategoryView.setText(item.getCategory());
 
 		//itemPriceView = (TextView) rootView.findViewById(R.id.item_price_txt);
@@ -52,6 +58,9 @@ public class DisplayItemDetailsFragment extends Fragment {
 
 		itemLocationView = (TextView) rootView.findViewById(R.id.item_location_txt);
 		itemLocationView.setText(item.getLocation());
+		Toast.makeText(ctx,
+				item.getLocation(), Toast.LENGTH_LONG).show();
+
 
 
 		itemImage1 = (ImageView) rootView.findViewById(R.id.item_img1);

@@ -33,6 +33,7 @@ public class InfoItemListAdapter extends ArrayAdapter<Product> {
 
 		title.setText(rowItem.getTitle());
 
+
 		return rootView;
 	}
 

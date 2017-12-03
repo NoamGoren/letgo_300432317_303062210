@@ -76,7 +76,7 @@
     <item>Leisure</item>
   </array>
 
-  <array name="all_prices">
+  <integer-array name="all_prices">
     <item>45000</item>
     <item>66</item>
     <item>32</item>
@@ -85,7 +85,7 @@
     <item>88</item>
     <item>24</item>
     <item>43</item>
-  </array>
+  </integer-array>
 
   //cars
   <array name="cars">
@@ -118,11 +118,11 @@
     <item>Cars</item>
   </array>
 
-  <array name="car_prices">
+  <integer-array name="car_prices">
     <item>55000</item>
     <item>123000</item>
     <item>34500</item>
-  </array>
+  </integer-array>
 
 
   //home
@@ -161,12 +161,14 @@
     <item>Home</item>
   </array>
 
-  <array name="home_prices">
+  <integer-array name="home_prices">
     <item>55</item>
     <item>123</item>
     <item>345</item>
     <item>699</item>
-  </array>
+  </integer-array>
+
+
 
   //motors
   <array name="motors">
@@ -204,13 +206,13 @@
     <item>Motors</item>
   </array>
 
-  <array name="motors_prices">
-    <item>45000</item>
-    <item>88000</item>
-    <item>45600</item>
-    <item>80000</item>
-  </array>
 
+  <integer-array name="motors_prices">
+    <item>55000</item>
+    <item>12300</item>
+    <item>34500</item>
+    <item>69900</item>
+  </integer-array>
 
   //fashion
   <array name="fashion">
@@ -248,12 +250,13 @@
     <item>Fashion</item>
   </array>
 
-  <array name="fashion_prices">
+  <integer-array name="fashion_prices">
     <item>36</item>
     <item>44</item>
     <item>25</item>
     <item>155</item>
-  </array>
+  </integer-array>
+
 
   //other
   <array name="other">
@@ -291,12 +294,12 @@
     <item>Other</item>
   </array>
 
-  <array name="other_prices">
+  <integer-array name="other_prices">
     <item>36</item>
     <item>44</item>
     <item>25</item>
     <item>155</item>
-  </array>
+  </integer-array>
 
   //child
   <array name="child">
@@ -334,12 +337,12 @@
     <item>Child</item>
   </array>
 
-  <array name="child_prices">
+  <integer-array name="child_prices">
     <item>36</item>
     <item>44</item>
     <item>25</item>
     <item>155</item>
-  </array>
+  </integer-array>
 
 
   //entertiment
@@ -378,12 +381,12 @@
     <item>Entertiment</item>
   </array>
 
-  <array name="entertiment_prices">
+  <integer-array name="entertiment_prices">
     <item>36</item>
     <item>44</item>
     <item>25</item>
     <item>155</item>
-  </array>
+  </integer-array>
 
   //leisure
   <array name="leisure">
@@ -421,12 +424,12 @@
     <item>Leisure</item>
   </array>
 
-  <array name="leisure_prices">
+  <integer-array name="leisure_prices">
     <item>36</item>
     <item>44</item>
     <item>25</item>
     <item>155</item>
-  </array>
+  </integer-array>
 
 
 </resources>

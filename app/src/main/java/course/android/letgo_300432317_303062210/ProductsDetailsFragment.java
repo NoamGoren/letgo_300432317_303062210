@@ -28,7 +28,7 @@ public class ProductsDetailsFragment extends Fragment {
      TextView descriptionTextView = (TextView) view.findViewById(R.id.description);
       TextView locationTextView = (TextView) view.findViewById(R.id.location);
       TextView categoryTextView = (TextView) view.findViewById(R.id.category);
-      //TextView priceTextView =(TextView) view.findViewById(R.id.price);
+      TextView priceTextView =(TextView) view.findViewById(R.id.price);
 
     Bundle args = getArguments();
     imageView.setImageResource(args.getInt(ARGUMENT_IMAGE_RES_ID));
@@ -38,7 +38,7 @@ public class ProductsDetailsFragment extends Fragment {
       String locText=  args.getString(ARGUMENT_LOCATION);
       locationTextView.setText(locText);
       categoryTextView.setText(args.getString(ARGUMENT_CATEGORY));
-      //priceTextView.setText(args.getInt(ARGUMENT_PRICE));
+      priceTextView.setText(String.valueOf(args.getInt(ARGUMENT_PRICE)));
     return view;
   }
 }

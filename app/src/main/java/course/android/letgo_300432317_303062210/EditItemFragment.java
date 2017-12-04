@@ -35,12 +35,13 @@ public class EditItemFragment extends Fragment {
 	private EditText itemDescriptionView = null;
 	private EditText itemPriceView = null;
 	private EditText itemLocationView = null;
+
+	public Spinner categorySpinner;
 	private EditText itemCategoryView = null;
 
 	private Button itemSaveBtn = null;
 	private ImageView itemImage1 = null;
-	private TextView titleLblView = null;
-	private TextView descriptionLblView = null;
+
 	private Activity ctx = null;
 
     static final int REQUEST_TAKE_PHOTO = 111;
@@ -52,7 +53,7 @@ public class EditItemFragment extends Fragment {
 
 	private Button deleteItemButton = null;
 	private Button addPhotoBtn = null;
-	public Spinner categorySpinner;
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class EditItemFragment extends Fragment {
 		itemDescriptionView = (EditText) rootView.findViewById(R.id.item_desc_txt);
 		itemLocationView = (EditText) rootView.findViewById(R.id.item_location_txt);
 
-		//catSpi= (Spinner) rootView.findViewById(R.id.category_spinner);
+
 		//String category=catSpi.getSelectedItem().toString();
 		//itemCategoryView = (EditText) rootView.findViewById(R.id.category_spinner);
 
@@ -75,6 +76,26 @@ public class EditItemFragment extends Fragment {
 
 		addPhotoBtn  = (Button) rootView.findViewById(R.id.add_photo_btn);
 		deleteItemButton  = (Button) rootView.findViewById(R.id.delete_item_btn);
+
+		//coin spinner
+		Spinner coinSpinner = (Spinner) rootView.findViewById(R.id.coin_spinner);
+		// Create an ArrayAdapter using the string array and a default spinner layout
+		ArrayAdapter<CharSequence> coinadapter = ArrayAdapter.createFromResource(this.getActivity(),
+				R.array.coin_array, android.R.layout.simple_spinner_item);
+		// Specify the layout to use when the list of choices appears
+		coinadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// Apply the adapter to the spinner
+		coinSpinner.setAdapter(coinadapter);
+
+		//category spinner
+		categorySpinner = (Spinner) rootView.findViewById(R.id.category_spinner);
+		// Create an ArrayAdapter using the string array and a default spinner layout
+		ArrayAdapter<CharSequence> categoryadapter = ArrayAdapter.createFromResource(this.getActivity(),
+				R.array.category_array, android.R.layout.simple_spinner_item);
+		// Specify the layout to use when the list of choices appears
+		categoryadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// Apply the adapter to the spinner
+		categorySpinner.setAdapter(categoryadapter);
 
 		ctx  = getActivity();
 
@@ -88,7 +109,10 @@ public class EditItemFragment extends Fragment {
 			itemTitleView.setText(infoItem.getTitle());
 			itemDescriptionView.setText(infoItem.getDescription());
 			itemLocationView.setText(infoItem.getLocation());
-			//catSpi.setTag(infoItem.getCategory());
+			String category = infoItem.getCategory();
+
+			categorySpinner.setSelection(0);
+			//itemCategoryView.setText(category);
 
 			/*
 			if(categorySpinner.getSelectedItem()!=null){
@@ -109,25 +133,7 @@ public class EditItemFragment extends Fragment {
 			}
 		}
 
-		//coin spinner
-		Spinner coinSpinner = (Spinner) rootView.findViewById(R.id.coin_spinner);
-		// Create an ArrayAdapter using the string array and a default spinner layout
-		ArrayAdapter<CharSequence> coinadapter = ArrayAdapter.createFromResource(this.getActivity(),
-				R.array.coin_array, android.R.layout.simple_spinner_item);
-		// Specify the layout to use when the list of choices appears
-		coinadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		// Apply the adapter to the spinner
-		coinSpinner.setAdapter(coinadapter);
 
-		//category spinner
-		 categorySpinner = (Spinner) rootView.findViewById(R.id.category_spinner);
-		// Create an ArrayAdapter using the string array and a default spinner layout
-		ArrayAdapter<CharSequence> categoryadapter = ArrayAdapter.createFromResource(this.getActivity(),
-				R.array.category_array, android.R.layout.simple_spinner_item);
-		// Specify the layout to use when the list of choices appears
-		categoryadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		// Apply the adapter to the spinner
-		categorySpinner.setAdapter(categoryadapter);
 
 
 		return rootView;
@@ -205,12 +211,12 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 				String description = itemDescriptionView.getText().toString();
 				String location = itemLocationView.getText().toString();
 				int price= Integer.parseInt(itemPriceView.getText().toString());
-				//String category = categorySpinner.getSelectedItem().toString();
+				String category = categorySpinner.getSelectedItem().toString();
 
 				Product item =MyInfoManager.getInstance().getSelectedItem();
 				if(item==null){
-					 //item = new Product(title,description,location,category,price);
-					 item = new Product(title,description,location,price);
+					 item = new Product(title,description,location,category,price);
+					 //item = new Product(title,description,location,price);
 
 
 					 MyInfoManager.getInstance().createItem(item);
@@ -220,7 +226,7 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 					item.setDescription(description);
 					item.setLocation(location);
 					item.setPrice(price);
-					//item.setCategory(category);
+					item.setCategory(category);
 
 
 					 if(item.getId() == NEW_ITEM_TAG){

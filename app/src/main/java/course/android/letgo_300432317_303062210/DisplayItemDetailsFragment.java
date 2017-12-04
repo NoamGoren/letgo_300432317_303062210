@@ -52,8 +52,8 @@ public class DisplayItemDetailsFragment extends Fragment {
 		itemTitleView = (TextView) rootView.findViewById(R.id.item_title_txt);
 		itemTitleView.setText(item.getTitle());
 
-		//itemCategoryView = (TextView) rootView.findViewById(R.id.category_spinner);
-		//itemCategoryView.setText(item.getCategory());
+		itemCategoryView = (TextView) rootView.findViewById(R.id.item_category_txt);
+		itemCategoryView.setText(item.getCategory());
 
 
 		itemPriceView = (TextView) rootView.findViewById(R.id.item_price_txt);

@@ -35,8 +35,6 @@ public class EditItemFragment extends Fragment {
 	private EditText itemDescriptionView = null;
 	private EditText itemPriceView = null;
 	private EditText itemLocationView = null;
-
-	private Spinner catSpi=null;
 	private EditText itemCategoryView = null;
 
 	private Button itemSaveBtn = null;
@@ -54,6 +52,7 @@ public class EditItemFragment extends Fragment {
 
 	private Button deleteItemButton = null;
 	private Button addPhotoBtn = null;
+	public Spinner categorySpinner;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,9 +65,9 @@ public class EditItemFragment extends Fragment {
 
 		//catSpi= (Spinner) rootView.findViewById(R.id.category_spinner);
 		//String category=catSpi.getSelectedItem().toString();
-		//itemCategoryView =(EditText) category;
+		//itemCategoryView = (EditText) rootView.findViewById(R.id.category_spinner);
 
-		//itemPriceView = (EditText) rootView.findViewById(R.id.item_price_txt);
+		itemPriceView = (EditText) rootView.findViewById(R.id.item_price_txt);
 
 		
 		itemSaveBtn = (Button) rootView.findViewById(R.id.save_item_btn);
@@ -90,8 +89,18 @@ public class EditItemFragment extends Fragment {
 			itemDescriptionView.setText(infoItem.getDescription());
 			itemLocationView.setText(infoItem.getLocation());
 			//catSpi.setTag(infoItem.getCategory());
-			//itemCategoryView.setText(infoItem.getCategory());
-			//itemPriceView.setText(infoItem.getPrice());
+
+			/*
+			if(categorySpinner.getSelectedItem()!=null){
+				String category = categorySpinner.getSelectedItem().toString();
+				itemCategoryView.setText(category);
+			}
+			else{
+				itemCategoryView.setText("not selected");
+			}
+*/
+
+			itemPriceView.setText(String.valueOf(infoItem.getPrice()));
 			Bitmap img1 =infoItem.getImage1();
 			if(img1!=null){
 				itemImage1.setImageBitmap(img1);
@@ -111,7 +120,7 @@ public class EditItemFragment extends Fragment {
 		coinSpinner.setAdapter(coinadapter);
 
 		//category spinner
-		Spinner categorySpinner = (Spinner) rootView.findViewById(R.id.category_spinner);
+		 categorySpinner = (Spinner) rootView.findViewById(R.id.category_spinner);
 		// Create an ArrayAdapter using the string array and a default spinner layout
 		ArrayAdapter<CharSequence> categoryadapter = ArrayAdapter.createFromResource(this.getActivity(),
 				R.array.category_array, android.R.layout.simple_spinner_item);
@@ -195,13 +204,14 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 				String title=itemTitleView.getText().toString();
 				String description = itemDescriptionView.getText().toString();
 				String location = itemLocationView.getText().toString();
-				//Spinner categoryS = catSpi;
-				//String category= catSpi.getSelectedItem().toString();
-				//int price= Integer.parseInt(itemPriceView.getText().toString());
+				int price= Integer.parseInt(itemPriceView.getText().toString());
+				//String category = categorySpinner.getSelectedItem().toString();
 
 				Product item =MyInfoManager.getInstance().getSelectedItem();
 				if(item==null){
-					 item = new Product(title,description,location);
+					 //item = new Product(title,description,location,category,price);
+					 item = new Product(title,description,location,price);
+
 
 					 MyInfoManager.getInstance().createItem(item);
 				}
@@ -209,7 +219,7 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 					item.setTitle(title);
 					item.setDescription(description);
 					item.setLocation(location);
-					//item.setPrice(price);
+					item.setPrice(price);
 					//item.setCategory(category);
 
 

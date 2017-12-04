@@ -42,7 +42,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 	private static final String ITEM_COLUMN_FOLDERID = "folder_id";
 
 	private static final String[] TABLE_ITEM_COLUMNS = {ITEM_COLUMN_ID, ITEM_COLUMN_NAME,
-			ITEM_COLUMN_DESCRIPTION, ITEM_COLUMN__IMAGE1, ITEM_COLUMN_FOLDERID,ITEM_COLUMN_LOCATION,ITEM_COLUMN_PRICE};
+			ITEM_COLUMN_DESCRIPTION,ITEM_COLUMN_PRICE, ITEM_COLUMN_LOCATION, ITEM_COLUMN_CATEGORY, ITEM_COLUMN__IMAGE1, ITEM_COLUMN_FOLDERID};
 
 
 	private SQLiteDatabase db = null;
@@ -60,10 +60,10 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 					+ ITEM_COLUMN_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "
 					+ ITEM_COLUMN_NAME +" TEXT, "
 					+ ITEM_COLUMN_DESCRIPTION + " TEXT, "
-					+ ITEM_COLUMN__IMAGE1 + " BLOB, "
+					+ ITEM_COLUMN_PRICE+" INTEGER, "
 					+ ITEM_COLUMN_LOCATION + " TEXT, "
 					+ ITEM_COLUMN_CATEGORY + " TEXT, "
-					+ ITEM_COLUMN_PRICE+" INTEGER, "
+					+ ITEM_COLUMN__IMAGE1 + " BLOB, "
 					+ ITEM_COLUMN_FOLDERID + " INTEGER)";
 			db.execSQL(CREATE_ITEM_TABLE);
 
@@ -104,9 +104,9 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 			ContentValues values = new ContentValues();
 			values.put(ITEM_COLUMN_NAME, product.getTitle());
 			values.put(ITEM_COLUMN_DESCRIPTION, product.getDescription());
+			values.put(ITEM_COLUMN_PRICE, product.getPrice());
 			values.put(ITEM_COLUMN_LOCATION, product.getLocation());
 			values.put(ITEM_COLUMN_CATEGORY, product.getCategory());
-			values.put(ITEM_COLUMN_PRICE, product.getPrice());
 			values.put(ITEM_COLUMN_FOLDERID, user.getId());
 			
 			//images
@@ -176,14 +176,15 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 				item.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(ITEM_COLUMN_ID))));
 				item.setTitle(cursor.getString(1));
 				item.setDescription(cursor.getString(2));
+				item.setPrice(cursor.getInt(3));
 				item.setLocation(cursor.getString(4));
 				item.setCategory(cursor.getString(5));
-				item.setPrice(cursor.getInt(6));
+
 
 
 				
 				//images
-				byte[] img1Byte = cursor.getBlob(3);
+				byte[] img1Byte = cursor.getBlob(6);
 				if (img1Byte != null && img1Byte.length > 0) {
 					Bitmap image1 = BitmapFactory.decodeByteArray(img1Byte, 0, img1Byte.length);
 					if (image1 != null) {
@@ -273,14 +274,15 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 			result.setId(Integer.parseInt(cursor.getString(0)));
 			result.setTitle(cursor.getString(1));
 			result.setDescription(cursor.getString(2));
+			result.setPrice(cursor.getInt(3));
 			result.setLocation(cursor.getString(4));
 			result.setCategory(cursor.getString(5));
-			result.setPrice(cursor.getInt(6));
+
 
 
 			
 			//images
-			byte[] img1Byte = cursor.getBlob(3);
+			byte[] img1Byte = cursor.getBlob(6);
 			if (img1Byte != null && img1Byte.length > 0) {
 				Bitmap image1 = BitmapFactory.decodeByteArray(img1Byte, 0, img1Byte.length);
 				if (image1 != null) {
@@ -345,9 +347,10 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 			ContentValues values = new ContentValues();
 			values.put(ITEM_COLUMN_NAME, item.getTitle());
 			values.put(ITEM_COLUMN_DESCRIPTION, item.getDescription());
+			values.put(ITEM_COLUMN_PRICE,item.getPrice());
 			values.put(ITEM_COLUMN_LOCATION,item.getLocation());
 			values.put(ITEM_COLUMN_CATEGORY,item.getCategory());
-			values.put(ITEM_COLUMN_PRICE,item.getPrice());
+
 			
 			//images
 			Bitmap image1 = item.getImage1();

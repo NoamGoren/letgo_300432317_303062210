@@ -17,10 +17,10 @@ public class InfoItemListAdapter extends ArrayAdapter<Product> {
 	public InfoItemListAdapter(Context context, int resource, List<Product> objects) {
 		super(context, resource, objects);
 		this.context = context;
-		items = objects;
+		this.items = objects;
 	}
 
-
+	@Override
 	public View getView(int position, View view, ViewGroup parent) {
 
 		LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);

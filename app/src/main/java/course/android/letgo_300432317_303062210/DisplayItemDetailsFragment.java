@@ -18,6 +18,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import course.android.letgo_300432317_303062210.R;
+
 public class DisplayItemDetailsFragment extends Fragment {
 	
 	
@@ -50,16 +52,19 @@ public class DisplayItemDetailsFragment extends Fragment {
 		itemTitleView = (TextView) rootView.findViewById(R.id.item_title_txt);
 		itemTitleView.setText(item.getTitle());
 
-		//catSpi=(Spinner)rootView.findViewById(R.id.category_spinner);
+		//itemCategoryView = (TextView) rootView.findViewById(R.id.category_spinner);
 		//itemCategoryView.setText(item.getCategory());
 
-		//itemPriceView = (TextView) rootView.findViewById(R.id.item_price_txt);
-		//itemPriceView.setText(item.getPrice());
+
+		itemPriceView = (TextView) rootView.findViewById(R.id.item_price_txt);
+		itemPriceView.setText(String.valueOf(item.getPrice()));
+
 
 		itemLocationView = (TextView) rootView.findViewById(R.id.item_location_txt);
 		itemLocationView.setText(item.getLocation());
-		Toast.makeText(ctx,
-				item.getLocation(), Toast.LENGTH_LONG).show();
+
+		//Toast.makeText(ctx,
+		//		item.getLocation(), Toast.LENGTH_LONG).show();
 
 
 

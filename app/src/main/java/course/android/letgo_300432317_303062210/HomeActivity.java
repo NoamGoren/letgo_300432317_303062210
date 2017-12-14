@@ -190,13 +190,14 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.nav_camera) {
             Intent i = new Intent(HomeActivity.this,MainActivity.class);
             startActivity(i);
-        } else if (id == R.id.nav_gallery) {
-
         } else if (id == R.id.nav_home) {
             Intent i = new Intent(HomeActivity.this,HomeActivity.class);
             startActivity(i);
 
-        }  else if (id == R.id.nav_gallery) {
+        }  else if (id == R.id.nav_chat) {
+
+            Intent i = new Intent(HomeActivity.this,ChatActivity.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_notifaction) {
             Intent i = new Intent(HomeActivity.this,NotificationActivity.class);
@@ -217,6 +218,7 @@ public class HomeActivity extends AppCompatActivity
 
 
         }
+
         else if (id == R.id.nav_help) {
             startActivity(new Intent(HomeActivity.this,CameraActivity.class));
         }

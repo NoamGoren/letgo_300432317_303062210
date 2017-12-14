@@ -24,7 +24,7 @@
           android:layout_marginTop="10dp"
           android:textColor="@color/black"
           android:layout_marginLeft="20dp"
-          android:text="Item Name's:"
+          android:text="@string/item_name_ss"
           android:layout_height="wrap_content" >
       </TextView>
 
@@ -52,7 +52,7 @@
           android:layout_marginTop="10dp"
           android:textColor="@color/black"
           android:layout_marginLeft="20dp"
-          android:text="Category:"
+          android:text="@string/category"
           android:layout_height="wrap_content" >
       </TextView>
 
@@ -87,7 +87,7 @@
           android:layout_marginTop="10dp"
           android:textColor="@color/black"
           android:layout_marginLeft="20dp"
-          android:text="Description:"
+          android:text="@string/description1"
           android:layout_height="wrap_content" >
       </TextView>
 
@@ -115,7 +115,7 @@
           android:layout_marginTop="10dp"
           android:textColor="@color/black"
           android:layout_marginLeft="20dp"
-          android:text="Price:"
+          android:text="@string/price"
           android:layout_height="wrap_content" >
       </TextView>
 
@@ -143,7 +143,7 @@
           android:layout_marginTop="10dp"
           android:textColor="@color/black"
           android:layout_marginLeft="20dp"
-          android:text="Location:"
+          android:text="@string/location"
           android:layout_height="wrap_content" >
       </TextView>
 

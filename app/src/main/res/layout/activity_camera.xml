@@ -17,7 +17,7 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="24dp"
-        android:text="Upload your item to letgo" />
+        android:text="@string/upload_your_item_to_letgo" />
 
     <ImageButton
         android:id="@+id/cameraButton"
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:ems="20"
-                android:hint="Title (optional)"
+                android:hint="@string/title_optional"
                 android:inputType="textPersonName" />
 
             <EditText
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:ems="1500"
-                android:hint="Description (optional)"
+                android:hint="@string/description_optional"
                 android:inputType="textMultiLine" />
 
             <Spinner
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:ems="10"
-                android:hint="Enter price"
+                android:hint="@string/enter_price"
                 android:inputType="number" />
 
 
@@ -93,7 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="Choose category"
+                android:text="@string/choose_category"
                 android:textColor="@color/red" />
 
             <Spinner
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:ems="20"
-                android:hint="Location"
+                android:hint="@string/location"
                 android:inputType="textPersonName" />
 
 
@@ -123,7 +123,7 @@
             android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save @ Publish" />
+            android:text="@string/save_publish" />
 
     </android.support.v7.widget.CardView>
 

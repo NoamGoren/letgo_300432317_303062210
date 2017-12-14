@@ -39,7 +39,58 @@
     <string name="delete_item_btn_str">Delete Folder</string>
 
     <string name="ok">close</string>
-
+    <string name="upload_your_item_to_letgo">Upload your item to letgo</string>
+    <string name="choose_category">Choose category</string>
+    <string name="location">Location</string>
+    <string name="save_publish">Save @ Publish</string>
+    <string name="enter_price">Enter price</string>
+    <string name="description_optional">Description (optional)</string>
+    <string name="title_optional">Title (optional)</string>
+    <string name="favorites">FAVORITES</string>
+    <string name="sold">SOLD</string>
+    <string name="selling">SELLING</string>
+    <string name="click_on_your_choise">Click on your choise!</string>
+    <string name="take_a_picture_from_camera">Take a picture from camera</string>
+    <string name="choose_from_gallery">Choose from gallery</string>
+    <string name="no_thanks">No thanks</string>
+    <string name="item_name_s">Item Name\'s:</string>
+    <string name="category">Category:</string>
+    <string name="description1">Description:</string>
+    <string name="price">Price:</string>
+    <string name="location1">Location:</string>
+    <string name="my_first_uploading">My First Uploading</string>
+    <string name="in_order_to_upload_item_in_the_first_time_click_here">In order to upload item in the first time- click here</string>
+    <string name="create_folder">CREATE FOLDER</string>
+    <string name="upload_more_items">Upload More Items</string>
+    <string name="for_upload_item_click_on_your_folder">For upload item click on your folder</string>
+    <string name="upload_your_item_to_letgo">Upload your item to letgo</string>
+    <string name="add_picture">ADD PICTURE</string>
+    <string name="title_optional">Title (optional)</string>
+    <string name="description_optional">Description (optional)</string>
+    <string name="enter_price">Enter price</string>
+    <string name="choose_category">Choose category</string>
+    <string name="location">Location</string>
+    <string name="save_publish">Save @ Publish</string>
+    <string name="delete_item">Delete Item</string>
+    <string name="all_my_items">ALL MY ITEMS</string>
+    <string name="add_new_item">ADD NEW ITEM</string>
+    <string name="item_name_ss">Item Name\'s:</string>
+    <string name="category">Category:</string>
+    <string name="description1">Description:</string>
+    <string name="price">Price:</string>
+    <string name="yizre_el">Yizre\'el</string>
+    <string name="user_s_favorite_items">User\'s favorite items</string>
+    <string name="sold_items_section">Sold items section</string>
+    <string name="items_for_sale">Items for sale</string>
+    <string name="sell_your_stuff">Sell Your Stuff</string>
+    <string name="browse">Browse</string>
+    <string name="chat">Chat</string>
+    <string name="notifications">Notifications</string>
+    <string name="categories">Categories</string>
+    <string name="my_profile">My Profile</string>
+    <string name="invite_facebook_friends">Invite Facebook Friends</string>
+    <string name="help">Help</string>
+    <string name="search">Search</string>
 
 
 </resources>

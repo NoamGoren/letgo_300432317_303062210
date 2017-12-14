@@ -36,19 +36,19 @@
                 android:id="@+id/tabItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="FAVORITES" />
+                android:text="@string/favorites" />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/tabItem2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SOLD" />
+                android:text="@string/sold" />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/tabItem3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SELLING" />
+                android:text="@string/selling" />
 
         </android.support.design.widget.TabLayout>
     </android.support.design.widget.AppBarLayout>

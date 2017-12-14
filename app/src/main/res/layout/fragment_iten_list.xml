@@ -15,7 +15,7 @@
         android:textColor="@color/red"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:text="ALL MY ITEMS"/>
+        android:text="@string/all_my_items"/>
 
 
         <ListView
@@ -40,7 +40,7 @@
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:background="@color/lightRed"
-        android:text="ADD NEW ITEM"
+        android:text="@string/add_new_item"
         android:drawableTop="@drawable/plus_icon">
     </Button>
 

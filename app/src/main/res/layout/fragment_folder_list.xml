@@ -15,7 +15,7 @@
             android:textColor="@color/red"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:text="My First Uploading"/>
+            android:text="@string/my_first_uploading"/>
 
 
         <TextView
@@ -25,7 +25,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
             android:layout_height="wrap_content"
-            android:text="In order to upload item in the first time- click here"/>
+            android:text="@string/in_order_to_upload_item_in_the_first_time_click_here"/>
 
         <Button
             android:id="@+id/new_folder_btn"
@@ -37,7 +37,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:background="@color/lightRed"
-            android:text="CREATE FOLDER" >
+            android:text="@string/create_folder" >
         </Button>
 
         <TextView
@@ -47,7 +47,7 @@
             android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:layout_marginTop="45dp"
-            android:text="Upload More Items"/>
+            android:text="@string/upload_more_items"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -56,7 +56,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
             android:layout_height="wrap_content"
-            android:text="For upload item click on your folder">
+            android:text="@string/for_upload_item_click_on_your_folder">
 
         </TextView>
 

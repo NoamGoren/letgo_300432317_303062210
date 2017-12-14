@@ -18,6 +18,6 @@
         app:layout_constraintTop_toTopOf="@+id/constraintLayout"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1"
-        android:text= "User's favorite items"/>
+        android:text= "@string/user_s_favorite_items"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -18,6 +18,6 @@
         app:layout_constraintTop_toTopOf="@+id/constraintLayout"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1"
-        android:text= "Items for sale"/>
+        android:text= "@string/items_for_sale"/>
 
 </android.support.constraint.ConstraintLayout>

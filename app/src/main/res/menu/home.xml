@@ -7,7 +7,7 @@
         android:clickable="true"
         android:icon="@drawable/searchwhiteicon"
         android:orderInCategory="100"
-        android:title="Search"
+        android:title="@string/search"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always"/>
     <item

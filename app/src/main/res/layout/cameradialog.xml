@@ -30,7 +30,7 @@
 
         android:padding="10dp"
 
-        android:text="Click on your choise!"
+        android:text="@string/click_on_your_choise"
 
         android:textSize="20sp"
 
@@ -70,7 +70,7 @@
 
         android:padding="5dp"
 
-        android:text="Take a picture from camera"
+        android:text="@string/take_a_picture_from_camera"
 
         android:textSize="18sp" >
 
@@ -112,7 +112,7 @@
 
         android:padding="5dp"
 
-        android:text="Choose from gallery"
+        android:text="@string/choose_from_gallery"
 
         android:textSize="18sp" >
 
@@ -152,7 +152,7 @@
 
         android:padding="5dp"
 
-        android:text="No thanks"
+        android:text="@string/no_thanks"
 
         android:textSize="18sp" >
 

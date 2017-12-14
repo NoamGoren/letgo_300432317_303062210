@@ -12,14 +12,14 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="14dp"
-        android:text="Upload your item to letgo" />
+        android:text="@string/upload_your_item_to_letgo" />
 
     <Button
         android:id="@+id/add_photo_btn"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_gravity="center"
-        android:text="ADD PICTURE"
+        android:text="@string/add_picture"
         android:background="@android:color/transparent"
         android:drawableBottom="@drawable/camera" />
 
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:ems="20"
-                android:hint="Title (optional)"
+                android:hint="@string/title_optional"
                 android:inputType="textPersonName" />
 
             <EditText
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:ems="1500"
-                android:hint="Description (optional)"
+                android:hint="@string/description_optional"
                 android:inputType="textMultiLine" />
 
             <Spinner
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:ems="10"
-                android:hint="Enter price"
+                android:hint="@string/enter_price"
                 android:inputType="number" />
 
 
@@ -82,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:text="Choose category"
+                android:text="@string/choose_category"
                 android:textColor="@color/red" />
 
             <Spinner
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:ems="20"
-                android:hint="Location"
+                android:hint="@string/location"
                 android:inputType="textPersonName" />
 
             <Button
@@ -108,7 +108,7 @@
                 android:textStyle="bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Save @ Publish" />
+                android:text="@string/save_publish" />
 
 
             <Button
@@ -121,7 +121,7 @@
                 android:layout_height="35dp"
                 android:layout_gravity="bottom|center"
                 android:layout_marginTop="5dp"
-                android:text="Delete Item"
+                android:text="@string/delete_item"
                 android:drawableRight="@drawable/garbage_can"
                 />
 

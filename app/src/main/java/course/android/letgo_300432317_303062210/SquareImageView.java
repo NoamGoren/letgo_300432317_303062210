@@ -21,6 +21,7 @@ public class SquareImageView extends android.support.v7.widget.AppCompatImageVie
         super(context, attrs, defStyle);
     }
 
+    //The sizes of the pictures
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);

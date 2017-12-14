@@ -14,6 +14,8 @@ import java.util.List;
  * Created by Noam on 11/17/2017.
  */
 
+//The adpater is responsible for category activity.
+    //create array of images and display them
 public final class MyAdapter extends BaseAdapter {
     private final List<Item> mItems = new ArrayList<Item>();
     private final LayoutInflater mInflater;

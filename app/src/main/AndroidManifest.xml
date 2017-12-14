@@ -32,12 +32,6 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".TestActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".CameraActivity"
-            android:screenOrientation="portrait"/>
-        <activity
             android:name=".CategoriesActivity"
             android:screenOrientation="portrait"
             android:label="@string/Categories2">

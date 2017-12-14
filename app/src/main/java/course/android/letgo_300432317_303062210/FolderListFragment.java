@@ -27,6 +27,7 @@ public class FolderListFragment extends Fragment {
 	private Button newFolderBtn = null;
 	private Activity ctx;
 
+	//creates and returns the view hierarchy associated with the fragment.
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -60,7 +61,7 @@ public class FolderListFragment extends Fragment {
 
 
 
-
+	//Create New Folder
 	public OnClickListener newFloderListener = new OnClickListener() {
 		
 		@Override
@@ -99,7 +100,7 @@ public class FolderListFragment extends Fragment {
 	};
 
 
-	
+	//Enter Folder
 	private OnItemClickListener folderClickListener = new OnItemClickListener() {
 
 		@Override

@@ -15,6 +15,8 @@ import java.util.List;
 
 public class MyInfoDatabase extends SQLiteOpenHelper {
 
+	//All the functions about how our database is implement
+
 	private static final int DATABASE_VERSION = 1;
 	private static final String DATABASE_NAME = "MyInfoDB";
 

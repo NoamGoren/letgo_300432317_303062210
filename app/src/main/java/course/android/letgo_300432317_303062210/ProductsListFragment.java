@@ -29,16 +29,7 @@ public class ProductsListFragment extends Fragment {
     private int[] mPrices;
     private TypedArray typedArray;
 
-    public void changeFragment(String[] mNames,String[] mDescriptions,TypedArray typedArray,Activity context){
-
-        final Resources resources = context.getResources();
-        this.mNames = resources.getStringArray(R.array.car_names);
-        this.mDescriptions = resources.getStringArray(R.array.car_descriptions);
-        typedArray = resources.obtainTypedArray(R.array.cars);
-
-    }
-
-
+    //Called when a fragment is first attached to its context.
     @Override
     public void onAttach(Activity context) {
         super.onAttach(context);
@@ -46,7 +37,7 @@ public class ProductsListFragment extends Fragment {
 
         Bundle bundle = this.getArguments();
         final Resources resources = context.getResources();
-
+        //Cases for the 8 Categories
         if (bundle!=null) {
             int myValue = bundle.getInt("message");
             switch (myValue) {
@@ -128,19 +119,6 @@ public class ProductsListFragment extends Fragment {
         }
 
 
-//        if (bundle!=null){
-//            int myValue = bundle.getInt("message");
-//            mNames = resources.getStringArray(R.array.car_names);
-//            mDescriptions = resources.getStringArray(R.array.car_descriptions);
-//            typedArray = resources.obtainTypedArray(R.array.cars);
-//        }
-//
-//        else{
-//            mNames = resources.getStringArray(R.array.names);
-//            mDescriptions = resources.getStringArray(R.array.descriptions);
-//            // Get images.
-//             typedArray = resources.obtainTypedArray(R.array.images);
-//        }
 
 
         final int imageCount = mNames.length;
@@ -151,6 +129,7 @@ public class ProductsListFragment extends Fragment {
         typedArray.recycle();
     }
 
+    //creates and returns the view hierarchy associated with the fragment.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_product_list, container, false);

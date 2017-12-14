@@ -19,7 +19,7 @@ public class InfoItemListAdapter extends ArrayAdapter<Product> {
 		this.context = context;
 		this.items = objects;
 	}
-
+	//Get a View that displays the data at the specified position in the data set.
 	@Override
 	public View getView(int position, View view, ViewGroup parent) {
 

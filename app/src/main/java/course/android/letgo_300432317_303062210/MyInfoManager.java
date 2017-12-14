@@ -7,6 +7,9 @@ import java.util.List;
 
 public class MyInfoManager {
 
+	//Showing all the functions that you can run on the database
+
+
 	private static MyInfoManager instance = null;
 	private Context context = null;
 	private MyInfoDatabase db = null;
@@ -38,7 +41,7 @@ public class MyInfoManager {
 			return context;
 			
 		}
-
+		//Open the Database
 		public void openDataBase(Context context) {
 			this.context = context;
 			if (context != null) {
@@ -46,24 +49,26 @@ public class MyInfoManager {
 				db.open();
 			}
 		}
+		//Close the database
 		public void closeDataBase() {
 			if(db!=null){
 				db.close();
 			}
 		}
-		
+		//Create Product and insert to the database
 		public void createItem(Product item) {
 			if (db != null) {
 					db.createItem(getSelectedFolder(), item);
 			}
 		}
-		
+		//create User
 		public void createFolder(User folder) {
 			if (db != null) {
 				db.createFolder(folder);
 			}
 		}
-		
+
+		//Read specific Product
 		public Product readItem(int id) {
 			Product result = null;
 			if (db != null) {
@@ -71,7 +76,7 @@ public class MyInfoManager {
 			}
 			return result;
 		}
-		
+		//Read specific User
 		public User readFolder(int id) {
 			User result = null;
 			if (db != null) {
@@ -79,7 +84,7 @@ public class MyInfoManager {
 			}
 			return result;
 		}
-		
+		//Get All Products
 		public List<Product> getAllItems() {
 			List<Product> result = new ArrayList<Product>();
 			if (db != null) {
@@ -87,7 +92,7 @@ public class MyInfoManager {
 			}
 			return result;
 		}
-		
+		//Get all users
 		public List<User> getAllFolders() {
 			List<User> result = new ArrayList<User>();
 			if (db != null) {
@@ -95,31 +100,33 @@ public class MyInfoManager {
 			}
 			return result;
 		}
-		
+
+		//Update specific product
 		public void updateItem(Product item) {
 			if (db != null && item != null) {
 				db.updateItem(item);
 			}
 		}
-		
+		//Update specific
 		public void updateFolder(User folder) {
 			if (db != null && folder != null) {
 				db.updateFolder(folder);
 			}
 		}
-		
+		//Delete specifc product
 		public void deleteItem(Product item) {
 			if (db != null) {
 				db.deleteItem(item);
 			}
 		}
-		
+		//Delete User
 		public void deleteFolder(User folder) {
 			if (db != null) {
 				db.deleteFolder(folder);
 			}
 		}
-		
+
+		//Get list of users
 		public List<Product> getFolderItems(User folder) {
 			List<Product> result = new ArrayList<Product>();
 			if (db != null && folder != null) {
@@ -127,7 +134,7 @@ public class MyInfoManager {
 			}
 			return result;
 		}
-
+		//getters and setters for SelectedFolder and SelectedItem
 		public User getSelectedFolder() {
 			return selectedFolder;
 		}
@@ -144,7 +151,7 @@ public class MyInfoManager {
 			this.selectedItem = selectedItem;
 		}
 
-
+		//delete Selected Folder
 		public void deleteSelectedFolder(){
 			deleteFolder(selectedFolder);
 		}

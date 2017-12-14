@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-
+//This activity show the entrance page of the application
 public class Main3Activity extends AppCompatActivity {
 
     @Override

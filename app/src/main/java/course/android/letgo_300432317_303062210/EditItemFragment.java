@@ -31,6 +31,8 @@ import java.util.Date;
 
 public class EditItemFragment extends Fragment {
 
+	//The Fragment show's the edit screen for each item
+
 	private EditText itemTitleView = null;
 	private EditText itemDescriptionView = null;
 	private EditText itemPriceView = null;
@@ -54,7 +56,7 @@ public class EditItemFragment extends Fragment {
 	private Button deleteItemButton = null;
 	private Button addPhotoBtn = null;
 
-
+	//creates and returns the view hierarchy associated with the fragment.
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -145,7 +147,7 @@ public class EditItemFragment extends Fragment {
 	
 
 	
-	
+	//delete image
 	private OnClickListener delImage1Listener= new OnClickListener() {
 		
 		@Override
@@ -179,7 +181,7 @@ public class EditItemFragment extends Fragment {
 		}
 	};
 	
-	
+	//Add photo
 private OnClickListener addPhotoListener = new OnClickListener() {
 		
 		@Override
@@ -200,7 +202,7 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 
 
 
-
+			//Save item
 	private OnClickListener saveItemListener = new OnClickListener() {
 
 		@Override
@@ -253,7 +255,7 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 		}
 	};
 
-
+	//delete item
 	private OnClickListener deleteItemListener = new OnClickListener() {
 		
 		@Override
@@ -322,7 +324,7 @@ private OnClickListener addPhotoListener = new OnClickListener() {
     }
     
 
-  
+  //Create Image from file path
     private Bitmap getScaledImageFromFilePath(String imagePath) {
         // Get the dimensions of the View
     	Bitmap scaledBitmap = null;

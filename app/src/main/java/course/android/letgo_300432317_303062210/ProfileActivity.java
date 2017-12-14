@@ -37,6 +37,8 @@ public class ProfileActivity extends AppCompatActivity {
      */
     private ViewPager mViewPager;
 
+
+    //Called when the activity is first created.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +70,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-
+    //specify the options menu for an activity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -76,6 +78,7 @@ public class ProfileActivity extends AppCompatActivity {
         return true;
     }
 
+    //When the user selects an item from the options menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

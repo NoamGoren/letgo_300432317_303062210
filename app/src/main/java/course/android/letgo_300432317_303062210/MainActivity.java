@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+//The activity will be helpful in the next chapter
 public class MainActivity extends AppCompatActivity {
 
     FragmentManager fManager;

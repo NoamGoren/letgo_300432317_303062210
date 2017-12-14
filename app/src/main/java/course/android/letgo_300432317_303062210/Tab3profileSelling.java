@@ -11,7 +11,7 @@ import android.view.ViewGroup;
  */
 
 public class Tab3profileSelling extends Fragment {
-
+    //creates and returns the view hierarchy associated with the fragment.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

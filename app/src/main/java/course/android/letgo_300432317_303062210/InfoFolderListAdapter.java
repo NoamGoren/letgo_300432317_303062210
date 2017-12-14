@@ -18,17 +18,20 @@ public class InfoFolderListAdapter extends ArrayAdapter<User> {
 	private Context context;
 	private List<User> folders;
 
+	//Constructor
 	public InfoFolderListAdapter(Context context, int resource, List<User> objects) {
 		super(context, resource, objects);
 		this.context = context;
 		this.folders = objects;
 	}
 
+	//Return number of folders
 	@Override
 	public int getCount() {
 		return folders.size();
 	}
 
+	//Get a View that displays the data at the specified position in the data set.
 	@Override
 	public View getView(int position, View view, ViewGroup parent) {
 
@@ -38,7 +41,7 @@ public class InfoFolderListAdapter extends ArrayAdapter<User> {
 		TextView title = (TextView) rootView.findViewById(R.id.folderTitle);
 		title.setText(currentFolder.getName());
 
-
+		//Delete Folder
 		ImageView deleteIcon = (ImageView) rootView.findViewById(R.id.deleteIcon);
 		deleteIcon.setOnClickListener(new View.OnClickListener() {
 			@Override

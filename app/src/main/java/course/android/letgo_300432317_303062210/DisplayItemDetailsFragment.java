@@ -22,7 +22,9 @@ import course.android.letgo_300432317_303062210.R;
 
 public class DisplayItemDetailsFragment extends Fragment {
 	
-	
+	//Displaying the Item details : title,description,price,loction,Category
+	//and picture
+
 	private TextView itemDescriptionView;
 	private TextView itemTitleView;
 	private TextView itemPriceView;
@@ -34,6 +36,8 @@ public class DisplayItemDetailsFragment extends Fragment {
 	private TextView cat;
 	Activity ctx;
 
+
+	//creates and returns the view hierarchy associated with the fragment.
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -79,12 +83,12 @@ public class DisplayItemDetailsFragment extends Fragment {
 		return rootView; 
 	}
 
-
+	//Initialize the contents of the Activity's standard options menu.
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 	   inflater.inflate(R.menu.myinfo_menu, menu);
 	}
-	
+	//This hook is called whenever an item in your options menu is selected.
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	   // handle item selection

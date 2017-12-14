@@ -29,7 +29,7 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
     protected int[] mPrices;
     protected Context context;
 
-
+    //Constructor
     public ProductsDataAdapter(Context context, int[] mImageResIds, String[] mNames, String[] mDescriptions,String[] mLocations,String[] mCategories,int[] mPrices) {
         mLayoutInflater = LayoutInflater.from(context);
         this.context = context;
@@ -41,11 +41,12 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
         this.mPrices = mPrices;
     }
 
+    //Called when RecyclerView needs a new RecyclerView.ViewHolder of the given type to represent an item.
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         return new ViewHolder(mLayoutInflater.inflate(R.layout.recycler_item, viewGroup, false));
     }
-
+    //Called by RecyclerView to display the data at the specified position.
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
@@ -87,7 +88,7 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
 }
-
+// ViewHolder class describes an item view and metadata about its place within the RecyclerView.
 class ViewHolder extends RecyclerView.ViewHolder {
     // Views
     public ImageView mImageView;

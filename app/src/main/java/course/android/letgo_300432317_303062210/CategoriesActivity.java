@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.GridView;
 
 public class CategoriesActivity extends AppCompatActivity {
-
+//Responsible  for showing all the categories
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

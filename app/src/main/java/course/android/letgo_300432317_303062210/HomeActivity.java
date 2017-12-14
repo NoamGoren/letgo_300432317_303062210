@@ -220,7 +220,7 @@ public class HomeActivity extends AppCompatActivity
         }
 
         else if (id == R.id.nav_help) {
-            startActivity(new Intent(HomeActivity.this,CameraActivity.class));
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

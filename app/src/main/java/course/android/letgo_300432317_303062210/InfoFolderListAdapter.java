@@ -21,7 +21,7 @@ public class InfoFolderListAdapter extends ArrayAdapter<User> {
 	public InfoFolderListAdapter(Context context, int resource, List<User> objects) {
 		super(context, resource, objects);
 		this.context = context;
-		folders = objects;
+		this.folders = objects;
 	}
 
 	@Override

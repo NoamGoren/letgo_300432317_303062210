@@ -1,4 +1,4 @@
-package course.android.letgo_300432317_303062210;
+package course.android.letgo_300432317_303062210.Fragments;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -1,4 +1,4 @@
-package course.android.letgo_300432317_303062210;
+package course.android.letgo_300432317_303062210.Fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -14,9 +14,14 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.List;
+
+import course.android.letgo_300432317_303062210.Adapters.InfoItemListAdapter;
+import course.android.letgo_300432317_303062210.DB.MyInfoManager;
+import course.android.letgo_300432317_303062210.Classes.Product;
+import course.android.letgo_300432317_303062210.R;
+import course.android.letgo_300432317_303062210.Classes.User;
 
 public class ItemListFragment extends Fragment {
 	private ListView itemsList;

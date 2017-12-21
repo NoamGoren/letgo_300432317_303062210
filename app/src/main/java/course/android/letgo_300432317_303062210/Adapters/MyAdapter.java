@@ -1,4 +1,4 @@
-package course.android.letgo_300432317_303062210;
+package course.android.letgo_300432317_303062210.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
+
+import course.android.letgo_300432317_303062210.R;
 
 /**
  * Created by Noam on 11/17/2017.

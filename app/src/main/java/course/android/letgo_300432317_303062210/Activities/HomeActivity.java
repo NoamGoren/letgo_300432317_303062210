@@ -1,4 +1,4 @@
-package course.android.letgo_300432317_303062210;
+package course.android.letgo_300432317_303062210.Activities;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -16,6 +16,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+import course.android.letgo_300432317_303062210.Fragments.ProductsListFragment;
+import course.android.letgo_300432317_303062210.R;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

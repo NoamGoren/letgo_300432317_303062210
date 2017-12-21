@@ -4,7 +4,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="course.android.letgo_300432317_303062210.ProfileActivity$PlaceholderFragment">
+    tools:context="course.android.letgo_300432317_303062210.Activities.ProfileActivity">
 
     <TextView
         android:id="@+id/section_label"

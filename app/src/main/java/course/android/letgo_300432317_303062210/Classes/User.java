@@ -1,4 +1,4 @@
-package course.android.letgo_300432317_303062210;
+package course.android.letgo_300432317_303062210.Classes;
 
 /**
  * Created by Noam on 11/27/2017.

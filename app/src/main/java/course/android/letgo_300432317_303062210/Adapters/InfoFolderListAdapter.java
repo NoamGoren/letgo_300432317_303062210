@@ -1,4 +1,4 @@
-package course.android.letgo_300432317_303062210;
+package course.android.letgo_300432317_303062210.Adapters;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,6 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+
+import course.android.letgo_300432317_303062210.DB.MyInfoManager;
+import course.android.letgo_300432317_303062210.R;
+import course.android.letgo_300432317_303062210.Classes.User;
 
 public class InfoFolderListAdapter extends ArrayAdapter<User> {
 

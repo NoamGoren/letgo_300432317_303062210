@@ -1,9 +1,12 @@
-package course.android.letgo_300432317_303062210;
+package course.android.letgo_300432317_303062210.DB;
 
 import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import course.android.letgo_300432317_303062210.Classes.Product;
+import course.android.letgo_300432317_303062210.Classes.User;
 
 public class MyInfoManager {
 

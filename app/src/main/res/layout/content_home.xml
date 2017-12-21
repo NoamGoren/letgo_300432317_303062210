@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="course.android.letgo_300432317_303062210.HomeActivity"
+    tools:context="course.android.letgo_300432317_303062210.Activities.HomeActivity"
     tools:layout_editor_absoluteY="81dp"
     tools:showIn="@layout/app_bar_home">
 

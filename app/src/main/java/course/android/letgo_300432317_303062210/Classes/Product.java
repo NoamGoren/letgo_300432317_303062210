@@ -1,4 +1,4 @@
-package course.android.letgo_300432317_303062210;
+package course.android.letgo_300432317_303062210.Classes;
 
 import android.graphics.Bitmap;
 import android.widget.Spinner;
@@ -75,7 +75,6 @@ public class Product {
         this.description = description;
         this.location=location;
         this.category=category;
-        this.image1 = image1;
     }
 
     // costructor without image&category

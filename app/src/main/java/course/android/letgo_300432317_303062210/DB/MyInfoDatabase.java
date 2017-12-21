@@ -1,4 +1,4 @@
-package course.android.letgo_300432317_303062210;
+package course.android.letgo_300432317_303062210.DB;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -12,6 +12,9 @@ import android.graphics.BitmapFactory;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import course.android.letgo_300432317_303062210.Classes.Product;
+import course.android.letgo_300432317_303062210.Classes.User;
 
 public class MyInfoDatabase extends SQLiteOpenHelper {
 
@@ -99,7 +102,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 		//onCreate(db);
 	}
 
-	public void createItem(User user,Product product) {
+	public void createItem(User user, Product product) {
 
 		try {
 			// make values to be inserted

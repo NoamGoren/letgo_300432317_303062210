@@ -1,4 +1,4 @@
-package course.android.letgo_300432317_303062210;
+package course.android.letgo_300432317_303062210.Fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -11,9 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import course.android.letgo_300432317_303062210.Adapters.ProductsDataAdapter;
 import course.android.letgo_300432317_303062210.R;
-
-import static android.widget.LinearLayout.VERTICAL;
 
 /**
  * Created by Ishai Levi on 11/20/2017.

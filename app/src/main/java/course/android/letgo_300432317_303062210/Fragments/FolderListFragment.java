@@ -1,4 +1,4 @@
-package course.android.letgo_300432317_303062210;
+package course.android.letgo_300432317_303062210.Fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -19,6 +19,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.List;
+
+import course.android.letgo_300432317_303062210.Adapters.InfoFolderListAdapter;
+import course.android.letgo_300432317_303062210.DB.MyInfoManager;
+import course.android.letgo_300432317_303062210.R;
+import course.android.letgo_300432317_303062210.Classes.User;
 
 public class FolderListFragment extends Fragment {
 	private ListView foldersList;

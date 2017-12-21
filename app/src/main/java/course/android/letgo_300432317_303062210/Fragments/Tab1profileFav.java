@@ -1,6 +1,6 @@
-package course.android.letgo_300432317_303062210;
+package course.android.letgo_300432317_303062210.Fragments;
 
-/**
+/*
  * Created by Ishai Levi on 11/28/2017.
  */
 
@@ -23,6 +23,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+
+import course.android.letgo_300432317_303062210.R;
 
 
 public class Tab1profileFav extends Fragment{

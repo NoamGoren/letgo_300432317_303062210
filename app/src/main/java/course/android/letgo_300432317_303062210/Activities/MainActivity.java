@@ -1,4 +1,4 @@
-package course.android.letgo_300432317_303062210;
+package course.android.letgo_300432317_303062210.Activities;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -6,13 +6,13 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+
+import course.android.letgo_300432317_303062210.Fragments.FolderListFragment;
+import course.android.letgo_300432317_303062210.DB.MyInfoManager;
+import course.android.letgo_300432317_303062210.R;
 
 //The activity will be helpful in the next chapter
 public class MainActivity extends AppCompatActivity {

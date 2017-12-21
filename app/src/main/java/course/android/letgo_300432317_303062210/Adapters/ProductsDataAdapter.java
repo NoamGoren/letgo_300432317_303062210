@@ -1,4 +1,4 @@
-package course.android.letgo_300432317_303062210;
+package course.android.letgo_300432317_303062210.Adapters;
 
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import course.android.letgo_300432317_303062210.Fragments.ProductsDetailsFragment;
+import course.android.letgo_300432317_303062210.R;
 
 /**
  * Created by admin on 11/22/2016.

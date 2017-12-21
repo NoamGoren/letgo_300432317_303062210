@@ -1,5 +1,6 @@
-package course.android.letgo_300432317_303062210;
+package course.android.letgo_300432317_303062210.Fragments;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -11,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -23,11 +25,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import course.android.letgo_300432317_303062210.DB.MyInfoManager;
+import course.android.letgo_300432317_303062210.Classes.Product;
+import course.android.letgo_300432317_303062210.R;
 
 public class EditItemFragment extends Fragment {
 
@@ -55,6 +60,20 @@ public class EditItemFragment extends Fragment {
 
 	private Button deleteItemButton = null;
 	private Button addPhotoBtn = null;
+
+	protected boolean shouldAskPermissions() {
+		return (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1);
+	}
+
+	@TargetApi(23)
+	protected void askPermissions() {
+		String[] permissions = {
+				"android.permission.READ_EXTERNAL_STORAGE",
+				"android.permission.WRITE_EXTERNAL_STORAGE"
+		};
+		int requestCode = 200;
+		requestPermissions(permissions, requestCode);
+	}
 
 	//creates and returns the view hierarchy associated with the fragment.
 	@Override
@@ -111,7 +130,7 @@ public class EditItemFragment extends Fragment {
 			itemTitleView.setText(infoItem.getTitle());
 			itemDescriptionView.setText(infoItem.getDescription());
 			itemLocationView.setText(infoItem.getLocation());
-			String category = infoItem.getCategory();
+			//String category = infoItem.getCategory();
 
 			categorySpinner.setSelection(0);
 			//itemCategoryView.setText(category);
@@ -186,6 +205,10 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 		
 		@Override
 		public void onClick(View arg0) {
+
+			if (shouldAskPermissions()) {
+				askPermissions();
+			}
 
 			Intent i=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 			File dir= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);

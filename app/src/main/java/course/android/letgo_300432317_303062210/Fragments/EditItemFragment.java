@@ -52,8 +52,8 @@ public class EditItemFragment extends Fragment {
 	private Activity ctx = null;
 
     static final int REQUEST_TAKE_PHOTO = 111;
-	private static final int PHOTO_W = 500;
-	private static final int PHOTO_H = 300;
+	private static final int PHOTO_W = 400;
+	private static final int PHOTO_H = 400;
 
 	protected static final int NEW_ITEM_TAG = -111;
 	private File output=null;
@@ -355,7 +355,7 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 			Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
 
 			Matrix matrix = new Matrix();
-			matrix.postRotate(90);
+			//matrix.postRotate(90);
 
 			Bitmap rotatedBitmap =  Bitmap.createScaledBitmap(bitmap, PHOTO_W, PHOTO_H, false);
 			scaledBitmap = Bitmap.createBitmap(rotatedBitmap , 0, 0, rotatedBitmap.getWidth(), rotatedBitmap.getHeight(), matrix, true);

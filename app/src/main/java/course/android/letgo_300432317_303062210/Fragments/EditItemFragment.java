@@ -25,11 +25,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import course.android.letgo_300432317_303062210.Activities.HomeActivity;
 import course.android.letgo_300432317_303062210.DB.MyInfoManager;
 import course.android.letgo_300432317_303062210.Classes.Product;
 import course.android.letgo_300432317_303062210.R;
@@ -263,13 +265,19 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 				}
 
 
-				ItemListFragment itemlistfragment = new ItemListFragment();
-				FragmentManager fManager =ctx.getFragmentManager();
-				FragmentTransaction ft = fManager.beginTransaction();
-				ft.replace(R.id.content_frame, itemlistfragment);
-				ft.addToBackStack(null);
-				ft.commit();
+//				ItemListFragment itemlistfragment = new ItemListFragment();
+//				FragmentManager fManager =ctx.getFragmentManager();
+//				FragmentTransaction ft = fManager.beginTransaction();
+//				ft.replace(R.id.content_frame, itemlistfragment);
+//				ft.addToBackStack(null);
+//				ft.commit();
 
+				Toast.makeText(ctx,
+						"Your item saved successfully!", Toast.LENGTH_LONG).show();
+
+
+				Intent i= new Intent(ctx,HomeActivity.class);
+				startActivity(i);
 
 			} catch (Throwable e) {
 				e.printStackTrace();
@@ -292,12 +300,19 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 					 MyInfoManager.getInstance().deleteItem(item);
 				}
 
-				ItemListFragment itemlistfragment = new ItemListFragment();
-				FragmentManager fManager =ctx.getFragmentManager();
-				FragmentTransaction ft = fManager.beginTransaction();
-				ft.replace(R.id.content_frame, itemlistfragment);
-				ft.addToBackStack(null);
-				ft.commit();
+				Toast.makeText(ctx,
+						"Your item has been deleted!", Toast.LENGTH_LONG).show();
+
+
+				Intent i= new Intent(ctx,HomeActivity.class);
+				startActivity(i);
+
+//				ItemListFragment itemlistfragment = new ItemListFragment();
+//				FragmentManager fManager =ctx.getFragmentManager();
+//				FragmentTransaction ft = fManager.beginTransaction();
+//				ft.replace(R.id.content_frame, itemlistfragment);
+//				ft.addToBackStack(null);
+//				ft.commit();
 				
 			} catch (Throwable e) {
 				e.printStackTrace();

@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import course.android.letgo_300432317_303062210.Adapters.ProductsDataAdapter;
@@ -34,6 +35,7 @@ public class ProductsListFragment extends Fragment {
     private TypedArray typedArray;
     private List<Product> p1;
 
+
     //Called when a fragment is first attached to its context.
     @Override
     public void onAttach(Activity context) {
@@ -47,93 +49,34 @@ public class ProductsListFragment extends Fragment {
             int myValue = bundle.getInt("message");
             switch (myValue) {
                 case 1:
-                    mNames = resources.getStringArray(R.array.car_names);
-                    mDescriptions = resources.getStringArray(R.array.car_descriptions);
-                    typedArray = resources.obtainTypedArray(R.array.cars);
-                    mLocations= resources.getStringArray(R.array.car_locations);
-                    mCategories= resources.getStringArray(R.array.car_cagegories);
-                    mPrices= resources.getIntArray(R.array.car_prices);
+                    CreateResultArray("Cars");
                     break;
                 case 2:
-                    mNames = resources.getStringArray(R.array.home_names);
-                    mDescriptions = resources.getStringArray(R.array.home_descriptions);
-                    typedArray = resources.obtainTypedArray(R.array.home);
-                    mLocations= resources.getStringArray(R.array.home_locations);
-                    mCategories= resources.getStringArray(R.array.home_cagegories);
-                    mPrices= resources.getIntArray(R.array.home_prices);
+                    CreateResultArray("Home");
                     break;
                 case 3:
-                    mNames = resources.getStringArray(R.array.motors_names);
-                    mDescriptions = resources.getStringArray(R.array.motors_descriptions);
-                    typedArray = resources.obtainTypedArray(R.array.motors);
-                    mLocations= resources.getStringArray(R.array.motors_locations);
-                    mCategories= resources.getStringArray(R.array.motors_cagegories);
-                    mPrices= resources.getIntArray(R.array.motors_prices);
+                    CreateResultArray("Motors");
                     break;
                 case 4:
-                    mNames = resources.getStringArray(R.array.fashion_names);
-                    mDescriptions = resources.getStringArray(R.array.fashion_descriptions);
-                    typedArray = resources.obtainTypedArray(R.array.fashion);
-                    mLocations= resources.getStringArray(R.array.fashion_locations);
-                    mCategories= resources.getStringArray(R.array.fashion_cagegories);
-                    mPrices= resources.getIntArray(R.array.fashion_prices);
+                    CreateResultArray("Fashion");
                     break;
                 case 5:
-                    mNames = resources.getStringArray(R.array.other_names);
-                    mDescriptions = resources.getStringArray(R.array.other_descriptions);
-                    typedArray = resources.obtainTypedArray(R.array.other);
-                    mLocations= resources.getStringArray(R.array.other_locations);
-                    mCategories= resources.getStringArray(R.array.other_cagegories);
-                    mPrices= resources.getIntArray(R.array.other_prices);
+                    CreateResultArray("Other");
                     break;
                 case 6:
-                    mNames = resources.getStringArray(R.array.child_names);
-                    mDescriptions = resources.getStringArray(R.array.child_descriptions);
-                    typedArray = resources.obtainTypedArray(R.array.child);
-                    mLocations= resources.getStringArray(R.array.child_locations);
-                    mCategories= resources.getStringArray(R.array.child_cagegories);
-                    mPrices= resources.getIntArray(R.array.child_prices);
+                  CreateResultArray("Child");
                     break;
                 case 7:
-                    mNames = resources.getStringArray(R.array.entertiment_names);
-                    mDescriptions = resources.getStringArray(R.array.entertiment_descriptions);
-                    typedArray = resources.obtainTypedArray(R.array.entertiment);
-                    mLocations= resources.getStringArray(R.array.entertiment_locations);
-                    mCategories= resources.getStringArray(R.array.entertiment_cagegories);
-                    mPrices= resources.getIntArray(R.array.entertiment_prices);
+                   CreateResultArray("Entertaiment");
                     break;
                 case 8:
-                    mNames = resources.getStringArray(R.array.leisure_names);
-                    mDescriptions = resources.getStringArray(R.array.leisure_descriptions);
-                    typedArray = resources.obtainTypedArray(R.array.leisure);
-                    mLocations= resources.getStringArray(R.array.leisure_locations);
-                    mCategories= resources.getStringArray(R.array.leisure_cagegories);
-                    mPrices= resources.getIntArray(R.array.leisure_prices);
+                   CreateResultArray("Leisure");
                     break;
             }
         }
         else {
+            CreateResultArray("All");
 
-            p1= MyInfoManager.getInstance().getAllItems();
-            int i=0;
-
-            mImageResIds = new Bitmap[p1.size()];
-            mNames=new String[p1.size()];
-            mDescriptions= new String[p1.size()];
-            mLocations= new String[p1.size()];
-            mCategories= new String[p1.size()];
-            mPrices= new int[p1.size()];
-
-            for (Product item:p1) {
-                mNames[i]=item.getTitle();
-                mImageResIds[i]=item.getImage1();
-                mDescriptions[i]=item.getDescription();
-                mLocations[i]=item.getLocation();
-                mCategories[i]=item.getCategory();
-                mPrices[i]=item.getPrice();
-
-                i++;
-            }
 
             // mNames = resources.getStringArray(R.array.all_names);
            // mDescriptions = resources.getStringArray(R.array.all_descriptions);
@@ -152,6 +95,47 @@ public class ProductsListFragment extends Fragment {
 //            mImageResIds[i] = typedArray.getResourceId(i, 0);
 //        }
 //        typedArray.recycle();
+    }
+
+    public void CreateResultArray(String res){
+
+        p1= MyInfoManager.getInstance().getAllItems();
+        List<Product> p2=new ArrayList<Product>();
+        if (res!="All"){
+            for (Product item: p1) {
+                if (item.getCategory().matches(res)){
+                    p2.add(item);
+                }
+
+            }
+        }else{
+            for (Product item: p1) {
+                    p2.add(item);
+            }
+        }
+
+        int i=0;
+        p2.size();
+        mImageResIds = new Bitmap[p2.size()];
+        mNames=new String[p2.size()];
+        mDescriptions= new String[p2.size()];
+        mLocations= new String[p2.size()];
+        mCategories= new String[p2.size()];
+        mPrices= new int[p2.size()];
+
+        for (Product item:p2) {
+
+            mNames[i]=item.getTitle();
+            mImageResIds[i]=item.getImage1();
+            mDescriptions[i]=item.getDescription();
+            mLocations[i]=item.getLocation();
+            mCategories[i]=item.getCategory();
+            mPrices[i]=item.getPrice();
+
+            i++;
+
+
+        }
     }
 
     //creates and returns the view hierarchy associated with the fragment.

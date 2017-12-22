@@ -52,7 +52,7 @@ public class ItemListFragment extends Fragment {
 			String txt = folder.getName();
 			ctx.setTitle(txt);
 		}
-			
+
 
 		itemsList = (ListView) rootView.findViewById(R.id.itemList);
 		itemsList.setOnItemClickListener(itemClickListener);
@@ -70,7 +70,7 @@ public class ItemListFragment extends Fragment {
 
 	//Create new item
 	private OnClickListener newItemListener = new OnClickListener() {
-		
+
 		@Override
 		public void onClick(View arg0) {
 			MyInfoManager.getInstance().setSelectedItem(null);
@@ -83,15 +83,15 @@ public class ItemListFragment extends Fragment {
 
 		}
 	};
-	
 
-	
+
+
 	//Get item
 	private OnItemClickListener itemClickListener = new OnItemClickListener() {
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
+								long id) {
 			Product item = (Product) parent.getItemAtPosition(position);
 			if (item != null) {
 				MyInfoManager.getInstance().setSelectedItem(item);

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,7 +25,7 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
     private LayoutInflater mLayoutInflater;
 
 
-    protected int[] mImageResIds;
+    protected Bitmap[] mImageResIds;
     protected String[] mNames;
     protected String[] mDescriptions;
     protected String[] mLocations;
@@ -33,7 +34,7 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
     protected Context context;
 
     //Constructor
-    public ProductsDataAdapter(Context context, int[] mImageResIds, String[] mNames, String[] mDescriptions,String[] mLocations,String[] mCategories,int[] mPrices) {
+    public ProductsDataAdapter(Context context, Bitmap[] mImageResIds, String[] mNames, String[] mDescriptions,String[] mLocations,String[] mCategories,int[] mPrices) {
         mLayoutInflater = LayoutInflater.from(context);
         this.context = context;
         this.mImageResIds=mImageResIds;
@@ -53,7 +54,7 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
-        final int imageResId = mImageResIds[position];
+        final Bitmap imageResId = mImageResIds[position];
         final String name = mNames[position];
         final String description = mDescriptions[position];
         final String location = mLocations[position];
@@ -68,7 +69,7 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
                 ProductsDetailsFragment detailsFragment = new ProductsDetailsFragment();
                 // send data to fragment
                 Bundle args = new Bundle();
-                args.putInt(ProductsDetailsFragment.ARGUMENT_IMAGE_RES_ID, imageResId);
+                args.putParcelable(ProductsDetailsFragment.ARGUMENT_IMAGE_RES_ID, imageResId);
                 args.putString(ProductsDetailsFragment.ARGUMENT_NAME, name);
                 args.putString(ProductsDetailsFragment.ARGUMENT_DESCRIPTION, description);
                 args.putString(ProductsDetailsFragment.ARGUMENT_LOCATION, location);
@@ -105,8 +106,8 @@ class ViewHolder extends RecyclerView.ViewHolder {
         mNameTextView = (TextView) itemView.findViewById(R.id.name);
     }
 
-    public void setData(int imageResId, String name) {
-        mImageView.setImageResource(imageResId);
+    public void setData(Bitmap imageResId, String name) {
+        mImageView.setImageBitmap(imageResId);
         mNameTextView.setText(name);
     }
 }

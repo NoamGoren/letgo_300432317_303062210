@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import course.android.letgo_300432317_303062210.DB.MyInfoManager;
 import course.android.letgo_300432317_303062210.Fragments.ProductsListFragment;
 import course.android.letgo_300432317_303062210.R;
 
@@ -25,6 +26,7 @@ public class HomeActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        MyInfoManager.getInstance().openDataBase(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -152,7 +154,7 @@ public class HomeActivity extends AppCompatActivity
         ProductsFragment.setArguments(bundle);
         t.replace(R.id.root_layout, ProductsFragment);
         t.commit();
-                    }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

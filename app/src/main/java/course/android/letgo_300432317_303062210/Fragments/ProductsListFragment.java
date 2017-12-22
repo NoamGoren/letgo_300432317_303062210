@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import course.android.letgo_300432317_303062210.Adapters.ProductsDataAdapter;
+import course.android.letgo_300432317_303062210.Classes.Product;
+import course.android.letgo_300432317_303062210.DB.MyInfoManager;
 import course.android.letgo_300432317_303062210.R;
 
 /**
@@ -20,13 +25,14 @@ import course.android.letgo_300432317_303062210.R;
 
 public class ProductsListFragment extends Fragment {
 
-    private int[] mImageResIds;
+    private Bitmap[] mImageResIds;
     private String[] mNames;
     private String[] mDescriptions;
     private String[] mLocations;
     private String[] mCategories;
     private int[] mPrices;
     private TypedArray typedArray;
+    private List<Product> p1;
 
     //Called when a fragment is first attached to its context.
     @Override
@@ -107,25 +113,45 @@ public class ProductsListFragment extends Fragment {
             }
         }
         else {
-            mNames = resources.getStringArray(R.array.all_names);
-            mDescriptions = resources.getStringArray(R.array.all_descriptions);
-            mLocations= resources.getStringArray(R.array.all_locations);
-            mCategories= resources.getStringArray(R.array.all_cagegories);
-            mPrices= resources.getIntArray(R.array.all_prices);
+
+            p1= MyInfoManager.getInstance().getAllItems();
+            int i=0;
+
+            mImageResIds = new Bitmap[p1.size()];
+            mNames=new String[p1.size()];
+            mDescriptions= new String[p1.size()];
+            mLocations= new String[p1.size()];
+            mCategories= new String[p1.size()];
+            mPrices= new int[p1.size()];
+
+            for (Product item:p1) {
+                mNames[i]=item.getTitle();
+                mImageResIds[i]=item.getImage1();
+                mDescriptions[i]=item.getDescription();
+                mLocations[i]=item.getLocation();
+                mCategories[i]=item.getCategory();
+                mPrices[i]=item.getPrice();
+
+                i++;
+            }
+
+            // mNames = resources.getStringArray(R.array.all_names);
+           // mDescriptions = resources.getStringArray(R.array.all_descriptions);
+           // mLocations= resources.getStringArray(R.array.all_locations);
+           // mCategories= resources.getStringArray(R.array.all_cagegories);
+           // mPrices= resources.getIntArray(R.array.all_prices);
 
             // Get images.
-            typedArray = resources.obtainTypedArray(R.array.all);
+//            typedArray = resources.obtainTypedArray(R.array.all);
         }
 
 
-
-
-        final int imageCount = mNames.length;
-        mImageResIds = new int[imageCount];
-        for (int i = 0; i < imageCount; i++) {
-            mImageResIds[i] = typedArray.getResourceId(i, 0);
-        }
-        typedArray.recycle();
+//        final int imageCount = mNames.length;
+//        mImageResIds = new int[imageCount];
+//        for (int i = 0; i < imageCount; i++) {
+//            mImageResIds[i] = typedArray.getResourceId(i, 0);
+//        }
+//        typedArray.recycle();
     }
 
     //creates and returns the view hierarchy associated with the fragment.

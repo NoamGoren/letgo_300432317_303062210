@@ -9,6 +9,7 @@ public class ChatActivity extends AppCompatActivity {
     //Responsible  for showing the chat activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        int a=0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
     }

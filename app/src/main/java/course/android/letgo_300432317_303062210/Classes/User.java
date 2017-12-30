@@ -7,6 +7,7 @@ package course.android.letgo_300432317_303062210.Classes;
 public class User {
 
     private int id;
+    private String userId;
     private String name;
     private String city;
     private String email;

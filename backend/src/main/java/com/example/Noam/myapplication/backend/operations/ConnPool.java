@@ -11,7 +11,7 @@ import java.util.List;
 public class ConnPool {
 
 	static ConnPool instance = null;
-	
+
 	private String dataBaseName = "letgo_db";
 	private String user = "root";
 	private String password = "1234";
@@ -23,12 +23,12 @@ public class ConnPool {
 	List<Connection> connlist = new ArrayList<Connection>();
 	List<Connection> usedconnlist = new ArrayList<Connection>();
 	List<Connection> availableconnlist = new ArrayList<Connection>();
-	
-	String jdbcUrl = "jdbc:mysql://localhost:3306/"+dataBaseName
-						+"?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8";
 
-	
-	
+	String jdbcUrl = "jdbc:mysql://localhost:3306/"+dataBaseName
+			+"?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8";
+
+
+
 	public ConnPool() {
 		try {
 			Class.forName("org.gjt.mm.mysql.Driver").newInstance();
@@ -151,7 +151,7 @@ public class ConnPool {
 			resRaws.close();
 
 			testSql.close();
-			
+
 		} catch (Throwable t) {
 			t.printStackTrace();
 			answer = false;

@@ -1,4 +1,4 @@
-package com.example.Noam.myapplication.backend.core;
+package com.example.Noam.myapplication.backend.objects;
 
 /**
  * Created by Noam on 11/27/2017.
@@ -16,7 +16,7 @@ public class User {
     private String email;
     private String password;
 
-//    private Product[] userProducts;
+    //    private Product[] userProducts;
 //    private Product[] favProducts;
 //private List<Product> sold
     public User() {
@@ -57,8 +57,8 @@ public class User {
 
 
     public String getName() {
-    return name;
-}
+        return name;
+    }
 
     public void setName(String name) {
         this.name = name;

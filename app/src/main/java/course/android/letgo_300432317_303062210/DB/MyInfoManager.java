@@ -60,8 +60,13 @@ public class MyInfoManager {
 		}
 		//Create Product and insert to the database
 		public void createItem(Product item) {
+			boolean result=false;
 			if (db != null) {
 					db.createItem(getSelectedFolder(), item);
+				if(result==true){
+
+
+				}
 			}
 		}
 		//create User

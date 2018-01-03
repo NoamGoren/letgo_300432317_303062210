@@ -1,4 +1,4 @@
-package com.example.Noam.myapplication.backend.core;
+package com.example.Noam.myapplication.backend.objects;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -24,6 +24,10 @@ public class Product {
 
     }
 
+
+    public  Product(String id){
+        this.id=id;
+    }
     //constructor with title and des
     public Product(String title, String description) {
         this.title = title;
@@ -32,10 +36,10 @@ public class Product {
 
     //constructor with title, desc , location
     public Product(String title, String description, String location) {
-    this.title = title;
-    this.description=description;
-    this.location=location;
-}
+        this.title = title;
+        this.description=description;
+        this.location=location;
+    }
 
     //constructor without description and price
     public Product(String title, byte[] image, String loaction, String category) {
@@ -53,7 +57,7 @@ public class Product {
         this.image = image;
         this.price=price;
     }
-//constructor without price
+    //constructor without price
     public Product(String title, String description, byte[] image, String location, String category) {
         this.title = title;
         this.description = description;
@@ -80,7 +84,7 @@ public class Product {
     }
 
 
-//full costructor
+    //full costructor
     public Product(String title, String description, byte[] image, String location, String category, String price) {
         this.title = title;
         this.description = description;

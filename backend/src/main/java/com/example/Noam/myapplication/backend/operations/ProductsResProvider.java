@@ -21,6 +21,7 @@ public class ProductsResProvider {
 
     private static final String select_sql = "SELECT * FROM  products WHERE id=?;";
 
+
     private static final String select_img_sql = "SELECT image FROM  products WHERE id=?;";
 
     private static final String insert_sql = "INSERT INTO products (id,title,description,price,location,category,image,userId) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
@@ -211,6 +212,73 @@ public class ProductsResProvider {
         }
 
         return result;
+    }
+
+    public List<Product> getProduct(String id, Connection conn)
+            throws SQLException {
+
+        List<Product> results = new ArrayList<Product>();
+
+        if (id == null) {
+            return results;
+        }
+
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        try {
+
+            ps = conn.prepareStatement(select_sql);
+
+            ps.setString(1, id);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                String productId =rs.getString(1);
+                String productTitle = rs.getString(2);
+                String description =rs.getString(3);
+                String price =rs.getString(4);
+                String location =rs.getString(5);
+                String category =rs.getString(6);
+                Blob imgblob = rs.getBlob(7);
+                byte[] img= null;
+                if(imgblob!=null){
+                    img = imgblob.getBytes(1, (int)imgblob.length());
+                }
+                String user =rs.getString(8);
+
+                Product product = new Product(productId,productTitle,description,price,location,category,img,user);
+                results.add(product);
+
+            }
+
+        } catch (SQLException e) {
+            throw e;
+
+        } catch (Throwable e) {
+            e.printStackTrace();
+
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return results;
     }
 
     public boolean insertProduct(Product obj, Connection conn) throws SQLException{

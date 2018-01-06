@@ -361,7 +361,6 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 					newFlag =true;
 					product = new Product();
 					product.setId(NEW_ITEM_TAG);
-					//product.setId(itemIdView.getText().toString());
 					MyInfoManager.getInstance().setSelectedItem(product);
 				}
 
@@ -369,9 +368,7 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 			   Bitmap bitmap =  getScaledImageFromFilePath(output.getAbsolutePath());
 			   if(bitmap!=null){
 				    if(product!=null){
-//						if(photoFlag){
-//
-//						}
+
 				        itemImage1.setImageBitmap(bitmap);
 						itemImage1.setVisibility(View.VISIBLE);
 						product.setImage1(bitmap);

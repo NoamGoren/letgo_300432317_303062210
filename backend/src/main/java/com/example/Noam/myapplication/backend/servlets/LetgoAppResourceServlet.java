@@ -31,16 +31,17 @@ public class LetgoAppResourceServlet extends HttpServlet {
     // ========
    //users
     private static final int INSERT_USER_REQ = 1;
-    private static final int DELETE_USER_REQ = 2;
-    private static final int GET_ALL_USERS_JSON_REQ = 3;
-    private static final int GET_USER_JSON_REQ = 4;
+    private static final int DELETE_USER_REQ = 2;//working
+    private static final int GET_ALL_USERS_JSON_REQ = 3;//working
+    private static final int GET_USER_JSON_REQ = 4; //working
 
     //products
-    private static final int GET_ALL_PRODUCTS_JSON_REQ = 5;
+    private static final int GET_ALL_PRODUCTS_JSON_REQ = 5; //working
     private static final int INSERT_PRODUCT_REQ = 6;
-    private static final int DELETE_PRODUCT_REQ = 7;
-    private static final int GET_PRODUCT_IMAGE_REQ = 8;
-    private static final int GET_PRODUCTS_OF_USER_JSON_REQ = 9;
+    private static final int DELETE_PRODUCT_REQ = 7;//working
+    private static final int GET_PRODUCT_IMAGE_REQ = 8;//working
+    private static final int GET_PRODUCTS_OF_USER_JSON_REQ = 9; //working
+    private static final int GET_PRODUCT_JSON_REQ = 10; //working
 
     private static final String USER_NAME = "name";
     //private static final String USER_PASS = "password";
@@ -105,6 +106,27 @@ public class LetgoAppResourceServlet extends HttpServlet {
                         List<Product> productsList = productsResProvider
                                 .getAllProducts(conn);
                         String resultJson = Product.toJson(productsList);
+
+                        if (resultJson != null && !resultJson.isEmpty()) {
+                            respPage = resultJson;
+                            resp.addHeader("Content-Type",
+                                    "application/json; charset=UTF-8");
+                            PrintWriter pw = resp.getWriter();
+                            pw.write(respPage);
+                        } else {
+                            resp.sendError(404);
+                        }
+
+                        //retry = 0;
+                        break;
+                    }
+                    case GET_ALL_USERS_JSON_REQ: {
+
+                        conn = ConnPool.getInstance().getConnection();
+                        UsersResProvider usersResProvider = new UsersResProvider();
+                        List<User> userList = usersResProvider
+                                .getAllUsers(conn);
+                        String resultJson = User.toJson(userList);
 
                         if (resultJson != null && !resultJson.isEmpty()) {
                             respPage = resultJson;
@@ -218,15 +240,81 @@ public class LetgoAppResourceServlet extends HttpServlet {
                         break;
                     }
 
+                    case DELETE_USER_REQ: {
+                        String id = req.getParameter("name");
+                        respPage = RESOURCE_FAIL_TAG;
+                        resp.addHeader("Content-Type",
+                                "application/json; charset=UTF-8");
+                        conn = ConnPool.getInstance().getConnection();
+                        UsersResProvider usersResProvider = new UsersResProvider();
+                        User user = new User(id);
+                        if (usersResProvider.deleteUser(user, conn)) {
+                            respPage = RESOURCE_SUCCESS_TAG;
+                        }
+                        PrintWriter pw = resp.getWriter();
+                        pw.write(respPage);
+
+                        //retry = 0;
+                        break;
+                    }
+
                     case GET_PRODUCTS_OF_USER_JSON_REQ: {
 
-                        String id = req.getParameter(USER_NAME);
+                        String id = req.getParameter("userId");
                         conn = ConnPool.getInstance().getConnection();
                         ProductsResProvider productsResProvider = new ProductsResProvider();
 
                         List<Product> itemsList = productsResProvider.getAllProductsByUser(
                                 id, conn);
                         String resultJson = Product.toJson(itemsList);
+
+                        if (resultJson != null && !resultJson.isEmpty()) {
+                            respPage = resultJson;
+                            resp.addHeader("Content-Type",
+                                    "application/json; charset=UTF-8");
+                            PrintWriter pw = resp.getWriter();
+                            pw.write(respPage);
+                        } else {
+                            resp.sendError(404);
+                        }
+
+                        //retry = 0;
+                        break;
+                    }
+
+                    case GET_PRODUCT_JSON_REQ: {
+
+                        String id = req.getParameter("id");
+                        conn = ConnPool.getInstance().getConnection();
+                        ProductsResProvider productsResProvider = new ProductsResProvider();
+
+                        List<Product> itemsList = productsResProvider.getProduct(
+                                id, conn);
+                        String resultJson = Product.toJson(itemsList);
+
+                        if (resultJson != null && !resultJson.isEmpty()) {
+                            respPage = resultJson;
+                            resp.addHeader("Content-Type",
+                                    "application/json; charset=UTF-8");
+                            PrintWriter pw = resp.getWriter();
+                            pw.write(respPage);
+                        } else {
+                            resp.sendError(404);
+                        }
+
+                        //retry = 0;
+                        break;
+                    }
+
+                    case GET_USER_JSON_REQ: {
+
+                        String id = req.getParameter("name");
+                        conn = ConnPool.getInstance().getConnection();
+                        UsersResProvider usersResProvider = new UsersResProvider();
+
+                        List<User> itemsList = usersResProvider.getUser(
+                                id, conn);
+                        String resultJson = User.toJson(itemsList);
 
                         if (resultJson != null && !resultJson.isEmpty()) {
                             respPage = resultJson;

@@ -20,6 +20,7 @@ import android.widget.ImageButton;
 import course.android.letgo_300432317_303062210.DB.MyInfoManager;
 import course.android.letgo_300432317_303062210.Fragments.ProductsListFragment;
 import course.android.letgo_300432317_303062210.R;
+import course.android.letgo_300432317_303062210.utils.NetworkConnector;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,6 +28,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         MyInfoManager.getInstance().openDataBase(this);
+        NetworkConnector.getInstance().initialize(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

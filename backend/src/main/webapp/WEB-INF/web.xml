@@ -40,4 +40,15 @@
         <servlet-name>UploadProductServlet</servlet-name>
         <url-pattern>/upload_post</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <content></content>
+        <display-name>UploadUserServlet</display-name>
+        <servlet-name>UploadUserServlet</servlet-name>
+        <servlet-class>com.example.Noam.myapplication.backend.servlets.UploadUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadUserServlet</servlet-name>
+        <url-pattern>/upload_user</url-pattern>
+    </servlet-mapping>
 </web-app>

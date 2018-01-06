@@ -7,6 +7,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,13 +20,18 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.List;
+import org.json.JSONObject;
 
 import course.android.letgo_300432317_303062210.Adapters.InfoFolderListAdapter;
 import course.android.letgo_300432317_303062210.DB.MyInfoManager;
 import course.android.letgo_300432317_303062210.R;
 import course.android.letgo_300432317_303062210.Classes.User;
+import course.android.letgo_300432317_303062210.utils.NetworkResListener;
+import course.android.letgo_300432317_303062210.utils.ResStatus;
+import course.android.letgo_300432317_303062210.interfaces.CallBackListener;
+import course.android.letgo_300432317_303062210.utils.NetworkConnector;
 
-public class FolderListFragment extends Fragment {
+public class FolderListFragment extends Fragment  {
 	private ListView foldersList;
 	private InfoFolderListAdapter adapter;
 	private Context context = null;
@@ -59,6 +65,8 @@ public class FolderListFragment extends Fragment {
 		adapter = new InfoFolderListAdapter(context, R.layout.folder_list_item, list);
 		foldersList.setAdapter(adapter);
 
+		//NetworkConnector.getInstance().updateUsersFeed(this);
+
 		return rootView;
 	}
 
@@ -73,7 +81,6 @@ public class FolderListFragment extends Fragment {
 		public void onClick(View arg0) {
 			final String title = "Uploading Item To Letgo";
 			final String msg = "Enter Your Name";
-			
 			final EditText answerText = new EditText(context);
 			AlertDialog.Builder  builder=  new AlertDialog.Builder(context);
 			builder.setTitle(title);
@@ -82,8 +89,9 @@ public class FolderListFragment extends Fragment {
 
 			builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
 				    public void onClick(DialogInterface dialog, int whichButton) {
-				    	 String proptAnswer = answerText.getText().toString();
-				    	 User folder = new User(proptAnswer);
+
+						String name = answerText.getText().toString();
+				    	 User folder = new User(name);
 						MyInfoManager.getInstance().createFolder(folder);
 						List<User> list = MyInfoManager.getInstance().getAllFolders();
 						adapter = new InfoFolderListAdapter(context, R.layout.folder_list_item, list);
@@ -127,4 +135,28 @@ public class FolderListFragment extends Fragment {
 		}
 	};
 
+//	@Override
+//	public void onSaveButtonClicked() {
+//
+//	}
+//
+//	@Override
+//	public void onPreUpdate() {
+//
+//	}
+//
+//	@Override
+//	public void onProductUpdate(byte[] res, ResStatus status) {
+//
+//	}
+//
+//	@Override
+//	public void onProductUpdate(JSONObject res, ResStatus status) {
+//		MyInfoManager.getInstance().updateUsers(res);
+//	}
+//
+//	@Override
+//	public void onProductUpdate(Bitmap res, ResStatus status) {
+//
+//	}
 }

@@ -24,17 +24,19 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     private LayoutInflater mLayoutInflater;
 
-
-    protected Bitmap[] mImageResIds;
+    protected String[] mId;
     protected String[] mNames;
     protected String[] mDescriptions;
+    protected String[] mPrices;
     protected String[] mLocations;
     protected String[] mCategories;
-    protected int[] mPrices;
+    protected Bitmap[] mImageResIds;
+    protected String[] mUserId;
+
     protected Context context;
 
     //Constructor
-    public ProductsDataAdapter(Context context, Bitmap[] mImageResIds, String[] mNames, String[] mDescriptions,String[] mLocations,String[] mCategories,int[] mPrices) {
+    public ProductsDataAdapter(Context context, String[] mId, String[] mNames, String[] mDescriptions,String[] mPrices,String[] mLocations,String[] mCategories,Bitmap[] mImageResIds,String[] mUserId) {
         mLayoutInflater = LayoutInflater.from(context);
         this.context = context;
         this.mImageResIds=mImageResIds;
@@ -43,6 +45,8 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
         this.mLocations = mLocations;
         this.mCategories = mCategories;
         this.mPrices = mPrices;
+        this.mId = mId;
+        this.mUserId = mUserId;
     }
 
     //Called when RecyclerView needs a new RecyclerView.ViewHolder of the given type to represent an item.
@@ -54,12 +58,14 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
-        final Bitmap imageResId = mImageResIds[position];
+        final String id = mId[position];
         final String name = mNames[position];
         final String description = mDescriptions[position];
+        final String price = mPrices[position];
         final String location = mLocations[position];
         final String category = mCategories[position];
-        final int price = mPrices[position];
+        final Bitmap imageResId = mImageResIds[position];
+        final String userId = mUserId[position];
         viewHolder.setData(imageResId, name);
 
         viewHolder.mImageView.setOnClickListener(new View.OnClickListener() {
@@ -69,12 +75,14 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
                 ProductsDetailsFragment detailsFragment = new ProductsDetailsFragment();
                 // send data to fragment
                 Bundle args = new Bundle();
-                args.putParcelable(ProductsDetailsFragment.ARGUMENT_IMAGE_RES_ID, imageResId);
+                args.putString(ProductsDetailsFragment.ARGUMENT_ID, id);
                 args.putString(ProductsDetailsFragment.ARGUMENT_NAME, name);
                 args.putString(ProductsDetailsFragment.ARGUMENT_DESCRIPTION, description);
+                args.putString(ProductsDetailsFragment.ARGUMENT_PRICE, price);
                 args.putString(ProductsDetailsFragment.ARGUMENT_LOCATION, location);
                 args.putString(ProductsDetailsFragment.ARGUMENT_CATEGORY, category);
-                args.putInt(ProductsDetailsFragment.ARGUMENT_PRICE, price);
+                args.putParcelable(ProductsDetailsFragment.ARGUMENT_IMAGE_RES_ID, imageResId);
+                args.putString(ProductsDetailsFragment.ARGUMENT_USER_ID, userId);
                 detailsFragment.setArguments(args);
                 // open fragment
                 FragmentManager fm = ((Activity)context).getFragmentManager();
@@ -103,7 +111,7 @@ class ViewHolder extends RecyclerView.ViewHolder {
 
         // Get references to image and name.
         mImageView = (ImageView) itemView.findViewById(R.id.image);
-        mNameTextView = (TextView) itemView.findViewById(R.id.name);
+       mNameTextView = (TextView) itemView.findViewById(R.id.name);
     }
 
     public void setData(Bitmap imageResId, String name) {

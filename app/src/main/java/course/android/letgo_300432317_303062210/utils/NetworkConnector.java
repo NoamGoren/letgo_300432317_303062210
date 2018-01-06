@@ -18,6 +18,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import course.android.letgo_300432317_303062210.Classes.Product;
+import course.android.letgo_300432317_303062210.Classes.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,13 +35,13 @@ public class NetworkConnector {
     private static Context mCtx;
 
 
-    private final String HOST_URL =  "http://192.168.1.148:8080/"; //"http://192.168.1.103:8080/";
+    private final String HOST_URL =  "192.168.1.148:8080/"; //"http://192.168.1.103:8080/";
     private  final String BASE_URL = HOST_URL + "app_res";
 
     private int TIME_OUT = 10000;
     public static  int GET_ALL_PRODUCTS_JSON_REQ = 0;
-    //private static final int INSERT_TUMBLER_REQ = 1;
-    //private static final int DELETE_TUMBLER_REQ = 2;
+    public static final int INSERT_USER_REQ = 1;
+   public static final int DELETE_USER_REQ = 2;
 
     public static final int DELETE_PRODUCT_REQ = 3;
     public static final int GET_PRODUCT_IMAGE_REQ = 4;
@@ -48,8 +49,9 @@ public class NetworkConnector {
     public static final int GET_PRODUCTS_OF_USER_JSON_REQ = 5;
 
     public static final int INSERT_PRODUCT_REQ = 6;
+    public static  int GET_ALL_USERS_JSON_REQ = 7;
 
-
+    private static final String USER_NAME = "name";
     private static final String USER_ID = "userId";
     //private static final String TUMBLER_PASS = "tumbler_pass";
 
@@ -121,7 +123,7 @@ public class NetworkConnector {
                     @Override
                     public void onResponse(JSONObject response) {
 
-                        notifyPostUpdateListener(response, ResStatus.SUCCESS, listener);
+                        notifyProductUpdateListener(response, ResStatus.SUCCESS, listener);
                     }
                 }, new Response.ErrorListener() {
 
@@ -136,7 +138,7 @@ public class NetworkConnector {
                             e.printStackTrace();
                         }
                         finally {
-                            notifyPostUpdateListener(err, ResStatus.FAIL, listener);
+                            notifyProductUpdateListener(err, ResStatus.FAIL, listener);
                         }
 
                     }
@@ -160,13 +162,13 @@ public class NetworkConnector {
             @Override
             public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
                 Bitmap bm = response.getBitmap();
-                notifyPostBitmapUpdateListener(bm, ResStatus.SUCCESS, listener);
+                notifyProductBitmapUpdateListener(bm, ResStatus.SUCCESS, listener);
             }
 
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                notifyPostBitmapUpdateListener(null, ResStatus.FAIL, listener);
+                notifyProductBitmapUpdateListener(null, ResStatus.FAIL, listener);
             }
         });
     }
@@ -176,7 +178,7 @@ public class NetworkConnector {
     }
 
 
-    private void uploadPostInfo(final Product product, final NetworkResListener listener) {
+    private void uploadProduct(final Product product, final NetworkResListener listener) {
 
         String reqUrl = HOST_URL + "upload_product?";
         notifyPreUpdateListener(listener);
@@ -190,7 +192,7 @@ public class NetworkConnector {
                         try {
                             JSONObject obj = new JSONObject(new String(response.data));
                             Toast.makeText(mCtx, obj.getString("message"), Toast.LENGTH_SHORT).show();
-                            notifyPostUpdateListener(obj, ResStatus.SUCCESS, listener);
+                            notifyProductUpdateListener(obj, ResStatus.SUCCESS, listener);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -207,7 +209,7 @@ public class NetworkConnector {
                             e.printStackTrace();
                         }
                         finally {
-                            notifyPostUpdateListener(obj, ResStatus.FAIL, listener);
+                            notifyProductUpdateListener(obj, ResStatus.FAIL, listener);
                         }
 
                     }
@@ -222,13 +224,13 @@ public class NetworkConnector {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-               // params.put(PRODUCT_ID, product.getId());
+                params.put(PRODUCT_ID, product.getId());
                 params.put(PRODUCT_TITLE, product.getTitle());
                 params.put(PRODUCT_DESCRIPTION,  product.getDescription());
                 params.put(PRODUCT_LOCATION,  product.getLocation());
                 params.put(PRODUCT_CATEGORY, product.getCategory());
-               // params.put(PRODUCT_PRICE, product.getPrice());
-                //params.put(USER_ID, product.getUserId());
+                params.put(PRODUCT_PRICE, product.getPrice());
+                params.put(USER_ID, product.getUserId());
                 return params;
             }
 
@@ -240,8 +242,8 @@ public class NetworkConnector {
             protected Map<String, DataPart> getByteData() {
                 Map<String, DataPart> params = new HashMap<>();
                 long imagename = System.currentTimeMillis();
-               // byte[] pic = Product.getImgAsByteArray(product.getImage1());
-              //  params.put("fileField", new DataPart(imagename + ".png", pic));
+                byte[] pic = Product.getImgAsByteArray(product.getImage1());
+                params.put("fileField", new DataPart(imagename + ".png", pic));
                 return params;
             }
         };
@@ -253,10 +255,70 @@ public class NetworkConnector {
         getRequestQueue().add(volleyMultipartRequest);
     }
 
+    private void uploadUser(final User user, final NetworkResListener listener) {
 
-    public void sendRequestToServer(int requestCode, Product data, NetworkResListener listener){
+        String reqUrl = HOST_URL + "upload_user?";
+        notifyPreUpdateListener(listener);
 
-        if(data==null){
+
+        //our custom volley request
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, reqUrl,
+                new Response.Listener<NetworkResponse>() {
+                    @Override
+                    public void onResponse(NetworkResponse response) {
+                        try {
+                            JSONObject obj = new JSONObject(new String(response.data));
+                            Toast.makeText(mCtx, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                            notifyUserUpdateListener(obj, ResStatus.SUCCESS, listener);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(mCtx, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        JSONObject obj = null;
+                        try {
+                            obj = new JSONObject(RESOURCE_FAIL_TAG );
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        finally {
+                            notifyUserUpdateListener(obj, ResStatus.FAIL, listener);
+                        }
+
+                    }
+                }) {
+
+            /*
+            * If you want to add more parameters with the image
+            * you can do it here
+            * here we have only one parameter with the image
+            * which is tags
+            * */
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put(USER_NAME, user.getName());
+
+                return params;
+            }
+
+        };
+        volleyMultipartRequest.setRetryPolicy(new DefaultRetryPolicy(
+                TIME_OUT,
+                REQ_TIRES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        //adding the request to volley
+        getRequestQueue().add(volleyMultipartRequest);
+    }
+
+
+    public void sendRequestToServer(int requestCode, Product product, NetworkResListener listener){
+
+        if(product==null){
             return;
         }
 
@@ -266,14 +328,14 @@ public class NetworkConnector {
         switch (requestCode){
             case INSERT_PRODUCT_REQ:{
 
-                uploadPostInfo(data, listener);
+                uploadProduct(product, listener);
 
                 break;
             }
 
             case DELETE_PRODUCT_REQ:{
                 builder.appendQueryParameter(REQ , String.valueOf(requestCode));
-                //builder.appendQueryParameter(PRODUCT_ID , data.getId());
+                builder.appendQueryParameter(PRODUCT_ID , product.getId());
 
                 String query = builder.build().getEncodedQuery();
                 addToRequestQueue(query, listener);
@@ -283,7 +345,7 @@ public class NetworkConnector {
 
             case GET_PRODUCT_IMAGE_REQ: {
                 builder.appendQueryParameter(REQ , String.valueOf(requestCode));
-               // builder.appendQueryParameter(PRODUCT_ID , data.getId());
+                builder.appendQueryParameter(PRODUCT_ID , product.getId());
 
                 String query = builder.build().getEncodedQuery();
                 addImageRequestToQueue(query, listener);
@@ -296,11 +358,45 @@ public class NetworkConnector {
 
     }
 
+    public void sendRequestToServerFolder(int requestCode, User user, NetworkResListener listener){
 
-    public void updatePostsFeed(NetworkResListener listener){
+        if(user==null){
+            return;
+        }
+        Uri.Builder builder = new Uri.Builder();
+
+        switch (requestCode){
+            case INSERT_USER_REQ:{
+                uploadUser(user, listener);
+                break;
+            }
+
+            case DELETE_USER_REQ:{
+                builder.appendQueryParameter(REQ , String.valueOf(requestCode));
+                builder.appendQueryParameter(USER_ID , user.getName());
+
+                String query = builder.build().getEncodedQuery();
+                addToRequestQueue(query, listener);
+                break;
+            }
+        }
+
+    }
+
+
+    public void updateProductsFeed(NetworkResListener listener){
 
         Uri.Builder builder = new Uri.Builder();
         builder.appendQueryParameter(REQ , String.valueOf(GET_ALL_PRODUCTS_JSON_REQ));
+        String query = builder.build().getEncodedQuery();
+
+        addToRequestQueue(query, listener);
+    }
+
+    public void updateUsersFeed(NetworkResListener listener){
+
+        Uri.Builder builder = new Uri.Builder();
+        builder.appendQueryParameter(REQ , String.valueOf(GET_ALL_USERS_JSON_REQ));
         String query = builder.build().getEncodedQuery();
 
         addToRequestQueue(query, listener);
@@ -312,7 +408,7 @@ public class NetworkConnector {
     }
 
 
-    private  void notifyPostBitmapUpdateListener(final Bitmap res, final ResStatus status, final NetworkResListener listener) {
+    private  void notifyProductBitmapUpdateListener(final Bitmap res, final ResStatus status, final NetworkResListener listener) {
 
         Handler handler = new Handler(mCtx.getMainLooper());
 
@@ -321,7 +417,7 @@ public class NetworkConnector {
             @Override
             public void run() {
                 try{
-                    listener.onPostUpdate(res, status);
+                    listener.onProductUpdate(res, status);
                 }
                 catch(Throwable t){
                     t.printStackTrace();
@@ -332,7 +428,7 @@ public class NetworkConnector {
 
     }
 
-    private  void notifyPostUpdateListener(final JSONObject res, final ResStatus status, final NetworkResListener listener) {
+    private  void notifyProductUpdateListener(final JSONObject res, final ResStatus status, final NetworkResListener listener) {
 
         Handler handler = new Handler(mCtx.getMainLooper());
 
@@ -341,7 +437,27 @@ public class NetworkConnector {
             @Override
             public void run() {
                 try{
-                    listener.onPostUpdate(res, status);
+                    listener.onProductUpdate(res, status);
+                }
+                catch(Throwable t){
+                    t.printStackTrace();
+                }
+            }
+        };
+        handler.post(myRunnable);
+
+    }
+
+    private  void notifyUserUpdateListener(final JSONObject res, final ResStatus status, final NetworkResListener listener) {
+
+        Handler handler = new Handler(mCtx.getMainLooper());
+
+        Runnable myRunnable = new Runnable() {
+
+            @Override
+            public void run() {
+                try{
+                    listener.onUserUpdate(res, status);
                 }
                 catch(Throwable t){
                     t.printStackTrace();

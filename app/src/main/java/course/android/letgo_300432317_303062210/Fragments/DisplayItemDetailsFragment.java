@@ -22,11 +22,12 @@ import course.android.letgo_300432317_303062210.R;
 
 public class DisplayItemDetailsFragment extends Fragment {
 	
-	//Displaying the Item details : title,description,price,loction,Category
+	//Displaying the Item details : id,title,description,price,location,Category
 	//and picture
 
-	private TextView itemDescriptionView;
+	private TextView itemIdView;
 	private TextView itemTitleView;
+	private TextView itemDescriptionView;
 	private TextView itemPriceView;
 	private TextView itemLocationView;
 	private TextView itemCategoryView;
@@ -49,28 +50,26 @@ public class DisplayItemDetailsFragment extends Fragment {
 		String txt = item.getTitle();
 		ctx.setTitle(txt);
 
+		itemIdView = (TextView) rootView.findViewById(R.id.item_id_txt);
+		itemIdView.setText(item.getId());
+
+		itemTitleView = (TextView) rootView.findViewById(R.id.item_title_txt);
+		itemTitleView.setText(item.getTitle());
 		
 		itemDescriptionView = (TextView) rootView.findViewById(R.id.item_desc_txt);
 		itemDescriptionView.setText(item.getDescription());
 
-		itemTitleView = (TextView) rootView.findViewById(R.id.item_title_txt);
-		itemTitleView.setText(item.getTitle());
-
-		itemCategoryView = (TextView) rootView.findViewById(R.id.item_category_txt);
-		itemCategoryView.setText(item.getCategory());
-
-
 		itemPriceView = (TextView) rootView.findViewById(R.id.item_price_txt);
-		itemPriceView.setText(String.valueOf(item.getPrice()));
-
+		itemPriceView.setText(item.getPrice());
 
 		itemLocationView = (TextView) rootView.findViewById(R.id.item_location_txt);
 		itemLocationView.setText(item.getLocation());
 
+		itemCategoryView = (TextView) rootView.findViewById(R.id.item_category_txt);
+		itemCategoryView.setText(item.getCategory());
+
 		//Toast.makeText(ctx,
 		//		item.getLocation(), Toast.LENGTH_LONG).show();
-
-
 
 		itemImage1 = (ImageView) rootView.findViewById(R.id.item_img1);
 		Bitmap drawable1 = item.getImage1();

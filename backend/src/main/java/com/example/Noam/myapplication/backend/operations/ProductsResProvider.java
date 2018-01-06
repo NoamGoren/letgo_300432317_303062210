@@ -17,24 +17,24 @@ import java.util.List;
 
 public class ProductsResProvider {
 
-    private static final String update_sql = "UPDATE products SET title=?, content=?, image=?, tumbler_id=?, tag=? WHERE id=?;";
+    private static final String update_sql = "UPDATE products SET title=?, description=?, price=?, location=?, category=?, image=?, userId=? WHERE id=?;";
 
     private static final String select_sql = "SELECT * FROM  products WHERE id=?;";
 
     private static final String select_img_sql = "SELECT image FROM  products WHERE id=?;";
 
-    private static final String insert_sql = "INSERT INTO products (id,title,description,image,location,category,price,userId) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String insert_sql = "INSERT INTO products (id,title,description,price,location,category,image,userId) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 
     private static final String delete_sql = "DELETE FROM products WHERE id=?;";
 
-    private static final String delete_all_sql_by_id = "DELETE FROM products WHERE userId=?;"; // delete posts by tumbler
+    private static final String delete_all_sql_by_id = "DELETE FROM products WHERE userId=?;"; // delete Products by User
 
-    private static final String select_all_sql_by_id = "SELECT * FROM products WHERE userId=?;"; // get posts of tumbler
+    private static final String select_all_sql_by_id = "SELECT * FROM products WHERE userId=?;"; // get Products of User
 
-    private static final String select_all_sql = "SELECT * FROM products;"; // get all posts
+    private static final String select_all_sql = "SELECT * FROM products;"; // get all Products
 
 
-    public List<Product> getAllPosts(Connection conn)
+    public List<Product> getAllProducts(Connection conn)
             throws SQLException {
 
         List<Product> results = new ArrayList<Product>();
@@ -162,7 +162,7 @@ public class ProductsResProvider {
         return results;
     }
 
-    public byte[] getImage(String postId, Connection conn)
+    public byte[] getImage(String productId, Connection conn)
             throws SQLException {
 
         byte[] result = null;
@@ -173,7 +173,7 @@ public class ProductsResProvider {
 
             ps = conn.prepareStatement(select_img_sql);
 
-            ps.setString(1, postId);
+            ps.setString(1, productId);
 
             rs = ps.executeQuery();
 
@@ -238,7 +238,7 @@ public class ProductsResProvider {
                 try {
                     imageBytes = getImage(id, conn);
                 }catch (Throwable e){
-                    System.out.println("no image for post "+ id);
+                    System.out.println("no image for product "+ id);
                 }
             }
 
@@ -257,15 +257,15 @@ public class ProductsResProvider {
                     ps.setString(3, description);
                     if (imageBytes != null) {
                         InputStream is = new ByteArrayInputStream(imageBytes);
-                        ps.setBlob(4, is);
+                        ps.setBlob(7, is);
 
                     } else {
 
-                        ps.setNull(4, Types.BLOB);
+                        ps.setNull(7, Types.BLOB);
                     }
                     ps.setString(5, location);
                     ps.setString(6, category);
-                    ps.setString(7, price);
+                    ps.setString(4, price);
                     ps.setString(8, userId);
 
                     // where
@@ -284,17 +284,17 @@ public class ProductsResProvider {
 
                     if (imageBytes != null) {
                         InputStream is = new ByteArrayInputStream(imageBytes);
-                        ps.setBlob(4, is);
+                        ps.setBlob(7, is);
 
                     } else {
 
-                        ps.setNull(4, Types.BLOB);
+                        ps.setNull(7, Types.BLOB);
                     }
 
 
                     ps.setString(5, location);
                     ps.setString(6, category);
-                    ps.setString(7, price);
+                    ps.setString(4, price);
                     ps.setString(8, userId);
 
                     ps.execute();
@@ -347,7 +347,7 @@ public class ProductsResProvider {
 
     }
 
-    public boolean deleteAllProductsByUser(User tumblerInfo, Connection conn)
+    public boolean deleteAllProductsByUser(User user, Connection conn)
             throws SQLException {
 
         boolean result = false;
@@ -358,7 +358,7 @@ public class ProductsResProvider {
 
             ps = (PreparedStatement) conn.prepareStatement(delete_all_sql_by_id);
 
-            ps.setString(1, tumblerInfo.getId());
+            ps.setString(1, user.getName());
 
             ps.execute();
 

@@ -2,6 +2,7 @@ package course.android.letgo_300432317_303062210.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,9 @@ import android.widget.TextView;
 import java.util.List;
 
 import course.android.letgo_300432317_303062210.Classes.Product;
+import course.android.letgo_300432317_303062210.DB.MyInfoManager;
 import course.android.letgo_300432317_303062210.R;
+import course.android.letgo_300432317_303062210.utils.ResStatus;
 
 public class InfoItemListAdapter extends ArrayAdapter<Product> {
 	private Context context;
@@ -49,4 +52,6 @@ public class InfoItemListAdapter extends ArrayAdapter<Product> {
 	public int getCount() {
 		return items.size();
 	}
+
+
 }

@@ -29,17 +29,20 @@ public class LetgoAppResourceServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     // ========
-    private static final int GET_ALL_PRODUCTS_JSON_REQ = 0;
-    //private static final int INSERT_TUMBLER_REQ = 1;
-    //private static final int DELETE_TUMBLER_REQ = 2;
-    //private static final int INSERT_POST_REQ = 3;
+   //users
+    private static final int INSERT_USER_REQ = 1;
+    private static final int DELETE_USER_REQ = 2;
+    private static final int GET_ALL_USERS_JSON_REQ = 3;
+    private static final int GET_USER_JSON_REQ = 4;
 
-    private static final int DELETE_PRODUCT_REQ = 3;
-    private static final int GET_PRODUCT_IMAGE_REQ = 4;
+    //products
+    private static final int GET_ALL_PRODUCTS_JSON_REQ = 5;
+    private static final int INSERT_PRODUCT_REQ = 6;
+    private static final int DELETE_PRODUCT_REQ = 7;
+    private static final int GET_PRODUCT_IMAGE_REQ = 8;
+    private static final int GET_PRODUCTS_OF_USER_JSON_REQ = 9;
 
-    private static final int GET_PRODUCTS_OF_USER_JSON_REQ = 5;
-
-    private static final String USER_ID = "userId";
+    private static final String USER_NAME = "name";
     //private static final String USER_PASS = "password";
 
     private static final String RESOURCE_FAIL_TAG = "{\"result_code\":0}";
@@ -51,6 +54,7 @@ public class LetgoAppResourceServlet extends HttpServlet {
     private static final String PRODUCT_LOCATION = "location";
     private static final String PRODUCT_CATEGORY = "category";
     private static final String PRODUCT_PRICE = "price";
+    private static final String PRODUCT_USERID = "userId";
 
 
 
@@ -97,10 +101,10 @@ public class LetgoAppResourceServlet extends HttpServlet {
                     case GET_ALL_PRODUCTS_JSON_REQ: {
 
                         conn = ConnPool.getInstance().getConnection();
-                        ProductsResProvider postsResProvider = new ProductsResProvider();
-                        List<Product> postsList = postsResProvider
-                                .getAllPosts(conn);
-                        String resultJson = Product.toJson(postsList);
+                        ProductsResProvider productsResProvider = new ProductsResProvider();
+                        List<Product> productsList = productsResProvider
+                                .getAllProducts(conn);
+                        String resultJson = Product.toJson(productsList);
 
                         if (resultJson != null && !resultJson.isEmpty()) {
                             respPage = resultJson;
@@ -116,25 +120,23 @@ public class LetgoAppResourceServlet extends HttpServlet {
                         break;
                     }
 
-//					case INSERT_TUMBLER_REQ: {
-//						String id = req.getParameter(TUMBLER_ID);
-//						String title = req.getParameter(TUMBLER_PASS);
-//						respPage = RESOURCE_FAIL_TAG;
-//						resp.addHeader("Content-Type",
-//								"application/json; charset=UTF-8");
-//						conn = ConnPool.getInstance().getConnection();
-//						TumblerResProvider tumblerResProvider = new TumblerResProvider();
-//
-//						TumblerInfo tumblerInfo = new TumblerInfo(id, title);
-//						if (tumblerResProvider.insertTumbler(tumblerInfo, conn)) {
-//							respPage = RESOURCE_SUCCESS_TAG;
-//						}
-//						PrintWriter pw = resp.getWriter();
-//						pw.write(respPage);
-//
-//						//retry = 0;
-//						break;
-//					}
+					case INSERT_USER_REQ: {
+                        String name = req.getParameter(USER_NAME);
+					resp.addHeader("Content-Type",
+								"application/json; charset=UTF-8");
+						conn = ConnPool.getInstance().getConnection();
+						UsersResProvider usersResProvider = new UsersResProvider();
+
+						User user = new User(name);
+						if (usersResProvider.insertUser(user, conn)) {
+							respPage = RESOURCE_SUCCESS_TAG;
+						}
+						PrintWriter pw = resp.getWriter();
+						pw.write(respPage);
+
+						//retry = 0;
+						break;
+				}
 //
 //					case DELETE_TUMBLER_REQ: {
 //						String id = req.getParameter(TUMBLER_ID);
@@ -154,39 +156,49 @@ public class LetgoAppResourceServlet extends HttpServlet {
 //						//retry = 0;
 //						break;
 //					}
+//						String id = req.getParameter(TUMBLER_ID);
+//						String title = req.getParameter(TUMBLER_PASS);
+//						respPage = RESOURCE_FAIL_TAG;
 //
-//						case INSERT_POST_REQ: {
-//							String id = req.getParameter(POST_ID);
-//
-//							String title = req.getParameter(POST_TITLE);
-//
-//							String content = req.getParameter(POST_CONTENT);
-//
-//							String tumblerId = req.getParameter(TUMBLER_ID);
-//
-//							String tag = req.getParameter(POST_TAG);
-//
-//							respPage = RESOURCE_FAIL_TAG;
-//							resp.addHeader("Content-Type",
-//									"application/json; charset=UTF-8");
-//							conn = ConnPool.getInstance().getConnection();
-//							PostsResProvider postsResProvider = new PostsResProvider();
-//
-//							PostInfo post = new PostInfo(id);
-//							post.setTitle(title);
-//							post.setContent(content);
-//							post.setTumblerId(tumblerId);
-//							post.setTag(tag);
-//
-//							if (postsResProvider.insertPostInfo(post, conn)) {
-//								respPage = RESOURCE_SUCCESS_TAG;
-//							}
-//							PrintWriter pw = resp.getWriter();
-//							pw.write(respPage);
-//
-//							//retry = 0;
-//							break;
-//						}
+						case INSERT_PRODUCT_REQ: {
+							String id = req.getParameter(PRODUCT_ID);
+
+							String title = req.getParameter(PRODUCT_TITLE);
+
+							String description = req.getParameter(PRODUCT_DESCRIPTION);
+
+							String price = req.getParameter(PRODUCT_PRICE);
+
+							String location = req.getParameter(PRODUCT_LOCATION);
+                            String category = req.getParameter(PRODUCT_CATEGORY);
+
+                            String userId = req.getParameter(PRODUCT_USERID);
+
+
+							respPage = RESOURCE_FAIL_TAG;
+							resp.addHeader("Content-Type",
+									"application/json; charset=UTF-8");
+							conn = ConnPool.getInstance().getConnection();
+							ProductsResProvider productsResProvider = new ProductsResProvider();
+
+							Product product = new Product(id,title,description,price,location,category,userId);
+                            product.setId(id);
+                            product.setTitle(title);
+                            product.setDescription(description);
+                            product.setPrice(price);
+                            product.setLocation(location);
+                            product.setCategory(category);
+                            product.setUserId(userId);
+
+							if (productsResProvider.insertProduct(product, conn)) {
+								respPage = RESOURCE_SUCCESS_TAG;
+							}
+							PrintWriter pw = resp.getWriter();
+							pw.write(respPage);
+
+							//retry = 0;
+							break;
+						}
 
                     case DELETE_PRODUCT_REQ: {
                         String id = req.getParameter(PRODUCT_ID);
@@ -194,9 +206,9 @@ public class LetgoAppResourceServlet extends HttpServlet {
                         resp.addHeader("Content-Type",
                                 "application/json; charset=UTF-8");
                         conn = ConnPool.getInstance().getConnection();
-                        ProductsResProvider postsResProvider = new ProductsResProvider();
-                        Product postInfo = new Product(id);
-                        if (postsResProvider.deleteProduct(postInfo, conn)) {
+                        ProductsResProvider productsResProvider = new ProductsResProvider();
+                        Product product = new Product(id);
+                        if (productsResProvider.deleteProduct(product, conn)) {
                             respPage = RESOURCE_SUCCESS_TAG;
                         }
                         PrintWriter pw = resp.getWriter();
@@ -208,7 +220,7 @@ public class LetgoAppResourceServlet extends HttpServlet {
 
                     case GET_PRODUCTS_OF_USER_JSON_REQ: {
 
-                        String id = req.getParameter(USER_ID);
+                        String id = req.getParameter(USER_NAME);
                         conn = ConnPool.getInstance().getConnection();
                         ProductsResProvider productsResProvider = new ProductsResProvider();
 

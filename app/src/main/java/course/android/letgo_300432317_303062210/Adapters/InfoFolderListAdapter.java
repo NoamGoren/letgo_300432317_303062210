@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +12,25 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 import course.android.letgo_300432317_303062210.DB.MyInfoManager;
 import course.android.letgo_300432317_303062210.R;
 import course.android.letgo_300432317_303062210.Classes.User;
+
+
+import course.android.letgo_300432317_303062210.Adapters.ProductsDataAdapter;
+import course.android.letgo_300432317_303062210.Classes.Product;
+import course.android.letgo_300432317_303062210.DB.MyInfoManager;
+import course.android.letgo_300432317_303062210.R;
+import course.android.letgo_300432317_303062210.utils.NetworkResListener;
+import course.android.letgo_300432317_303062210.utils.ResStatus;
+import course.android.letgo_300432317_303062210.Fragments.EditItemFragment;
+import course.android.letgo_300432317_303062210.interfaces.CallBackListener;
+import course.android.letgo_300432317_303062210.utils.NetworkConnector;
+
 
 public class InfoFolderListAdapter extends ArrayAdapter<User> {
 
@@ -40,7 +55,7 @@ public class InfoFolderListAdapter extends ArrayAdapter<User> {
 	public View getView(int position, View view, ViewGroup parent) {
 
 		LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-		View rootView = mInflater.inflate(R.layout.folder_list_item, null);
+		View rootView = mInflater.inflate(R.layout.folder_list_item, null,false);
 		final User currentFolder = getItem(position);
 		TextView title = (TextView) rootView.findViewById(R.id.folderTitle);
 		title.setText(currentFolder.getName());
@@ -59,6 +74,7 @@ public class InfoFolderListAdapter extends ArrayAdapter<User> {
 				builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int whichButton) {
 						MyInfoManager.getInstance().deleteFolder(currentFolder);
+						folders.remove(currentFolder);
 						InfoFolderListAdapter.this.remove(currentFolder);
 						InfoFolderListAdapter.this.notifyDataSetChanged();
 					}
@@ -85,6 +101,13 @@ public class InfoFolderListAdapter extends ArrayAdapter<User> {
 	public User getItem(int position) {
 		return folders.get(position);
 	}
+
+
+
+
+
+
+
 
 
 }

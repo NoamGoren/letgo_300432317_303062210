@@ -11,10 +11,8 @@ import java.util.List;
 
 public class User {
 
-    private String id;
     private String name;
-    private String email;
-    private String password;
+
 
     //    private Product[] userProducts;
 //    private Product[] favProducts;
@@ -23,37 +21,14 @@ public class User {
 
     }
     //constructor without password
-    public User(String name,String email) {
-
-
-        this.name = name;
-        this.email = email;
-
-
-    }
-    //full constructor
-    public User(String id, String name,String email,String password) {
-
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-
-    }
-
     public User(String name) {
-        this.name=name;
 
+        this.name = name;
     }
+
+
 
     //getters and setters
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
 
     public String getName() {
@@ -64,21 +39,6 @@ public class User {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
 
     public static String toJson(List<User> users) {
@@ -95,10 +55,7 @@ public class User {
 
         for(User user:users){
             JSONObject userJson= new JSONObject();
-            userJson.put("id",user.getId());
             userJson.put("name",user.getName());
-            userJson.put("email",user.getEmail());
-            userJson.put("password",user.getPassword());
             jsonArray.add(userJson);
 
         }

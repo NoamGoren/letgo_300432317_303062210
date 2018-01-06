@@ -1,7 +1,15 @@
 package course.android.letgo_300432317_303062210.Classes;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.widget.Spinner;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Noam on 11/27/2017.
@@ -9,17 +17,22 @@ import android.widget.Spinner;
 
 public class Product {
 
-    private int id;
+    private String id;
     private String title;
     private String description;
-    private Bitmap image1 = null;
+    private String price;
     private String location;
     private String category;
-    private int price;
-    private int userId = -1;
+    private Bitmap image1 = null;
+    private String userId;
 
     public Product() {
 
+    }
+
+    //constructor with id
+    public Product(String id) {
+        this.id = id;
     }
 
     //constructor with title and des
@@ -30,10 +43,10 @@ public class Product {
 
     //constructor with title, desc , location
     public Product(String title, String description, String location) {
-    this.title = title;
-    this.description=description;
-    this.location=location;
-}
+        this.title = title;
+        this.description=description;
+        this.location=location;
+    }
 
     //constructor without description and price
     public Product(String title, Bitmap image1,String loaction,String category) {
@@ -44,14 +57,14 @@ public class Product {
 
     }
     //constructor without description
-    public Product(String title, Bitmap image1,String location,String category,int price) {
+    public Product(String title, Bitmap image1,String location,String category,String price) {
         this.title = title;
         this.location=location;
         this.category=category;
         this.image1 = image1;
         this.price=price;
     }
-//constructor without price
+    //constructor without price
     public Product(String title, String description, Bitmap image1,String location,String category) {
         this.title = title;
         this.description = description;
@@ -60,8 +73,8 @@ public class Product {
         this.image1 = image1;
     }
 
-    // costructor without image
-    public Product(String title, String description,String location,String category,int price) {
+    // costructor without image,userId, id
+    public Product(String title, String description,String location,String category,String price) {
         this.title = title;
         this.description = description;
         this.location = location;
@@ -69,37 +82,47 @@ public class Product {
         this.category=category;
     }
 
-    //constructor without price&image
-    public Product(String title, String description,String location,String category) {
-        this.title = title;
-        this.description = description;
-        this.location=location;
-        this.category=category;
-    }
 
-    // costructor without image&category
-    public Product(String title, String description,String location,int price) {
-        this.title = title;
-        this.description = description;
-        this.location = location;
-        this.price = price;
-    }
 
-//full costructor
-    public Product(String title, String description, Bitmap image1,String location,String category,int price) {
+    //full costructor
+    public Product(String id,String title, String description, Bitmap image1,String location,String category,String price,String userId) {
+        this.id=id;
         this.title = title;
         this.description = description;
         this.location=location;
         this.price=price;
         this.category=category;
         this.image1 = image1;
+        this.userId=userId;
+    }
+
+    // costructor without image
+    public Product(String id, String title, String description, String price, String location, String category, String userId) {
+        this.id=id;
+        this.title = title;
+        this.description = description;
+        this.price=price;
+        this.location=location;
+        this.category=category;
+
+        this.userId=userId;
+    }
+
+    // costructor without image and user_id
+    public Product(String id, String title, String description, String location, String category, String price) {
+        this.id=id;
+        this.title = title;
+        this.description = description;
+        this.location=location;
+        this.price=price;
+        this.category=category;
     }
 
     //getters and setters
-    public int getId() {
+    public String getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -131,10 +154,10 @@ public class Product {
         this.image1 = image1;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
@@ -145,11 +168,68 @@ public class Product {
         this.category = category;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
 
     }
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
+
+
+    public static byte[] getImgAsByteArray(Bitmap bm){
+        byte[] res= new byte[0];
+        if(bm != null){
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            bm.compress(Bitmap.CompressFormat.PNG,0,outputStream);
+            res = outputStream.toByteArray();
+        }
+        return res;
+    }
+
+    public void setImg(byte[] imgeArray){
+        if(imgeArray!=null){
+            this.image1 = BitmapFactory.decodeByteArray(imgeArray, 0, imgeArray.length);
+        }
+    }
+
+    public static List<Product> parseJson(JSONObject json) {
+
+        List<Product> products = null;
+        try {
+
+            products = new ArrayList<Product>();
+
+            JSONArray productsJsonArr = json.getJSONArray("products");
+
+            for (int i = 0; i < productsJsonArr.length(); i++) {
+                try {
+                    JSONObject iObj = productsJsonArr.getJSONObject(i);
+                    Product product = new Product();
+                    product.setId(iObj.getString("id"));
+                    product.setTitle(iObj.getString("title"));
+                    product.setDescription(iObj.getString("description"));
+                    product.setPrice(iObj.getString("price"));
+                    product.setLocation(iObj.getString("location"));
+                    product.setCategory(iObj.getString("category"));
+                    product.setUserId(iObj.getString("userId"));
+
+                    products.add(product);
+
+                } catch (Throwable e) {
+                    e.printStackTrace();
+                }
+            }
+
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+
+        return products;
+    }
+
+
 }
+
+
+

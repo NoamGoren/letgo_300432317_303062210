@@ -9,18 +9,18 @@ import java.sql.SQLException;
 
 public class UsersResProvider {
 
-	private static final String update_sql = "UPDATE users SET password=? WHERE id=?;";
+	private static final String update_sql = "UPDATE users SET name=? WHERE name=?;";
 
-	private static final String select_sql = "SELECT * FROM  users WHERE id=?;";
+	private static final String select_sql = "SELECT * FROM  users WHERE name=?;";
 
-	private static final String insert_sql = "INSERT INTO users (id, password) VALUES (?,?);";
+	private static final String insert_sql = "INSERT INTO users (name) VALUES (?);";
 
-	private static final String delete_sql = "DELETE FROM users WHERE id=?;";
+	private static final String delete_sql = "DELETE FROM users WHERE name=?;";
 
 	//private static final String select_all_sql = "SELECT * FROM tumblers;";
 
 
-	public boolean insertTumbler(User obj, Connection conn) {
+	public boolean insertUser(User obj, Connection conn) {
 
 		boolean result = false;
 		ResultSet rs = null;
@@ -30,17 +30,10 @@ public class UsersResProvider {
 
 		try {
 
-			String id = obj.getId();
 			String name =obj.getName();
-			String email =obj.getEmail();
-			String password = obj.getPassword();
 
 			stt = (PreparedStatement) conn.prepareStatement(select_sql);
-			stt.setString(1, id);
-			stt.setString(2, name);
-			stt.setString(3, email);
-			stt.setString(4, password);
-			
+			stt.setString(1, name);
 
 			if (stt.execute()) {
 				rs1 = stt.getResultSet();
@@ -48,21 +41,19 @@ public class UsersResProvider {
 					
 					// its execute update
 					ps = (PreparedStatement) conn.prepareStatement(update_sql);
-					ps.setString(2, name);
-					ps.setString(3, email);
-					ps.setString(4, password);
+					ps.setString(1, name);
+
 					// where
-					ps.setString(1, id);
+					ps.setString(1, name);
 					ps.execute();
 					result = true;
 				} else {
 
 					// its execute insert
 					ps = (PreparedStatement) conn.prepareStatement(insert_sql);
-					ps.setString(1,id);
-					ps.setString(2, name);
-					ps.setString(3, email);
-					ps.setString(4, password);
+
+					ps.setString(1, name);
+
 					ps.execute();
 					result = true;
 
@@ -124,15 +115,15 @@ public class UsersResProvider {
 
 			if (obj != null) {
 				
-				String id = obj.getId();
+				String name = obj.getName();
 				
 				ProductsResProvider itemResProvider = new ProductsResProvider();
-				itemResProvider.deleteAllProductsByUser(new User(id), conn);
+				itemResProvider.deleteAllProductsByUser(new User(name), conn);
 
 				ps = (PreparedStatement) conn.prepareStatement(delete_sql);
 
 			
-				ps.setString(1, id);
+				ps.setString(1, name);
 				
 				ps.execute();
 

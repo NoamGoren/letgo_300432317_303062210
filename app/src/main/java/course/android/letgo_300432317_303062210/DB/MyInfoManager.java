@@ -8,7 +8,20 @@ import java.util.List;
 import course.android.letgo_300432317_303062210.Classes.Product;
 import course.android.letgo_300432317_303062210.Classes.User;
 
-public class MyInfoManager {
+
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.widget.Toast;
+
+
+import course.android.letgo_300432317_303062210.utils.NetworkConnector;
+import course.android.letgo_300432317_303062210.utils.NetworkResListener;
+import course.android.letgo_300432317_303062210.utils.ResStatus;
+
+import org.json.JSONObject;
+
+
+public class MyInfoManager implements NetworkResListener {
 
 	//Showing all the functions that you can run on the database
 
@@ -18,8 +31,13 @@ public class MyInfoManager {
 	private MyInfoDatabase db = null;
 	private User selectedFolder = null;
 	private Product selectedItem = null;
+	private Bitmap takenProductPicture = null;
+	private String myUserId =null ;
 
-	
+	public String getMyUserId() {
+		return myUserId;
+	}
+
 
 	public static MyInfoManager getInstance() {
 			if (instance == null) {
@@ -27,6 +45,7 @@ public class MyInfoManager {
 			}
 			return instance;
 		}
+
 
 		public static void releaseInstance() {
 			if (instance != null) {
@@ -39,8 +58,50 @@ public class MyInfoManager {
 
 		}
 
+	@Override
+	public void onPreUpdate() {
+		Toast.makeText(context,"Sync stated...",Toast.LENGTH_SHORT).show();
+	}
 
-		public Context getContext() {
+	@Override
+	public void onProductUpdate(byte[] res, ResStatus status) {
+		Toast.makeText(context,"Sync finished...status " + status.toString(),Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	public void onProductUpdate(JSONObject res, ResStatus status) {
+		if(res!=null){
+			Toast.makeText(context,"Sync finished...status " + res.toString(),Toast.LENGTH_SHORT).show();
+		}
+		else {
+			Toast.makeText(context, "Sync finished...status " + status.toString(), Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	@Override
+	public void onUserUpdate(JSONObject res, ResStatus status) {
+		if(res!=null){
+			Toast.makeText(context,"Sync finished...status " + res.toString(),Toast.LENGTH_SHORT).show();
+		}
+		else {
+			Toast.makeText(context, "Sync finished...status " + status.toString(), Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	@Override
+	public void onProductUpdate(Bitmap res, ResStatus status) {
+	}
+
+	public Bitmap getTakenProductPicture() {
+		return takenProductPicture;
+	}
+
+	public void setTakenProductPicture(Bitmap takenProductPicture) {
+		this.takenProductPicture = takenProductPicture;
+	}
+
+
+	public Context getContext() {
 			return context;
 			
 		}
@@ -62,22 +123,27 @@ public class MyInfoManager {
 		public void createItem(Product item) {
 			boolean result=false;
 			if (db != null) {
-					db.createItem(getSelectedFolder(), item);
-				if(result==true){
-
-
+				if(db.createItem(item)){
+					NetworkConnector.getInstance().sendRequestToServer(NetworkConnector.INSERT_PRODUCT_REQ, item, instance);
 				}
+
+
 			}
 		}
 		//create User
 		public void createFolder(User folder) {
 			if (db != null) {
-				db.createFolder(folder);
+				if (db.createFolder(folder)){
+					NetworkConnector.getInstance().sendRequestToServerFolder(NetworkConnector.INSERT_USER_REQ, folder, instance);
+				}
+
 			}
 		}
 
+
+
 		//Read specific Product
-		public Product readItem(int id) {
+		public Product readItem(String id) {
 			Product result = null;
 			if (db != null) {
 				result = db.readItem(id);
@@ -85,7 +151,7 @@ public class MyInfoManager {
 			return result;
 		}
 		//Read specific User
-		public User readFolder(int id) {
+		public User readFolder(String id) {
 			User result = null;
 			if (db != null) {
 				result = db.readFolder(id);
@@ -107,31 +173,86 @@ public class MyInfoManager {
 				result = db.getAllFolders();
 			}
 			return result;
-		}
+			}
+
 
 		//Update specific product
-		public void updateItem(Product item) {
+		public boolean updateItem(Product item) {
+			boolean result=false;
 			if (db != null && item != null) {
-				db.updateItem(item);
+				result= db.updateItem(item);
+				if(result){
+					NetworkConnector.getInstance().sendRequestToServer(NetworkConnector.INSERT_PRODUCT_REQ,item, instance);
+				}
+			}
+			return result;
+		}
+		//TODO ask about updateItems and users
+	public void updateItems(JSONObject res) {
+		if(db==null){
+			return;
+		}
+		List<Product> products = Product.parseJson(res);
+		for(Product i:products){
+			if(!db.createItem(i)) {
+				db.updateItem(i);
 			}
 		}
-		//Update specific
-		public void updateFolder(User folder) {
-			if (db != null && folder != null) {
-				db.updateFolder(folder);
+	}
+//TODO ask about itemId
+	public void updateProductImage(Product product){
+		if(product.getImage1()!=null) {
+			String itemId = product.getId();
+			if(db!=null){
+				db.updateItem(product);
 			}
 		}
+	}
+
+
+	//Update specific
+		public boolean updateFolder(User user) {
+			boolean result=false;
+			if (db != null && user != null) {
+				result= db.updateFolder(user);
+				if(result){
+					NetworkConnector.getInstance().sendRequestToServerFolder(NetworkConnector.INSERT_USER_REQ,user, instance);
+				}
+			}
+			return result;
+		}
+	public void updateUsers(JSONObject res) {
+		if(db==null){
+			return;
+		}
+		List<User> users = User.parseJson(res);
+		for(User i:users){
+			if(!db.createFolder(i)) {
+				db.updateFolder(i);
+			}
+		}
+	}
 		//Delete specifc product
-		public void deleteItem(Product item) {
+		public boolean deleteItem(Product item) {
+			boolean result =false;
 			if (db != null) {
-				db.deleteItem(item);
+				result=db.deleteItem(item);
+				if(result){
+					NetworkConnector.getInstance().sendRequestToServer(NetworkConnector.DELETE_PRODUCT_REQ, item, instance);
+				}
 			}
+			return  result;
 		}
 		//Delete User
-		public void deleteFolder(User folder) {
+		public boolean deleteFolder(User user) {
+			boolean result =false;
 			if (db != null) {
-				db.deleteFolder(folder);
+				result=db.deleteFolder(user);
+				if(result){
+					NetworkConnector.getInstance().sendRequestToServerFolder(NetworkConnector.DELETE_USER_REQ,user, instance);
+				}
 			}
+			return  result;
 		}
 
 		//Get list of users

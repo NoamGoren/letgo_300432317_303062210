@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,12 @@ import course.android.letgo_300432317_303062210.Adapters.ProductsDataAdapter;
 import course.android.letgo_300432317_303062210.Classes.Product;
 import course.android.letgo_300432317_303062210.DB.MyInfoManager;
 import course.android.letgo_300432317_303062210.R;
+import course.android.letgo_300432317_303062210.utils.NetworkResListener;
+import course.android.letgo_300432317_303062210.utils.ResStatus;
+import course.android.letgo_300432317_303062210.Fragments.EditItemFragment;
+import course.android.letgo_300432317_303062210.interfaces.CallBackListener;
+import course.android.letgo_300432317_303062210.utils.NetworkConnector;
+
 
 /**
  * Created by Ishai Levi on 11/20/2017.
@@ -31,7 +39,9 @@ public class ProductsListFragment extends Fragment {
     private String[] mDescriptions;
     private String[] mLocations;
     private String[] mCategories;
-    private int[] mPrices;
+    private String[] mPrices;
+    private String[] mId;
+    private String[] mUserId;
     private TypedArray typedArray;
     private List<Product> p1;
 
@@ -64,13 +74,13 @@ public class ProductsListFragment extends Fragment {
                     CreateResultArray("Other");
                     break;
                 case 6:
-                  CreateResultArray("Child");
+                    CreateResultArray("Child");
                     break;
                 case 7:
-                   CreateResultArray("Entertaiment");
+                    CreateResultArray("Entertaiment");
                     break;
                 case 8:
-                   CreateResultArray("Leisure");
+                    CreateResultArray("Leisure");
                     break;
             }
         }
@@ -79,10 +89,10 @@ public class ProductsListFragment extends Fragment {
 
 
             // mNames = resources.getStringArray(R.array.all_names);
-           // mDescriptions = resources.getStringArray(R.array.all_descriptions);
-           // mLocations= resources.getStringArray(R.array.all_locations);
-           // mCategories= resources.getStringArray(R.array.all_cagegories);
-           // mPrices= resources.getIntArray(R.array.all_prices);
+            // mDescriptions = resources.getStringArray(R.array.all_descriptions);
+            // mLocations= resources.getStringArray(R.array.all_locations);
+            // mCategories= resources.getStringArray(R.array.all_cagegories);
+            // mPrices= resources.getIntArray(R.array.all_prices);
 
             // Get images.
 //            typedArray = resources.obtainTypedArray(R.array.all);
@@ -110,7 +120,7 @@ public class ProductsListFragment extends Fragment {
             }
         }else{
             for (Product item: p1) {
-                    p2.add(item);
+                p2.add(item);
             }
         }
 
@@ -121,7 +131,9 @@ public class ProductsListFragment extends Fragment {
         mDescriptions= new String[p2.size()];
         mLocations= new String[p2.size()];
         mCategories= new String[p2.size()];
-        mPrices= new int[p2.size()];
+        mPrices= new String[p2.size()];
+        mId= new String[p2.size()];
+        mUserId= new String[p2.size()];
 
         for (Product item:p2) {
 
@@ -131,6 +143,8 @@ public class ProductsListFragment extends Fragment {
             mLocations[i]=item.getLocation();
             mCategories[i]=item.getCategory();
             mPrices[i]=item.getPrice();
+            mId[i]=item.getId();
+            mUserId[i]=item.getUserId();
 
             i++;
 
@@ -145,9 +159,35 @@ public class ProductsListFragment extends Fragment {
         Activity activity = getActivity();
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
-        recyclerView.setAdapter(new ProductsDataAdapter(activity, mImageResIds, mNames, mDescriptions,mLocations,mCategories,mPrices));
+        recyclerView.setAdapter(new ProductsDataAdapter(activity,mId,mNames,mDescriptions,mPrices,mLocations,mCategories,mImageResIds,mUserId));
+        //NetworkConnector.getInstance().updateProductsFeed(this);
         return view;
+
     }
 
 
+//    @Override
+//    public void onSaveButtonClicked() {
+//
+//    }
+//
+//    @Override
+//    public void onPreUpdate() {
+//
+//    }
+//
+//    @Override
+//    public void onProductUpdate(byte[] res, ResStatus status) {
+//
+//    }
+//
+//    @Override
+//    public void onProductUpdate(JSONObject res, ResStatus status) {
+//        MyInfoManager.getInstance().updateItems(res);
+//    }
+//
+//    @Override
+//    public void onProductUpdate(Bitmap res, ResStatus status) {
+//
+//    }
 }

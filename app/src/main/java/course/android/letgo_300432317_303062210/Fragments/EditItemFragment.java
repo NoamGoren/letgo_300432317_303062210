@@ -4,8 +4,6 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -35,16 +33,21 @@ import course.android.letgo_300432317_303062210.Activities.HomeActivity;
 import course.android.letgo_300432317_303062210.DB.MyInfoManager;
 import course.android.letgo_300432317_303062210.Classes.Product;
 import course.android.letgo_300432317_303062210.R;
+import course.android.letgo_300432317_303062210.interfaces.CallBackListener;
 
 public class EditItemFragment extends Fragment {
 
 	//The Fragment show's the edit screen for each item
 
+	private EditText itemIdView = null;
 	private EditText itemTitleView = null;
 	private EditText itemDescriptionView = null;
 	private EditText itemPriceView = null;
 	private EditText itemLocationView = null;
+	private CallBackListener callback = null;
+	private int targetReqCode = 0;
 
+	private boolean photoFlag=false;
 	public Spinner categorySpinner;
 	private EditText itemCategoryView = null;
 
@@ -57,11 +60,12 @@ public class EditItemFragment extends Fragment {
 	private static final int PHOTO_W = 400;
 	private static final int PHOTO_H = 400;
 
-	protected static final int NEW_ITEM_TAG = -111;
+	protected static final String NEW_ITEM_TAG = "-111";
 	private File output=null;
 
 	private Button deleteItemButton = null;
 	private Button addPhotoBtn = null;
+	private boolean newFlag =false;
 
 	protected boolean shouldAskPermissions() {
 		return (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1);
@@ -77,6 +81,8 @@ public class EditItemFragment extends Fragment {
 		requestPermissions(permissions, requestCode);
 	}
 
+
+
 	//creates and returns the view hierarchy associated with the fragment.
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -86,7 +92,7 @@ public class EditItemFragment extends Fragment {
 		itemTitleView = (EditText) rootView.findViewById(R.id.item_title_txt);
 		itemDescriptionView = (EditText) rootView.findViewById(R.id.item_desc_txt);
 		itemLocationView = (EditText) rootView.findViewById(R.id.item_location_txt);
-
+		itemIdView = (EditText) rootView.findViewById(R.id.item_id_txt);
 
 		//String category=catSpi.getSelectedItem().toString();
 		//itemCategoryView = (EditText) rootView.findViewById(R.id.category_spinner);
@@ -127,11 +133,12 @@ public class EditItemFragment extends Fragment {
 		itemImage1.setOnClickListener(delImage1Listener);
 		deleteItemButton.setOnClickListener(deleteItemListener );
 
-		Product infoItem = MyInfoManager.getInstance().getSelectedItem();
-		if(infoItem!=null){
-			itemTitleView.setText(infoItem.getTitle());
-			itemDescriptionView.setText(infoItem.getDescription());
-			itemLocationView.setText(infoItem.getLocation());
+		Product product = MyInfoManager.getInstance().getSelectedItem();
+		if(product!=null){
+			itemTitleView.setText(product.getTitle());
+			itemDescriptionView.setText(product.getDescription());
+			itemLocationView.setText(product.getLocation());
+			itemIdView.setVisibility(View.INVISIBLE);
 			//String category = infoItem.getCategory();
 
 			categorySpinner.setSelection(0);
@@ -147,8 +154,8 @@ public class EditItemFragment extends Fragment {
 			}
 */
 
-			itemPriceView.setText(String.valueOf(infoItem.getPrice()));
-			Bitmap img1 =infoItem.getImage1();
+			itemPriceView.setText(product.getPrice());
+			Bitmap img1 =product.getImage1();
 			if(img1!=null){
 				itemImage1.setImageBitmap(img1);
 				itemImage1.setVisibility(View.VISIBLE);
@@ -234,34 +241,44 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 		public void onClick(View arg0) {
 
 			try {
+				String userId=MyInfoManager.getInstance().getSelectedFolder().getName();
+				String id= itemIdView.getText().toString();
 				String title=itemTitleView.getText().toString();
 				String description = itemDescriptionView.getText().toString();
 				String location = itemLocationView.getText().toString();
-				int price= Integer.parseInt(itemPriceView.getText().toString());
+				String price= itemPriceView.getText().toString();
 				String category = categorySpinner.getSelectedItem().toString();
 
 				Product item =MyInfoManager.getInstance().getSelectedItem();
+				//created item without pic
 				if(item==null){
-					 item = new Product(title,description,location,category,price);
-					 //item = new Product(title,description,location,price);
-
-
+					 item = new Product(id,title,description,price,location,category,userId);
 					 MyInfoManager.getInstance().createItem(item);
 				}
+				//in case the user took a photo
 				else{
+
+					String id2= MyInfoManager.getInstance().getSelectedItem().getId();
+					if(item.getId().equals(NEW_ITEM_TAG)){
+						item.setId(id);
+					}else{
+						item.setId(id2);
+					}
+
 					item.setTitle(title);
 					item.setDescription(description);
-					item.setLocation(location);
 					item.setPrice(price);
+					item.setLocation(location);
 					item.setCategory(category);
+					item.setUserId(userId);
 
 
-					 if(item.getId() == NEW_ITEM_TAG){
-						 MyInfoManager.getInstance().createItem(item);
+					 if(photoFlag&&newFlag){
+					 MyInfoManager.getInstance().createItem(item);
 					 }
 					 else{
 						 MyInfoManager.getInstance().updateItem(item);
-					 }
+				 }
 				}
 
 
@@ -337,20 +354,27 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 			if (requestCode == REQUEST_TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
 
 
-				Product infoItem = MyInfoManager.getInstance().getSelectedItem();
+				Product product = MyInfoManager.getInstance().getSelectedItem();
 
-				if(infoItem == null){
-					infoItem = new Product();
-					infoItem.setId(NEW_ITEM_TAG);
-					MyInfoManager.getInstance().setSelectedItem(infoItem);
+				if(product == null){
+					photoFlag=true;
+					newFlag =true;
+					product = new Product();
+					product.setId(NEW_ITEM_TAG);
+					//product.setId(itemIdView.getText().toString());
+					MyInfoManager.getInstance().setSelectedItem(product);
 				}
+
 				
 			   Bitmap bitmap =  getScaledImageFromFilePath(output.getAbsolutePath());
 			   if(bitmap!=null){
-				    if(infoItem!=null){
+				    if(product!=null){
+//						if(photoFlag){
+//
+//						}
 				        itemImage1.setImageBitmap(bitmap);
 						itemImage1.setVisibility(View.VISIBLE);
-						infoItem.setImage1(bitmap);
+						product.setImage1(bitmap);
 				    }
 
 			   }

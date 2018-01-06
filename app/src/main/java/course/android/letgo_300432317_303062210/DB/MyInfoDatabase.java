@@ -21,65 +21,63 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 	//All the functions about how our database is implement
 
 	private static final int DATABASE_VERSION = 1;
-	private static final String DATABASE_NAME = "MyInfoDB";
+	private static final String DATABASE_NAME = "letgo_db";
 
 	// folder table
 	//user table
-	private static final String TABLE_FOLDER_NAME = "folders";
-	private static final String FOLDER_COLUMN_ID = "id";
+	private static final String TABLE_USERS_NAME = "users";
 	private static final String FOLDER_COLUMN_NAME = "name";
-	private static final String FOLDER_COLUMN_EMAIL = "email";
-	private static final String FOLDER_COLUMN_PASSWORD = "password";
-	private static final String FOLDER_COLUMN_CITY = "city";
-	private static final String[] TABLE_FOLDER_COLUMNS = {FOLDER_COLUMN_ID, FOLDER_COLUMN_NAME,FOLDER_COLUMN_EMAIL
-			,FOLDER_COLUMN_CITY,FOLDER_COLUMN_PASSWORD};
+
+	private static final String[] TABLE_USER_COLUMNS = { FOLDER_COLUMN_NAME};
 
 	// item table
 	//product table
-	private static final String TABLE_ITEMS_NAME = "items";
+	private static final String TABLE_PRODUCTS_NAME = "products";
 	private static final String ITEM_COLUMN_ID = "id";
 	private static final String ITEM_COLUMN_NAME = "title";
 	private static final String ITEM_COLUMN_DESCRIPTION = "description";
 	private static final String ITEM_COLUMN_PRICE = "price";
 	private static final String ITEM_COLUMN_LOCATION = "location";
 	private static final String ITEM_COLUMN_CATEGORY = "category";
-	private static final String ITEM_COLUMN__IMAGE1 = "image1";
-	private static final String ITEM_COLUMN_FOLDERID = "folder_id";
+	private static final String ITEM_COLUMN__IMAGE1 = "image";
+	private static final String ITEM_COLUMN_FOLDERNAME = "userId";
 
 	private static final String[] TABLE_ITEM_COLUMNS = {ITEM_COLUMN_ID, ITEM_COLUMN_NAME,
-			ITEM_COLUMN_DESCRIPTION,ITEM_COLUMN_PRICE, ITEM_COLUMN_LOCATION, ITEM_COLUMN_CATEGORY, ITEM_COLUMN__IMAGE1, ITEM_COLUMN_FOLDERID};
+			ITEM_COLUMN_DESCRIPTION,ITEM_COLUMN_PRICE, ITEM_COLUMN_LOCATION, ITEM_COLUMN_CATEGORY, ITEM_COLUMN__IMAGE1, ITEM_COLUMN_FOLDERNAME};
 
 
-	private SQLiteDatabase db = null;
+	private SQLiteDatabase db;
+	private Context ctx;
 
-	public MyInfoDatabase(Context context) {
-		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+	public MyInfoDatabase(Context ctx) {
+		super(ctx, DATABASE_NAME, null, DATABASE_VERSION);
+		this.ctx = ctx;
 	}
+
+
 
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		try {
 			// SQL statement to create item table
-			String CREATE_ITEM_TABLE = "create table if not exists " + TABLE_ITEMS_NAME +" ( "
-					+ ITEM_COLUMN_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "
+			String CREATE_ITEM_TABLE = "create table if not exists " + TABLE_PRODUCTS_NAME +" ( "
+					+ ITEM_COLUMN_ID +" TEXT PRIMARY KEY, "
 					+ ITEM_COLUMN_NAME +" TEXT, "
 					+ ITEM_COLUMN_DESCRIPTION + " TEXT, "
-					+ ITEM_COLUMN_PRICE+" INTEGER, "
+					+ ITEM_COLUMN_PRICE+" TEXT, "
 					+ ITEM_COLUMN_LOCATION + " TEXT, "
 					+ ITEM_COLUMN_CATEGORY + " TEXT, "
 					+ ITEM_COLUMN__IMAGE1 + " BLOB, "
-					+ ITEM_COLUMN_FOLDERID + " INTEGER)";
+					+ ITEM_COLUMN_FOLDERNAME + " TEXT"
+					+ ")";
 			db.execSQL(CREATE_ITEM_TABLE);
 
-			if (!isTableExist(TABLE_FOLDER_NAME, db)) {
+			if (!isTableExist(TABLE_USERS_NAME, db)) {
 				// SQL statement to create item table
-				String CREATE_FOLDER_TABLE = "create table if not exists "+ TABLE_FOLDER_NAME+" ( "
-						+ FOLDER_COLUMN_ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "
-						+ FOLDER_COLUMN_CITY + " TEXT, "
-						+ FOLDER_COLUMN_PASSWORD +" TEXT, "
-						+ FOLDER_COLUMN_EMAIL + " TEXT, "
-						+ FOLDER_COLUMN_NAME + " TEXT)";
+				String CREATE_FOLDER_TABLE = "create table if not exists "+ TABLE_USERS_NAME+" ( "
+						+ FOLDER_COLUMN_NAME +" TEXT PRIMARY KEY)";
+
 
 				db.execSQL(CREATE_FOLDER_TABLE);
 			}
@@ -102,18 +100,20 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 		//onCreate(db);
 	}
 
-	public void createItem(User user, Product product) {
-
+	public boolean createItem(Product product) {
+		long result = 0;
 		try {
+			result = -1;
 			// make values to be inserted
 			ContentValues values = new ContentValues();
+			values.put(ITEM_COLUMN_ID, product.getId());
 			values.put(ITEM_COLUMN_NAME, product.getTitle());
 			values.put(ITEM_COLUMN_DESCRIPTION, product.getDescription());
 			values.put(ITEM_COLUMN_PRICE, product.getPrice());
 			values.put(ITEM_COLUMN_LOCATION, product.getLocation());
 			values.put(ITEM_COLUMN_CATEGORY, product.getCategory());
-			values.put(ITEM_COLUMN_FOLDERID, user.getId());
-			
+			values.put(ITEM_COLUMN_FOLDERNAME, product.getUserId());
+
 			//images
 			Bitmap image1 = product.getImage1();
 			if (image1 != null) {
@@ -124,70 +124,76 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 			}
 
 			// insert item
-			db.insert(TABLE_ITEMS_NAME, null, values);
-			
-			
+			result=db.insert(TABLE_PRODUCTS_NAME, null, values);
+
+
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}
 
-
+		if(result>0){
+			return true;
+		}
+		return false;
 	}
-	
+
 	private byte[] getBitmapAsByteArray(Bitmap bitmap) {
-	    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-	    bitmap.compress(CompressFormat.PNG, 0, outputStream);
-	    return outputStream.toByteArray();
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		bitmap.compress(CompressFormat.PNG, 0, outputStream);
+		return outputStream.toByteArray();
 	}
 
-	public void createFolder(User user) {
-
+	public boolean createFolder(User user) {
+		long result=0;
 		try {
+			result=-1;
 			// make values to be inserted
 			ContentValues values = new ContentValues();
 			values.put(FOLDER_COLUMN_NAME, user.getName());
-			values.put(FOLDER_COLUMN_CITY,user.getCity());
-			values.put(FOLDER_COLUMN_EMAIL,user.getEmail());
-			values.put(FOLDER_COLUMN_PASSWORD,user.getPassword());
+
 			// insert folder
-			db.insert(TABLE_FOLDER_NAME, null, values);
+			result=db.insert(TABLE_USERS_NAME, null, values);
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}
+		if(result>0){
+			return true;
+		}
+		return false;
 
 	}
 
-	public Product readItem(int id) {
+	public Product readItem(String id) {
 		Product item = null;
 		Cursor cursor = null;
 		try {
 			/// get reference of the itemDB database
 
 			// get  query
-			 cursor = db
-					.query(TABLE_ITEMS_NAME,
+			cursor = db
+					.query(TABLE_PRODUCTS_NAME,
 							TABLE_ITEM_COLUMNS, ITEM_COLUMN_ID + " = ?",
-							new String[] { String.valueOf(id) }, null, null,
+							new String[] {  id }, null, null,
 							null, null);
-		
-				
+
+
 
 			// if results !=null, parse the first one
 			if(cursor!=null && cursor.getCount()>0){
-			
+
 				cursor.moveToFirst();
 
 				item = new Product();
-				item.setId(Integer.parseInt(cursor.getString(cursor.getColumnIndex(ITEM_COLUMN_ID))));
+				item.setId(cursor.getString(0));
 				item.setTitle(cursor.getString(1));
 				item.setDescription(cursor.getString(2));
-				item.setPrice(cursor.getInt(3));
+				item.setPrice(cursor.getString(3));
 				item.setLocation(cursor.getString(4));
 				item.setCategory(cursor.getString(5));
 
 
 
-				
+
 				//images
 				byte[] img1Byte = cursor.getBlob(6);
 				if (img1Byte != null && img1Byte.length > 0) {
@@ -196,9 +202,9 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 						item.setImage1(image1);
 					}
 				}
-				
 
-				item.setUserId(Integer.parseInt(cursor.getString(7)));
+
+				item.setUserId(cursor.getString(7));
 			}
 		} catch (Throwable t) {
 			t.printStackTrace();
@@ -211,7 +217,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 		return item;
 	}
 
-	public User readFolder(int id) {
+	public User readFolder(String name) {
 		User folder = null;
 		Cursor cursor = null;
 		try {
@@ -219,9 +225,9 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
 			// get  query
 			cursor = db
-					.query(TABLE_FOLDER_NAME, // a. table
-							TABLE_FOLDER_COLUMNS, FOLDER_COLUMN_ID + " = ?",
-							new String[] { String.valueOf(id) }, null, null,
+					.query(TABLE_USERS_NAME, // a. table
+							TABLE_USER_COLUMNS, FOLDER_COLUMN_NAME + " = ?",
+							new String[] { name }, null, null,
 							null, null);
 
 			// if results !=null, parse the first one
@@ -229,12 +235,9 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 				cursor.moveToFirst();
 
 			folder = new User();
-			folder.setId(Integer.parseInt(cursor.getString(0)));
-			folder.setName(cursor.getString(1));
-			folder.setCity(cursor.getString(2));
-			folder.setEmail(cursor.getString(3));
-			folder.setPassword(cursor.getString(4));
-			
+			folder.setName(cursor.getString(0));
+
+
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}
@@ -250,7 +253,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 		List<Product> result = new ArrayList<Product>();
 		Cursor cursor = null;
 		try {
-			cursor = db.query(TABLE_ITEMS_NAME, TABLE_ITEM_COLUMNS, null, null,
+			cursor = db.query(TABLE_PRODUCTS_NAME, TABLE_ITEM_COLUMNS, null, null,
 					null, null, null);
 
 			cursor.moveToFirst();
@@ -272,20 +275,17 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
 		return result;
 	}
-	
+
 	private Product cursorToItem(Cursor cursor) {
 		Product result = new Product();
 		try {
-			result.setId(Integer.parseInt(cursor.getString(0)));
+			result.setId(cursor.getString(0));
 			result.setTitle(cursor.getString(1));
 			result.setDescription(cursor.getString(2));
-			result.setPrice(cursor.getInt(3));
+			result.setPrice(cursor.getString(3));
 			result.setLocation(cursor.getString(4));
 			result.setCategory(cursor.getString(5));
 
-
-
-			
 			//images
 			byte[] img1Byte = cursor.getBlob(6);
 			if (img1Byte != null && img1Byte.length > 0) {
@@ -296,7 +296,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 			}
 
 			//there is a problem with the next line
-			result.setUserId(Integer.parseInt(cursor.getString(7)));
+			result.setUserId(cursor.getString(7));
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}
@@ -308,7 +308,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 		List<User> result = new ArrayList<User>();
 		Cursor cursor = null;
 		try {
-			cursor = db.query(TABLE_FOLDER_NAME, TABLE_FOLDER_COLUMNS, null, null,
+			cursor = db.query(TABLE_USERS_NAME, TABLE_USER_COLUMNS, null, null,
 					null, null, null);
 
 			cursor.moveToFirst();
@@ -333,30 +333,28 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 	private User cursorToFolder(Cursor cursor) {
 		User result = new User();
 		try {
-			result.setId(Integer.parseInt(cursor.getString(0)));
-			result.setName(cursor.getString(1));
-			result.setCity(cursor.getString(2));
-			result.setEmail(cursor.getString(3));
-			result.setPassword(cursor.getString(4));
+			result.setName(cursor.getString(0));
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}
 		return result;
 	}
 
-	public int updateItem(Product item) {
-		int cnt = 0;
+	public boolean updateItem(Product item) {
+		long result=-1;
+
 		try {
 
 			// make values to be inserted
 			ContentValues values = new ContentValues();
+			values.put(ITEM_COLUMN_ID, item.getId());
 			values.put(ITEM_COLUMN_NAME, item.getTitle());
 			values.put(ITEM_COLUMN_DESCRIPTION, item.getDescription());
 			values.put(ITEM_COLUMN_PRICE,item.getPrice());
 			values.put(ITEM_COLUMN_LOCATION,item.getLocation());
 			values.put(ITEM_COLUMN_CATEGORY,item.getCategory());
+			values.put(ITEM_COLUMN_FOLDERNAME,item.getUserId());
 
-			
 			//images
 			Bitmap image1 = item.getImage1();
 			if (image1 != null) {
@@ -370,67 +368,104 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 			}
 
 			// update
-			cnt = db.update(TABLE_ITEMS_NAME, values, ITEM_COLUMN_ID + " = ?",
-					new String[] { String.valueOf(item.getId()) });
+			result = db.update(TABLE_PRODUCTS_NAME, values, ITEM_COLUMN_ID + " = ?",
+					new String[] { item.getId() });
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}
+		if(result>0){
+			return true;
+		}
+		return false;
 
-		return cnt;
+
 	}
 
-	public int updateFolder(User folder) {
-		int i = 0;
+	public int updateProductImage(Product product) {
+
+		int cnt = 0;
 		try {
-			
+
+			// make values to be inserted
+			ContentValues values = new ContentValues();
+
+			//images
+			if (product.getImage1() != null) {
+				byte[] data = product.getImgAsByteArray(product.getImage1());
+				if (data != null && data.length > 0) {
+					values.put(ITEM_COLUMN__IMAGE1, data);
+				}
+			}
+			else{
+				values.putNull(ITEM_COLUMN__IMAGE1);
+			}
+
+			// update
+			cnt = db.update(TABLE_PRODUCTS_NAME, values, ITEM_COLUMN_ID + " = ?",
+					new String[] { product.getId() });
+		} catch (Throwable t) {
+			t.printStackTrace();
+		}
+		return  cnt;
+	}
+
+	public boolean updateFolder(User folder) {
+		long result=-1;
+		try {
+
 
 			// make values to be inserted
 			ContentValues values = new ContentValues();
 			values.put(FOLDER_COLUMN_NAME, folder.getName());
-			values.put(FOLDER_COLUMN_CITY,folder.getCity());
-			values.put(FOLDER_COLUMN_EMAIL,folder.getEmail());
-			values.put(FOLDER_COLUMN_PASSWORD,folder.getPassword());
+
 			// update
-			i = db.update(TABLE_FOLDER_NAME, values, FOLDER_COLUMN_ID + " = ?",
-					new String[] { String.valueOf(folder.getId()) });
+			result = db.update(TABLE_USERS_NAME, values, FOLDER_COLUMN_NAME + " = ?",
+					new String[] { folder.getName() });
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}
 
-		return i;
-	}
-
-	public void deleteItem(Product item) {
-
-		try {
-
-			// delete item
-			db.delete(TABLE_ITEMS_NAME, ITEM_COLUMN_ID + " = ?",
-					new String[] { String.valueOf(item.getId()) });
-		} catch (Throwable t) {
-			t.printStackTrace();
+		if(result>0){
+			return true;
 		}
+		return false;
 
 	}
 
-	public void deleteFolder(User folder) {
-		boolean succeded = false;
+	public boolean deleteItem(Product product) {
+
+		String[] arguments = {product.getId()};
+
+		int result = db.delete(TABLE_PRODUCTS_NAME, ITEM_COLUMN_ID+" = ?",arguments);
+
+		if(result>0){
+			return true;
+		}
+		return false;
+
+
+	}
+
+	public boolean deleteFolder(User folder) {
+
+		int result=-1;
 		try {
+
 
 			// delete folder
-			int rowAffected = db.delete(TABLE_FOLDER_NAME, FOLDER_COLUMN_ID + " = ?",
-					new String[] { String.valueOf(folder.getId()) });
-			if(rowAffected>0) {
-				succeded = true;
-			}
-			
+			String[] arguments = {folder.getName()};
+
+			 result = db.delete(TABLE_USERS_NAME, FOLDER_COLUMN_NAME+" = ?",arguments);
+
 		} catch (Throwable t) {
-			succeded = false;
+
 			t.printStackTrace();
 		} finally {
-			if(succeded){
+			if(result==1){
 				deleteFolderItems(folder);
+				return true;
 			}
+			return false;
 		}
 
 	}
@@ -440,12 +475,13 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 		try {
 
 			// delete items
-			db.delete(TABLE_ITEMS_NAME, ITEM_COLUMN_FOLDERID + " = ?",
-					new String[] { String.valueOf(folder.getId()) });
+
+			db.delete(TABLE_PRODUCTS_NAME, ITEM_COLUMN_FOLDERNAME + " = ?",
+					new String[] { folder.getName() });
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}
-		
+
 	}
 
 	private boolean isTableExist(String name, SQLiteDatabase db) {
@@ -461,14 +497,15 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 		return false;
 	}
 
-	
+
 	public List<Product> getAllItemsOfFolder(User folder) {
 		List<Product> result = new ArrayList<Product>();
 		Cursor cursor = null;
 		try {
-			int floderId = folder.getId();
-			cursor = db.query(TABLE_ITEMS_NAME, TABLE_ITEM_COLUMNS, ITEM_COLUMN_FOLDERID +" = ?",
-					new String[] { String.valueOf(floderId) }, null, null,
+
+			String folderName = folder.getName();
+			cursor = db.query(TABLE_PRODUCTS_NAME, TABLE_ITEM_COLUMNS, ITEM_COLUMN_FOLDERNAME +" = ?",
+					new String[] { folderName }, null, null,
 					null, null);
 
 			if(cursor!=null && cursor.getCount()>0){
@@ -494,7 +531,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
 	public void open() {
 		try {
-		 	db = getWritableDatabase();
+			db = getWritableDatabase();
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}
@@ -502,9 +539,11 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
 	public void close() {
 		try {
-			db.close();
+			if(db!=null){
+			db.close();}
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}
 	}
 }
+

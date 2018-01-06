@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 import course.android.letgo_300432317_303062210.Adapters.InfoItemListAdapter;
@@ -22,8 +25,12 @@ import course.android.letgo_300432317_303062210.DB.MyInfoManager;
 import course.android.letgo_300432317_303062210.Classes.Product;
 import course.android.letgo_300432317_303062210.R;
 import course.android.letgo_300432317_303062210.Classes.User;
+import course.android.letgo_300432317_303062210.interfaces.CallBackListener;
+import course.android.letgo_300432317_303062210.utils.NetworkResListener;
+import course.android.letgo_300432317_303062210.utils.ResStatus;
+import course.android.letgo_300432317_303062210.utils.NetworkConnector;
 
-public class ItemListFragment extends Fragment {
+public class ItemListFragment extends Fragment  {
 	private ListView itemsList;
 	private InfoItemListAdapter adapter;
 	private Button newItemBtn = null;
@@ -64,6 +71,7 @@ public class ItemListFragment extends Fragment {
 		adapter = new InfoItemListAdapter(ctx, R.layout.item_list_item, list);
 		itemsList.setAdapter(adapter);
 
+		//NetworkConnector.getInstance().updateProductsFeed(this);
 		return rootView;
 	}
 
@@ -104,5 +112,29 @@ public class ItemListFragment extends Fragment {
 			}
 		}
 	};
+
+//	@Override
+//	public void onSaveButtonClicked() {
+//
+//	}
+//
+//	@Override
+//	public void onPreUpdate() {
+//
+//	}
+//
+//	@Override
+//	public void onProductUpdate(byte[] res, ResStatus status) {
+//
+//	}
+//
+//	@Override
+//	public void onProductUpdate(JSONObject res, ResStatus status) {
+//		MyInfoManager.getInstance().updateItems(res);
+//	}
+//
+//	@Override
+//	public void onProductUpdate(Bitmap res, ResStatus status) {
+//	}
 
 }

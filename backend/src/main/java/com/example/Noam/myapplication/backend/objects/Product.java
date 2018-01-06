@@ -14,20 +14,20 @@ public class Product {
     private String id;
     private String title;
     private String description;
-    private byte[] image = null;
+    private String price;
     private String location;
     private String category;
-    private String price;
+    private byte[] image = null;
     private String userId;
 
     public Product() {
 
     }
 
-
     public  Product(String id){
         this.id=id;
     }
+
     //constructor with title and des
     public Product(String title, String description) {
         this.title = title;
@@ -84,16 +84,18 @@ public class Product {
     }
 
 
-    //full costructor
-    public Product(String title, String description, byte[] image, String location, String category, String price) {
+    // costructor
+    public Product(String id, String title, String description,String price,String location, String category ,String userId) {
+        this.id=id;
         this.title = title;
         this.description = description;
-        this.location=location;
         this.price=price;
+        this.location=location;
         this.category=category;
-        this.image = image;
+        this.userId=userId;
     }
 
+    //full costructor
     public Product(String productId, String productTitle, String description, String price, String location, String category, byte[] img, String user) {
         this.id = productId;
         this.title = productTitle;

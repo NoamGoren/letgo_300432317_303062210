@@ -18,9 +18,12 @@ public interface NetworkResListener {
      * @param  res  - the data
      * @param status - the status of the update process
      */
-    public void onPostUpdate(byte[] res, ResStatus status);
+    public void onProductUpdate(byte[] res, ResStatus status);
 
-    public void onPostUpdate(JSONObject res, ResStatus status);
+    public void onProductUpdate(JSONObject res, ResStatus status);
 
-    public void onPostUpdate(Bitmap res, ResStatus status);
+    public void onProductUpdate(Bitmap res, ResStatus status);
+
+    public void onUserUpdate(JSONObject res,ResStatus status);
+
 }

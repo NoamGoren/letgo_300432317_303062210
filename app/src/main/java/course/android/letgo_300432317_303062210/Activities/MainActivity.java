@@ -13,6 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 import course.android.letgo_300432317_303062210.Fragments.FolderListFragment;
 import course.android.letgo_300432317_303062210.DB.MyInfoManager;
 import course.android.letgo_300432317_303062210.R;
+import course.android.letgo_300432317_303062210.utils.NetworkConnector;
 
 //The activity will be helpful in the next chapter
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         //actionBar.setIcon(null);
 
         MyInfoManager.getInstance().openDataBase(this);
+        NetworkConnector.getInstance().initialize(this);
 
         fManager = getFragmentManager();
         FragmentTransaction ft = fManager.beginTransaction();

@@ -1,93 +1,79 @@
 package course.android.letgo_300432317_303062210.Classes;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Noam on 11/27/2017.
  */
 
 public class User {
 
-    private int id;
-    private String userId;
-    private String name;
-    private String city;
-    private String email;
-    private String password;
 
-//    private Product[] userProducts;
-//    private Product[] favProducts;
+    private String name;
+
 
     public User() {
 
     }
-    //constructor without password
-    public User(String name,String city,String email) {
 
+    // constructor without name
+    //public User(String id) {
+       // this.id = id;
+    //}
 
-        this.name = name;
-        this.city = city;
-        this.email = email;
-
-
-    }
-    //full constructor
-    public User(String name,String city,String email,String password) {
-
-
-        this.name = name;
-        this.city = city;
-        this.email = email;
-        this.password = password;
-
-    }
-
+    // constructor without id
     public User(String name) {
-        this.name=name;
-
+        this.name = name;
     }
+
+
 
     //getters and setters
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
 
     public String getName() {
-    return name;
-}
-
+        return name;
+    }
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public static List<User> parseJson(JSONObject json) {
+
+        List<User> users = null;
+        try {
+
+            users = new ArrayList<User>();
+
+            JSONArray foldersJsonArr = json.getJSONArray("users");
+
+            for (int i = 0; i < foldersJsonArr.length(); i++) {
+                try {
+                    JSONObject iObj = foldersJsonArr.getJSONObject(i);
+                    User user = new User();
+                    user.setName(iObj.getString("name"));
+
+                    users.add(user);
+
+                } catch (Throwable e) {
+                    e.printStackTrace();
+                }
+            }
+
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+
+        return users;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
 
 }
+
+
 

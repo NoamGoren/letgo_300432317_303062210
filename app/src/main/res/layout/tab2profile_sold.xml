@@ -20,4 +20,14 @@
         tools:layout_constraintTop_creator="1"
         android:text= "@string/sold_items_section"/>
 
+    <FrameLayout
+        android:id="@+id/content2_frame"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+
+    </FrameLayout>
+
 </android.support.constraint.ConstraintLayout>

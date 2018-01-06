@@ -1,5 +1,6 @@
 package course.android.letgo_300432317_303062210.Activities;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -15,10 +16,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import course.android.letgo_300432317_303062210.DB.MyInfoManager;
+import course.android.letgo_300432317_303062210.Fragments.FolderListFragment;
+import course.android.letgo_300432317_303062210.Fragments.ItemListFragment;
 import course.android.letgo_300432317_303062210.R;
 import course.android.letgo_300432317_303062210.Fragments.Tab1profileFav;
 import course.android.letgo_300432317_303062210.Fragments.Tab2profileSold;
 import course.android.letgo_300432317_303062210.Fragments.Tab3profileSelling;
+import course.android.letgo_300432317_303062210.utils.NetworkConnector;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -31,6 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    android.app.FragmentManager fManager;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -67,6 +73,12 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(ProfileActivity.this,MainActivity.class));
             }
         });
+
+        MyInfoManager.getInstance().openDataBase(this);
+        NetworkConnector.getInstance().initialize(this);
+
+
+
 
     }
 

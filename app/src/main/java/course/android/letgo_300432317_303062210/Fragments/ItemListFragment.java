@@ -54,6 +54,8 @@ public class ItemListFragment extends Fragment  {
 
 
 
+
+
 		if (folder != null) {
 
 			String txt = folder.getName();

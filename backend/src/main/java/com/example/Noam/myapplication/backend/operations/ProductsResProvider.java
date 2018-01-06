@@ -311,9 +311,24 @@ public class ProductsResProvider {
             }
 
 
-
-            stt = (PreparedStatement) conn.prepareStatement(select_sql);
+            result=true;
+            stt = (PreparedStatement) conn.prepareStatement(insert_sql);
             stt.setString(1, id);
+            stt.setString(2, title);
+            stt.setString(3, description);
+            stt.setString(4, price);
+            stt.setString(5, location);
+            stt.setString(6, category);
+            if (imageBytes != null) {
+                InputStream is = new ByteArrayInputStream(imageBytes);
+                stt.setBlob(7, is);
+
+            } else {
+
+                stt.setNull(7, Types.BLOB);
+            }
+            stt.setString(8, userId);
+
 
             if (stt.execute()) {
                 rs1 = stt.getResultSet();

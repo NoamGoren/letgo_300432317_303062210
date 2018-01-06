@@ -30,14 +30,14 @@ public class LetgoAppResourceServlet extends HttpServlet {
 
     // ========
    //users
-    private static final int INSERT_USER_REQ = 1;
+    private static final int INSERT_USER_REQ = 1;//working
     private static final int DELETE_USER_REQ = 2;//working
     private static final int GET_ALL_USERS_JSON_REQ = 3;//working
     private static final int GET_USER_JSON_REQ = 4; //working
 
     //products
     private static final int GET_ALL_PRODUCTS_JSON_REQ = 5; //working
-    private static final int INSERT_PRODUCT_REQ = 6;
+    private static final int INSERT_PRODUCT_REQ = 6;//working
     private static final int DELETE_PRODUCT_REQ = 7;//working
     private static final int GET_PRODUCT_IMAGE_REQ = 8;//working
     private static final int GET_PRODUCTS_OF_USER_JSON_REQ = 9; //working
@@ -91,7 +91,7 @@ public class LetgoAppResourceServlet extends HttpServlet {
         if (userReq != null) {
 
             int reqNo = Integer.valueOf(userReq);
-            System.out.println("TumblerAppResourceServlet:: req code ==>" + reqNo);
+            System.out.println("LetgoAppResourceServlet:: req code ==>" + reqNo);
             //while (retry > 0) {
 
             try {
@@ -143,7 +143,8 @@ public class LetgoAppResourceServlet extends HttpServlet {
                     }
 
 					case INSERT_USER_REQ: {
-                        String name = req.getParameter(USER_NAME);
+                        String name = req.getParameter("name");
+                        respPage = RESOURCE_FAIL_TAG;
 					resp.addHeader("Content-Type",
 								"application/json; charset=UTF-8");
 						conn = ConnPool.getInstance().getConnection();
@@ -158,30 +159,9 @@ public class LetgoAppResourceServlet extends HttpServlet {
 
 						//retry = 0;
 						break;
+
 				}
-//
-//					case DELETE_TUMBLER_REQ: {
-//						String id = req.getParameter(TUMBLER_ID);
-//						respPage = RESOURCE_FAIL_TAG;
-//						resp.addHeader("Content-Type",
-//								"application/json; charset=UTF-8");
-//						conn = ConnPool.getInstance().getConnection();
-//						TumblerResProvider tumblerResProvider = new TumblerResProvider();
-//
-//						TumblerInfo tumblerInfo = new TumblerInfo(id);
-//						if (tumblerResProvider.deleteTumbler(tumblerInfo, conn)) {
-//							respPage = RESOURCE_SUCCESS_TAG;
-//						}
-//						PrintWriter pw = resp.getWriter();
-//						pw.write(respPage);
-//
-//						//retry = 0;
-//						break;
-//					}
-//						String id = req.getParameter(TUMBLER_ID);
-//						String title = req.getParameter(TUMBLER_PASS);
-//						respPage = RESOURCE_FAIL_TAG;
-//
+
 						case INSERT_PRODUCT_REQ: {
 							String id = req.getParameter(PRODUCT_ID);
 
@@ -204,13 +184,13 @@ public class LetgoAppResourceServlet extends HttpServlet {
 							ProductsResProvider productsResProvider = new ProductsResProvider();
 
 							Product product = new Product(id,title,description,price,location,category,userId);
-                            product.setId(id);
-                            product.setTitle(title);
-                            product.setDescription(description);
-                            product.setPrice(price);
-                            product.setLocation(location);
-                            product.setCategory(category);
-                            product.setUserId(userId);
+//                            product.setId(id);
+//                            product.setTitle(title);
+//                            product.setDescription(description);
+//                            product.setPrice(price);
+//                            product.setLocation(location);
+//                            product.setCategory(category);
+//                            product.setUserId(userId);
 
 							if (productsResProvider.insertProduct(product, conn)) {
 								respPage = RESOURCE_SUCCESS_TAG;

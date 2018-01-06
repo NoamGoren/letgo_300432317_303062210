@@ -181,9 +181,9 @@ public class UsersResProvider {
 
 			String name =obj.getName();
 
-			stt = (PreparedStatement) conn.prepareStatement(select_sql);
+			stt = (PreparedStatement) conn.prepareStatement(insert_sql);
 			stt.setString(1, name);
-
+			result=true;
 			if (stt.execute()) {
 				rs1 = stt.getResultSet();
 				if (rs1.next()) {
@@ -252,49 +252,6 @@ public class UsersResProvider {
 
 	}
 
-
-	public boolean deleteTumbler(User obj,
-								 Connection conn) throws SQLException {
-
-		boolean result = false;
-		PreparedStatement ps = null;
-
-
-		try {
-
-			if (obj != null) {
-				
-				String name = obj.getName();
-				
-				ProductsResProvider itemResProvider = new ProductsResProvider();
-				itemResProvider.deleteAllProductsByUser(new User(name), conn);
-
-				ps = (PreparedStatement) conn.prepareStatement(delete_sql);
-
-			
-				ps.setString(1, name);
-				
-				ps.execute();
-
-				result = true;
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-
-			if (ps != null) {
-				try {
-					ps.close();
-				} catch (SQLException e) {
-
-					e.printStackTrace();
-				}
-			}
-		}
-
-		return result;
-	}
 
 
 

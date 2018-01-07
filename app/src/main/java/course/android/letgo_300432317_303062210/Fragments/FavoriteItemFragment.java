@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,26 +15,20 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 
-import org.json.JSONObject;
-
 import java.util.List;
 
 import course.android.letgo_300432317_303062210.Adapters.InfoItemListAdapter;
-import course.android.letgo_300432317_303062210.DB.MyInfoManager;
 import course.android.letgo_300432317_303062210.Classes.Product;
-import course.android.letgo_300432317_303062210.R;
 import course.android.letgo_300432317_303062210.Classes.User;
-import course.android.letgo_300432317_303062210.interfaces.CallBackListener;
-import course.android.letgo_300432317_303062210.utils.NetworkResListener;
-import course.android.letgo_300432317_303062210.utils.ResStatus;
-import course.android.letgo_300432317_303062210.utils.NetworkConnector;
+import course.android.letgo_300432317_303062210.DB.MyInfoManager;
+import course.android.letgo_300432317_303062210.R;
 
-public class ItemListFragment extends Fragment  {
+public class FavoriteItemFragment extends Fragment  {
 	private ListView itemsList;
 	private InfoItemListAdapter adapter;
 	private Button newItemBtn = null;
-	private Button favItemBtn = null;
 	private Button soldItemBtn = null;
+	private Button sellingItemBtn = null;
 	private Activity ctx;
 
 	private ListView foldersList;
@@ -47,7 +40,7 @@ public class ItemListFragment extends Fragment  {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-		final View rootView = inflater.inflate(R.layout.fragment_iten_list, container, false);
+		final View rootView = inflater.inflate(R.layout.fragment_favorite_items_list, container, false);
 
 		ctx = getActivity();
 
@@ -70,17 +63,17 @@ public class ItemListFragment extends Fragment  {
 		newItemBtn  = (Button) rootView.findViewById(R.id.new_item_btn);
 		newItemBtn.setOnClickListener(newItemListener);
 
-		//favotite items
-		favItemBtn  = (Button) rootView.findViewById(R.id.favItems);
-		favItemBtn.setOnClickListener(favItemListener);
-
 		//sold items
 		soldItemBtn  = (Button) rootView.findViewById(R.id.soldItems);
 		soldItemBtn.setOnClickListener(soldItemListener);
 
-		List<Product> list = MyInfoManager.getInstance().getFolderItems(folder);
-		adapter = new InfoItemListAdapter(ctx, R.layout.item_list_item, list);
-		itemsList.setAdapter(adapter);
+		//selling items
+		sellingItemBtn  = (Button) rootView.findViewById(R.id.sellingItems);
+		sellingItemBtn.setOnClickListener(sellingItemListener);
+
+//		List<Product> list = MyInfoManager.getInstance().getFolderItems(folder);
+//		adapter = new InfoItemListAdapter(ctx, R.layout.item_list_item, list);
+//		itemsList.setAdapter(adapter);
 
 		//NetworkConnector.getInstance().updateProductsFeed(this);
 		return rootView;
@@ -103,16 +96,16 @@ public class ItemListFragment extends Fragment  {
 		}
 	};
 
-	//go to favorite
-	private OnClickListener favItemListener = new OnClickListener() {
+	//go to my selling items
+	private OnClickListener sellingItemListener = new OnClickListener() {
 
 		@Override
 		public void onClick(View arg0) {
-			MyInfoManager.getInstance().setSelectedItem(null);
-			FavoriteItemFragment favItemfragment = new FavoriteItemFragment();
+			//MyInfoManager.getInstance().setSelectedFolder(folder);
+			ItemListFragment itemlistfragment = new ItemListFragment();
 			FragmentManager fManager =ctx.getFragmentManager();
 			FragmentTransaction ft = fManager.beginTransaction();
-			ft.replace(R.id.content_frame, favItemfragment);
+			ft.replace(R.id.content_frame, itemlistfragment);
 			ft.addToBackStack(null);
 			ft.commit();
 
@@ -134,24 +127,6 @@ public class ItemListFragment extends Fragment  {
 
 		}
 	};
-
-//	//go to sold items
-//	private OnClickListener soldItemListener = new OnClickListener() {
-//
-//		@Override
-//		public void onClick(View arg0) {
-//			MyInfoManager.getInstance().setSelectedItem(null);
-//			FavoriteItemFragment favItemfragment = new FavoriteItemFragment();
-//			FragmentManager fManager =ctx.getFragmentManager();
-//			FragmentTransaction ft = fManager.beginTransaction();
-//			ft.replace(R.id.content_frame, favItemfragment);
-//			ft.addToBackStack(null);
-//			ft.commit();
-//
-//		}
-//	};
-
-
 
 
 

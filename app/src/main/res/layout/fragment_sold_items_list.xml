@@ -15,7 +15,7 @@
         android:textColor="@color/red"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:text="My Selling Items"/>
+        android:text="Sold Items"/>
 
 
         <ListView
@@ -27,8 +27,6 @@
             android:layout_marginTop="20dp" />
 
     </LinearLayout>
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,8 +47,8 @@
             android:layout_marginLeft="3dp"
             android:background="@drawable/button_border"
             android:drawableLeft="@drawable/plus_icon"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:text="@string/add_new_item"
             android:textColor="@color/white">
 
@@ -63,25 +61,29 @@
             android:text="My Favorite"
             android:layout_gravity="center|bottom"
             android:paddingLeft="10dp"
-            android:paddingRight="15dp"
+            android:paddingRight="10dp"
             android:textColor="@color/white"
             android:background="@drawable/button_border"/>
 
+
         <Button
-            android:id="@+id/soldItems"
+            android:id="@+id/sellingItems"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sold Items"
             android:layout_gravity="center|bottom"
             android:paddingLeft="10dp"
-            android:paddingRight="15dp"
-            android:textColor="@color/white"
-            android:background="@drawable/button_border"/>
+            android:paddingRight="10dp"
+            android:text="Selling items"
+            android:background="@drawable/button_border"
+            android:textColor="@color/white" />
 
 
     </LinearLayout>
 
+
+
 </RelativeLayout>
+
 
 
 

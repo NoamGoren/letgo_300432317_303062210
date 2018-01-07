@@ -216,8 +216,11 @@ public class HomeActivity extends AppCompatActivity
 
         }
         else if (id == R.id.nav_profile) {
-            Intent i = new Intent(HomeActivity.this,ProfileActivity.class);
-            startActivity(i);
+            //Intent i = new Intent(HomeActivity.this,ProfileActivity.class);
+            //startActivity(i);
+            startActivity(new Intent(HomeActivity.this,MainActivity.class));
+
+
 
 
         }

@@ -37,7 +37,7 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:background="@color/lightRed"
-            android:text="@string/create_folder" >
+            android:text="create User">
         </Button>
 
         <TextView
@@ -47,7 +47,7 @@
             android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:layout_marginTop="45dp"
-            android:text="@string/upload_more_items"/>
+            android:text="Users List"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -56,7 +56,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
             android:layout_height="wrap_content"
-            android:text="@string/for_upload_item_click_on_your_folder">
+            android:text="for upload item click on your user name">
 
         </TextView>
 

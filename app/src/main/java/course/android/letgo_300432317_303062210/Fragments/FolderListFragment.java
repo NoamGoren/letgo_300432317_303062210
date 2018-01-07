@@ -48,7 +48,7 @@ public class FolderListFragment extends Fragment  {
 		
 		ctx = getActivity();
 		if (ctx != null) {
-			ctx.setTitle(ctx.getResources().getString(R.string.myinfo));
+			ctx.setTitle("Users Profiles");
 		}
 		
 		foldersList = (ListView) rootView.findViewById(R.id.folderList);

@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft = fManager.beginTransaction();
         Fragment fragment = new FolderListFragment();
         ft.replace(R.id.content_frame, fragment, "fragment");
-        ft.addToBackStack(null);
+        //ft.addToBackStack(null);
         ft.commit();
 
         hideKeyboard();

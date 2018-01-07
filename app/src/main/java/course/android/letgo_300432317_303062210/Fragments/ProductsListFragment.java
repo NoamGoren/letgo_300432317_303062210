@@ -6,11 +6,13 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import org.json.JSONObject;
 
@@ -161,6 +163,9 @@ public class ProductsListFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
         recyclerView.setAdapter(new ProductsDataAdapter(activity,mId,mNames,mDescriptions,mPrices,mLocations,mCategories,mImageResIds,mUserId));
         //NetworkConnector.getInstance().updateProductsFeed(this);
+
+
+
         return view;
 
     }

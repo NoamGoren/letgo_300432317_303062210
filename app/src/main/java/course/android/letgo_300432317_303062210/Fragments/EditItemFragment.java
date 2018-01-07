@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -88,7 +89,7 @@ public class EditItemFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 		final View rootView = inflater.inflate(R.layout.fragment_item, container, false);
-		
+
 		itemTitleView = (EditText) rootView.findViewById(R.id.item_title_txt);
 		itemDescriptionView = (EditText) rootView.findViewById(R.id.item_desc_txt);
 		itemLocationView = (EditText) rootView.findViewById(R.id.item_location_txt);
@@ -99,7 +100,7 @@ public class EditItemFragment extends Fragment {
 
 		itemPriceView = (EditText) rootView.findViewById(R.id.item_price_txt);
 
-		
+
 		itemSaveBtn = (Button) rootView.findViewById(R.id.save_item_btn);
 		itemImage1 = (ImageView) rootView.findViewById(R.id.item_img1);
 
@@ -172,46 +173,46 @@ public class EditItemFragment extends Fragment {
 
 
 	}
-	
 
-	
+
+
 	//delete image
 	private OnClickListener delImage1Listener= new OnClickListener() {
-		
+
 		@Override
 		public void onClick(View arg0) {
-			
+
 			final String title = "Delete Photo";
 			final String msg = "Do you want to delete this photo? ";
-			
+
 			   new AlertDialog.Builder(ctx)
 				  .setTitle(title)
 				  .setMessage(msg)
 				  .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
 				    public void onClick(DialogInterface dialog, int whichButton) {
-				    
+
 						Product infoItem = MyInfoManager.getInstance().getSelectedItem();
 						if(infoItem!=null){
-							
+
 							infoItem.setImage1(null);
 							itemImage1.setVisibility(View.GONE);
 							itemImage1.setImageBitmap(null);
 							itemImage1.destroyDrawingCache();
-						}			
+						}
 				    }
 				  })
 				  .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 				    public void onClick(DialogInterface dialog, int whichButton) {
 				    }
 				  })
-				  .show(); 
-			
+				  .show();
+
 		}
 	};
-	
+
 	//Add photo
 private OnClickListener addPhotoListener = new OnClickListener() {
-		
+
 		@Override
 		public void onClick(View arg0) {
 
@@ -225,10 +226,12 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 			String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 			String imageFileName = "img_" + timeStamp + ".jpeg";
 			output=new File(dir, imageFileName);
-			i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(output));
+      Uri photoURI = FileProvider.getUriForFile(ctx, ctx.getApplicationContext().getPackageName() + ".my.package.name.provider", output);
+			i.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+
 
 			startActivityForResult(i, REQUEST_TAKE_PHOTO);
-			
+
 		}
 	};
 
@@ -305,12 +308,12 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 
 	//delete item
 	private OnClickListener deleteItemListener = new OnClickListener() {
-		
+
 		@Override
 		public void onClick(View arg0) {
-			
+
 			try {
-			
+
 
 				Product item =MyInfoManager.getInstance().getSelectedItem();
 				if(item!=null){
@@ -330,14 +333,14 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 //				ft.replace(R.id.content_frame, itemlistfragment);
 //				ft.addToBackStack(null);
 //				ft.commit();
-				
+
 			} catch (Throwable e) {
 				e.printStackTrace();
-			}	
-			
+			}
+
 		}
 	};
-	
+
 
 
     /**
@@ -350,7 +353,7 @@ private OnClickListener addPhotoListener = new OnClickListener() {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         try {
 
-        	
+
 			if (requestCode == REQUEST_TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
 
 
@@ -364,7 +367,7 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 					MyInfoManager.getInstance().setSelectedItem(product);
 				}
 
-				
+
 			   Bitmap bitmap =  getScaledImageFromFilePath(output.getAbsolutePath());
 			   if(bitmap!=null){
 				    if(product!=null){
@@ -375,13 +378,13 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 				    }
 
 			   }
-			} 
+			}
 
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
     }
-    
+
 
   //Create Image from file path
     private Bitmap getScaledImageFromFilePath(String imagePath) {

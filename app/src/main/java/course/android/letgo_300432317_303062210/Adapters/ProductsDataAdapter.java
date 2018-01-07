@@ -6,15 +6,22 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.FacebookSdk;
+
 import course.android.letgo_300432317_303062210.Fragments.ProductsDetailsFragment;
 import course.android.letgo_300432317_303062210.R;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 
 /**
  * Created by admin on 11/22/2016.
@@ -85,6 +92,7 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
                 args.putString(ProductsDetailsFragment.ARGUMENT_USER_ID, userId);
                 detailsFragment.setArguments(args);
                 // open fragment
+
                 FragmentManager fm = ((Activity)context).getFragmentManager();
                 FragmentTransaction tr= fm.beginTransaction();
                 tr.replace(R.id.root_layout, detailsFragment);
@@ -102,21 +110,36 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
 }
 // ViewHolder class describes an item view and metadata about its place within the RecyclerView.
 class ViewHolder extends RecyclerView.ViewHolder {
+
     // Views
     public ImageView mImageView;
-    public TextView mNameTextView;
+    public ImageButton favoriteButton;
+    public boolean isEnable=false;
+    //public TextView mNameTextView;
 
     public ViewHolder(View itemView) {
         super(itemView);
 
         // Get references to image and name.
         mImageView = (ImageView) itemView.findViewById(R.id.image);
-       mNameTextView = (TextView) itemView.findViewById(R.id.name);
+      favoriteButton=(ImageButton) itemView.findViewById(R.id.favorite_button);
+      favoriteButton.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          if (isEnable){
+            favoriteButton.setImageResource(android.R.drawable.btn_star_big_off);
+          }else{
+            favoriteButton.setImageResource(android.R.drawable.btn_star_big_on);
+          }
+          isEnable = !isEnable;
+        }
+      });
+       //mNameTextView = (TextView) itemView.findViewById(R.id.name);
     }
 
     public void setData(Bitmap imageResId, String name) {
         mImageView.setImageBitmap(imageResId);
-        mNameTextView.setText(name);
+        //mNameTextView.setText(name);
     }
 }
 

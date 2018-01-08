@@ -38,7 +38,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>UploadProductServlet</servlet-name>
-        <url-pattern>/upload_post</url-pattern>
+        <url-pattern>/upload_product</url-pattern>
     </servlet-mapping>
 
     <servlet>

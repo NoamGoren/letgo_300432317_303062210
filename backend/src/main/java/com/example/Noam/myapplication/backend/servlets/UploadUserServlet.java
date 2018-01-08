@@ -66,7 +66,7 @@ public class UploadUserServlet extends HttpServlet {
         String respPage = RESOURCE_FAIL_TAG;
         try {
 
-            System.out.println("======= upload PostInfo with image Servlet =======");
+            System.out.println("======= upload User =======");
             // Parse the incoming HTTP request
             // Commons takes over incoming request at this point
             // Get an iterator for all the data that was sent

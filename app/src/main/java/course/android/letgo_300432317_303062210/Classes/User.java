@@ -14,7 +14,7 @@ public class User {
 
 
     private String name;
-
+    private List<Product> favoritesProducts;
 
     public User() {
 
@@ -28,8 +28,12 @@ public class User {
     // constructor without id
     public User(String name) {
         this.name = name;
+      favoritesProducts=new ArrayList<Product>();
     }
 
+    public List<Product> getFavoritesProducts(){
+      return  favoritesProducts;
+    }
 
 
     //getters and setters

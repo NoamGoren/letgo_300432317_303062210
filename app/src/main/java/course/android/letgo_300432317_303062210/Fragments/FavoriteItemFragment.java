@@ -71,9 +71,10 @@ public class FavoriteItemFragment extends Fragment  {
 		sellingItemBtn  = (Button) rootView.findViewById(R.id.sellingItems);
 		sellingItemBtn.setOnClickListener(sellingItemListener);
 
-//		List<Product> list = MyInfoManager.getInstance().getFolderItems(folder);
-//		adapter = new InfoItemListAdapter(ctx, R.layout.item_list_item, list);
-//		itemsList.setAdapter(adapter);
+		User user = MyInfoManager.getInstance().readFolder("ishai");
+    List<Product> list=user.getFavoritesProducts();
+		adapter = new InfoItemListAdapter(ctx, R.layout.item_list_item, list);
+		itemsList.setAdapter(adapter);
 
 		//NetworkConnector.getInstance().updateProductsFeed(this);
 		return rootView;

@@ -39,17 +39,33 @@ public class NetworkConnector {
     private  final String BASE_URL = HOST_URL + "app_res";
 
     private int TIME_OUT = 10000;
-    public static  int GET_ALL_PRODUCTS_JSON_REQ = 0;
-    public static final int INSERT_USER_REQ = 1;
-   public static final int DELETE_USER_REQ = 2;
+//    public static  int GET_ALL_PRODUCTS_JSON_REQ = 0;
+//    public static final int INSERT_USER_REQ = 1;
+//   public static final int DELETE_USER_REQ = 2;
+//
+//    public static final int DELETE_PRODUCT_REQ = 7;
+//    public static final int GET_PRODUCT_IMAGE_REQ = 4;
+//
+//    public static final int GET_PRODUCTS_OF_USER_JSON_REQ = 5;
+//
+//    public static final int INSERT_PRODUCT_REQ = 6;
+//    public static  int GET_ALL_USERS_JSON_REQ = 3;
 
-    public static final int DELETE_PRODUCT_REQ = 3;
-    public static final int GET_PRODUCT_IMAGE_REQ = 4;
+  public static final int INSERT_USER_REQ = 1;//working
+  public static final int DELETE_USER_REQ = 2;//working
+  public static final int GET_ALL_USERS_JSON_REQ = 3;//working
+  public static final int GET_USER_JSON_REQ = 4; //working
 
-    public static final int GET_PRODUCTS_OF_USER_JSON_REQ = 5;
+  //products
+  public static final int GET_ALL_PRODUCTS_JSON_REQ = 5; //working
+  public static final int INSERT_PRODUCT_REQ = 6;//working
+  public static final int DELETE_PRODUCT_REQ = 7;//working
+  public static final int GET_PRODUCT_IMAGE_REQ = 8;//working
+  public static final int GET_PRODUCTS_OF_USER_JSON_REQ = 9; //working
+  public static final int GET_PRODUCT_JSON_REQ = 10; //working
 
-    public static final int INSERT_PRODUCT_REQ = 6;
-    public static  int GET_ALL_USERS_JSON_REQ = 7;
+
+
 
     private static final String USER_NAME = "name";
     private static final String USER_ID = "userId";
@@ -373,7 +389,7 @@ public class NetworkConnector {
 
             case DELETE_USER_REQ:{
                 builder.appendQueryParameter(REQ , String.valueOf(requestCode));
-                builder.appendQueryParameter(USER_ID , user.getName());
+                builder.appendQueryParameter("name" , user.getName());
 
                 String query = builder.build().getEncodedQuery();
                 addToRequestQueue(query, listener);

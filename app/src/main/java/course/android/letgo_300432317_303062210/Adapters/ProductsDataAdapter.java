@@ -119,9 +119,9 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
           }else{
             Product item= MyInfoManager.getInstance().readItem(id);
             User user=MyInfoManager.getInstance().readFolder("ishai");
-            List<Product> favoriteList=user.getFavoritesProducts();
-            favoriteList.add(item);
-            user.getFavoritesProducts();
+            user.setFavoritesProducts(item);
+
+
 
             viewHolder.getFavoriteButton().setImageResource(android.R.drawable.btn_star_big_on);
           }

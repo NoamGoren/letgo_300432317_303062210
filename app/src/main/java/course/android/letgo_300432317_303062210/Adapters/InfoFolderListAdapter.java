@@ -75,6 +75,7 @@ public class InfoFolderListAdapter extends ArrayAdapter<User> {
 					public void onClick(DialogInterface dialog, int whichButton) {
 						MyInfoManager.getInstance().deleteFolder(currentFolder);
 						folders.remove(currentFolder);
+            MyInfoManager.getInstance().deleteFolder(currentFolder);
 						InfoFolderListAdapter.this.remove(currentFolder);
 						InfoFolderListAdapter.this.notifyDataSetChanged();
 					}

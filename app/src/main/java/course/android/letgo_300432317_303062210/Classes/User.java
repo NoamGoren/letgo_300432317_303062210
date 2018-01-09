@@ -17,7 +17,7 @@ public class User {
     private List<Product> favoritesProducts;
 
     public User() {
-
+      favoritesProducts=new ArrayList<Product>();
     }
 
     // constructor without name
@@ -45,6 +45,10 @@ public class User {
     }
     public void setName(String name) {
         this.name = name;
+    }
+    public void setFavoritesProducts(Product product){
+      favoritesProducts.add(product);
+
     }
 
     public static List<User> parseJson(JSONObject json) {

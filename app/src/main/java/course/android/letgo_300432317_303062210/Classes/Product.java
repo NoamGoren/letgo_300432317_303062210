@@ -37,12 +37,14 @@ public class Product {
 
     //constructor with title and des
     public Product(String title, String description) {
+        this.id = generateId();
         this.title = title;
         this.description=description;
     }
 
     //constructor with title, desc , location
     public Product(String title, String description, String location) {
+        this.id = generateId();
         this.title = title;
         this.description=description;
         this.location=location;
@@ -50,6 +52,7 @@ public class Product {
 
     //constructor without description and price
     public Product(String title, Bitmap image1,String loaction,String category) {
+        //this.id = generateId();
         this.title = title;
         this.location=loaction;
         this.category=category;
@@ -58,6 +61,7 @@ public class Product {
     }
     //constructor without description
     public Product(String title, Bitmap image1,String location,String category,String price) {
+        //this.id = generateId();
         this.title = title;
         this.location=location;
         this.category=category;
@@ -66,6 +70,7 @@ public class Product {
     }
     //constructor without price
     public Product(String title, String description, Bitmap image1,String location,String category) {
+        //this.id = generateId();
         this.title = title;
         this.description = description;
         this.location=location;
@@ -75,6 +80,7 @@ public class Product {
 
     // costructor without image,userId, id
     public Product(String title, String description,String location,String category,String price) {
+        this.id = generateId();
         this.title = title;
         this.description = description;
         this.location = location;
@@ -85,8 +91,8 @@ public class Product {
 
 
     //full costructor
-    public Product(String id,String title, String description, Bitmap image1,String location,String category,String price,String userId) {
-        this.id=id;
+    public Product(String title, String description, Bitmap image1,String location,String category,String price,String userId) {
+        //this.id = generateId();
         this.title = title;
         this.description = description;
         this.location=location;
@@ -97,25 +103,28 @@ public class Product {
     }
 
     // costructor without image
-    public Product(String id, String title, String description, String price, String location, String category, String userId) {
-        this.id=id;
+    public Product(String title, String description, String price, String location, String category, String userId) {
+        this.id = generateId();
         this.title = title;
         this.description = description;
         this.price=price;
         this.location=location;
         this.category=category;
-
         this.userId=userId;
     }
 
-    // costructor without image and user_id
-    public Product(String id, String title, String description, String location, String category, String price) {
-        this.id=id;
-        this.title = title;
-        this.description = description;
-        this.location=location;
-        this.price=price;
-        this.category=category;
+//    // costructor without image and user_id
+//    public Product(String title, String description, String location, String category, String price) {
+//        this.id = generateId();
+//        this.title = title;
+//        this.description = description;
+//        this.location=location;
+//        this.price=price;
+//        this.category=category;
+//    }
+
+    private String generateId() {
+        return "product" + System.currentTimeMillis();
     }
 
     //getters and setters

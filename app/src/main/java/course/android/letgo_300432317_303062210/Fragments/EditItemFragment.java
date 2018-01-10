@@ -40,7 +40,7 @@ public class EditItemFragment extends Fragment {
 
 	//The Fragment show's the edit screen for each item
 
-	private EditText itemIdView = null;
+	//private EditText itemIdView = null;
 	private EditText itemTitleView = null;
 	private EditText itemDescriptionView = null;
 	private EditText itemPriceView = null;
@@ -57,7 +57,7 @@ public class EditItemFragment extends Fragment {
 
 	private Activity ctx = null;
 
-    static final int REQUEST_TAKE_PHOTO = 111;
+	static final int REQUEST_TAKE_PHOTO = 111;
 	private static final int PHOTO_W = 400;
 	private static final int PHOTO_H = 400;
 
@@ -93,7 +93,7 @@ public class EditItemFragment extends Fragment {
 		itemTitleView = (EditText) rootView.findViewById(R.id.item_title_txt);
 		itemDescriptionView = (EditText) rootView.findViewById(R.id.item_desc_txt);
 		itemLocationView = (EditText) rootView.findViewById(R.id.item_location_txt);
-		itemIdView = (EditText) rootView.findViewById(R.id.item_id_txt);
+		//itemIdView = (EditText) rootView.findViewById(R.id.item_id_txt);
 
 		//String category=catSpi.getSelectedItem().toString();
 		//itemCategoryView = (EditText) rootView.findViewById(R.id.category_spinner);
@@ -139,7 +139,7 @@ public class EditItemFragment extends Fragment {
 			itemTitleView.setText(product.getTitle());
 			itemDescriptionView.setText(product.getDescription());
 			itemLocationView.setText(product.getLocation());
-			itemIdView.setVisibility(View.INVISIBLE);
+			//itemIdView.setVisibility(View.INVISIBLE);
 			//String category = infoItem.getCategory();
 
 			categorySpinner.setSelection(0);
@@ -185,33 +185,33 @@ public class EditItemFragment extends Fragment {
 			final String title = "Delete Photo";
 			final String msg = "Do you want to delete this photo? ";
 
-			   new AlertDialog.Builder(ctx)
-				  .setTitle(title)
-				  .setMessage(msg)
-				  .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-				    public void onClick(DialogInterface dialog, int whichButton) {
+			new AlertDialog.Builder(ctx)
+					.setTitle(title)
+					.setMessage(msg)
+					.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
 
-						Product infoItem = MyInfoManager.getInstance().getSelectedItem();
-						if(infoItem!=null){
+							Product infoItem = MyInfoManager.getInstance().getSelectedItem();
+							if(infoItem!=null){
 
-							infoItem.setImage1(null);
-							itemImage1.setVisibility(View.GONE);
-							itemImage1.setImageBitmap(null);
-							itemImage1.destroyDrawingCache();
+								infoItem.setImage1(null);
+								itemImage1.setVisibility(View.GONE);
+								itemImage1.setImageBitmap(null);
+								itemImage1.destroyDrawingCache();
+							}
 						}
-				    }
-				  })
-				  .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-				    public void onClick(DialogInterface dialog, int whichButton) {
-				    }
-				  })
-				  .show();
+					})
+					.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int whichButton) {
+						}
+					})
+					.show();
 
 		}
 	};
 
 	//Add photo
-private OnClickListener addPhotoListener = new OnClickListener() {
+	private OnClickListener addPhotoListener = new OnClickListener() {
 
 		@Override
 		public void onClick(View arg0) {
@@ -226,7 +226,7 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 			String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 			String imageFileName = "img_" + timeStamp + ".jpeg";
 			output=new File(dir, imageFileName);
-      Uri photoURI = FileProvider.getUriForFile(ctx, ctx.getApplicationContext().getPackageName() + ".my.package.name.provider", output);
+			Uri photoURI = FileProvider.getUriForFile(ctx, ctx.getApplicationContext().getPackageName() + ".my.package.name.provider", output);
 			i.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 
 
@@ -237,7 +237,7 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 
 
 
-			//Save item
+	//Save item
 	private OnClickListener saveItemListener = new OnClickListener() {
 
 		@Override
@@ -245,7 +245,7 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 
 			try {
 				String userId=MyInfoManager.getInstance().getSelectedFolder().getName();
-				String id= itemIdView.getText().toString();
+				//String id= itemIdView.getText().toString();
 				String title=itemTitleView.getText().toString();
 				String description = itemDescriptionView.getText().toString();
 				String location = itemLocationView.getText().toString();
@@ -255,15 +255,15 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 				Product item =MyInfoManager.getInstance().getSelectedItem();
 				//created item without pic
 				if(item==null){
-					 item = new Product(id,title,description,price,location,category,userId);
-					 MyInfoManager.getInstance().createItem(item);
+					item = new Product(title,description,price,location,category,userId);
+					MyInfoManager.getInstance().createItem(item);
 				}
 				//in case the user took a photo
 				else{
 
 					String id2= MyInfoManager.getInstance().getSelectedItem().getId();
 					if(item.getId().equals(NEW_ITEM_TAG)){
-						item.setId(id);
+						item.setId("product" + System.currentTimeMillis());
 					}else{
 						item.setId(id2);
 					}
@@ -276,12 +276,12 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 					item.setUserId(userId);
 
 
-					 if(photoFlag&&newFlag){
-					 MyInfoManager.getInstance().createItem(item);
-					 }
-					 else{
-						 MyInfoManager.getInstance().updateItem(item);
-				 }
+					if(photoFlag&&newFlag){
+						MyInfoManager.getInstance().createItem(item);
+					}
+					else{
+						MyInfoManager.getInstance().updateItem(item);
+					}
 				}
 
 
@@ -317,7 +317,7 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 
 				Product item =MyInfoManager.getInstance().getSelectedItem();
 				if(item!=null){
-					 MyInfoManager.getInstance().deleteItem(item);
+					MyInfoManager.getInstance().deleteItem(item);
 				}
 
 				Toast.makeText(ctx,
@@ -343,15 +343,15 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 
 
 
-    /**
-     * The activity returns with the photo.
-     * @param requestCode
-     * @param resultCode
-     * @param data
-     */
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        try {
+	/**
+	 * The activity returns with the photo.
+	 * @param requestCode
+	 * @param resultCode
+	 * @param data
+	 */
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		try {
 
 
 			if (requestCode == REQUEST_TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
@@ -368,29 +368,29 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 				}
 
 
-			   Bitmap bitmap =  getScaledImageFromFilePath(output.getAbsolutePath());
-			   if(bitmap!=null){
-				    if(product!=null){
+				Bitmap bitmap =  getScaledImageFromFilePath(output.getAbsolutePath());
+				if(bitmap!=null){
+					if(product!=null){
 
-				        itemImage1.setImageBitmap(bitmap);
+						itemImage1.setImageBitmap(bitmap);
 						itemImage1.setVisibility(View.VISIBLE);
 						product.setImage1(bitmap);
-				    }
+					}
 
-			   }
+				}
 			}
 
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
-    }
+	}
 
 
-  //Create Image from file path
-    private Bitmap getScaledImageFromFilePath(String imagePath) {
-        // Get the dimensions of the View
-    	Bitmap scaledBitmap = null;
-        try {
+	//Create Image from file path
+	private Bitmap getScaledImageFromFilePath(String imagePath) {
+		// Get the dimensions of the View
+		Bitmap scaledBitmap = null;
+		try {
 			Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
 
 			Matrix matrix = new Matrix();
@@ -402,8 +402,8 @@ private OnClickListener addPhotoListener = new OnClickListener() {
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
-        return scaledBitmap;
-    }
+		return scaledBitmap;
+	}
 
 }
 

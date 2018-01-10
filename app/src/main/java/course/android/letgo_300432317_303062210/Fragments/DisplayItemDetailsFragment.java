@@ -52,6 +52,7 @@ public class DisplayItemDetailsFragment extends Fragment {
 
 		itemIdView = (TextView) rootView.findViewById(R.id.item_id_txt);
 		itemIdView.setText(item.getId());
+		itemIdView.setVisibility(View.INVISIBLE);
 
 		itemTitleView = (TextView) rootView.findViewById(R.id.item_title_txt);
 		itemTitleView.setText(item.getTitle());

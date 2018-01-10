@@ -39,6 +39,7 @@ public class ProductsDetailsFragment extends Fragment {
         Bundle args = getArguments();
 
         idTextView.setText(args.getString(ARGUMENT_ID));
+        idTextView.setVisibility(View.INVISIBLE);
         nameTextView.setText(args.getString(ARGUMENT_NAME));
         descriptionTextView.setText(args.getString(ARGUMENT_DESCRIPTION));
         priceTextView.setText(args.getString(ARGUMENT_PRICE));

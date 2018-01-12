@@ -14,10 +14,10 @@ public class User {
 
 
     private String name;
-    private List<Product> favoritesProducts;
+    private static List<Product> favoritesProducts=new ArrayList<Product>();
 
     public User() {
-      favoritesProducts=new ArrayList<Product>();
+
     }
 
     // constructor without name
@@ -28,11 +28,13 @@ public class User {
     // constructor without id
     public User(String name) {
         this.name = name;
-      favoritesProducts=new ArrayList<Product>();
+
     }
 
     public List<Product> getFavoritesProducts(){
+      int a=this.favoritesProducts.size();
       return  favoritesProducts;
+
     }
 
 
@@ -46,12 +48,32 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+
+
     public void setFavoritesProducts(Product product){
-      favoritesProducts.add(product);
+      try{
+        this.favoritesProducts.add(product);
+        int a=favoritesProducts.size();
+      }catch(Exception e){
+
+      }
+
 
     }
 
-    public static List<User> parseJson(JSONObject json) {
+  public void RemoveFavoritesProducts(Product product){
+    try{
+     favoritesProducts.remove(product);
+
+    }catch(Exception e){
+
+    }
+
+
+  }
+
+
+  public static List<User> parseJson(JSONObject json) {
 
         List<User> users = null;
         try {
@@ -63,8 +85,8 @@ public class User {
             for (int i = 0; i < foldersJsonArr.length(); i++) {
                 try {
                     JSONObject iObj = foldersJsonArr.getJSONObject(i);
-                    User user = new User();
-                    user.setName(iObj.getString("name"));
+                    User user = new User(iObj.getString("name"));
+                    //user.setName(iObj.getString("name"));
 
                     users.add(user);
 

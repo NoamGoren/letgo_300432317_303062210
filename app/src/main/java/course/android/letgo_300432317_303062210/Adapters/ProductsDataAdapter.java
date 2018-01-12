@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -19,6 +20,7 @@ import com.facebook.FacebookSdk;
 
 import java.util.List;
 
+import course.android.letgo_300432317_303062210.Activities.HomeActivity;
 import course.android.letgo_300432317_303062210.Classes.Product;
 import course.android.letgo_300432317_303062210.Classes.User;
 import course.android.letgo_300432317_303062210.DB.MyInfoManager;
@@ -45,7 +47,7 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
     protected Bitmap[] mImageResIds;
     protected String[] mUserId;
 
-    public boolean isEnable=false;
+    public static boolean isEnable;
 
     protected Context context;
 
@@ -81,6 +83,27 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
         final Bitmap imageResId = mImageResIds[position];
         final String userId = mUserId[position];
         viewHolder.setData(imageResId, name);
+      User user=MyInfoManager.getInstance().readFolder("ishai");
+      Product item= MyInfoManager.getInstance().readItem(id);
+      boolean test=user.getFavoritesProducts().contains(item);
+      List<Product> afb=user.getFavoritesProducts();
+        boolean flag=false;
+      for (Product product:afb) {
+        if(product.getId().equals(item.getId())){
+          isEnable=true;
+          flag=true;
+        }
+
+      }
+      if (flag){
+        viewHolder.getFavoriteButton().setImageResource(android.R.drawable.btn_star_big_on);
+      }else{
+        int a=0;
+
+
+        viewHolder.getFavoriteButton().setImageResource(android.R.drawable.btn_star_big_off);
+      }
+
 
 
         viewHolder.mImageView.setOnClickListener(new View.OnClickListener() {
@@ -114,18 +137,40 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
         viewHolder.favoriteButton.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-          if (isEnable){
-           viewHolder.getFavoriteButton().setImageResource(android.R.drawable.btn_star_big_off);
-          }else{
-            Product item= MyInfoManager.getInstance().readItem(id);
-            User user=MyInfoManager.getInstance().readFolder("ishai");
+          User user=MyInfoManager.getInstance().readFolder("ishai");
+          Product item= MyInfoManager.getInstance().readItem(id);
+//          user.setFavoritesProducts(item);
+        try{
+          List<Product> afb=user.getFavoritesProducts();
+          if (!isEnable){
             user.setFavoritesProducts(item);
-
-
-
             viewHolder.getFavoriteButton().setImageResource(android.R.drawable.btn_star_big_on);
+
+          }else{
+            Product p1=null;
+            for (Product product:afb) {
+              if(product.getId().equals(item.getId())){
+                p1=product;
+
+              }
+
+            }
+
+
+            user.RemoveFavoritesProducts(p1);
+            List<Product>ap=user.getFavoritesProducts();
+            int ahp=ap.size();
+            viewHolder.getFavoriteButton().setImageResource(android.R.drawable.btn_star_big_off);
           }
           isEnable = !isEnable;
+        }catch(Exception e){
+
+          Intent intent= new Intent(context, HomeActivity.class);
+
+          context.startActivity(intent);
+        }
+
+
         }
       });
     }
@@ -154,6 +199,8 @@ class ViewHolder extends RecyclerView.ViewHolder {
         // Get references to image and name.
         mImageView = (ImageView) itemView.findViewById(R.id.image);
         favoriteButton=(ImageButton) itemView.findViewById(R.id.favorite_button);
+
+
 
        //mNameTextView = (TextView) itemView.findViewById(R.id.name);
     }

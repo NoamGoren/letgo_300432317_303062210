@@ -82,6 +82,7 @@ public class ItemListFragment extends Fragment  {
 		adapter = new InfoItemListAdapter(ctx, R.layout.item_list_item, list);
 		itemsList.setAdapter(adapter);
 
+
 		//NetworkConnector.getInstance().updateProductsFeed(this);
 		return rootView;
 	}

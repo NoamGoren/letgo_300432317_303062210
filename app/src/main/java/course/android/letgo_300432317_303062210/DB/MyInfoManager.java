@@ -53,7 +53,7 @@ public class MyInfoManager implements NetworkResListener {
 				instance = null;
 			}
 		}
-		
+
 		private void clean() {
 
 		}
@@ -103,7 +103,7 @@ public class MyInfoManager implements NetworkResListener {
 
 	public Context getContext() {
 			return context;
-			
+
 		}
 		//Open the Database
 		public void openDataBase(Context context) {
@@ -263,6 +263,15 @@ public class MyInfoManager implements NetworkResListener {
 			}
 			return result;
 		}
+
+		public List<Product> getFavoriteItems(User user){
+      List<Product> result = new ArrayList<Product>();
+      if (db != null && user != null) {
+        result = db.getAllFavoriteItems(user);
+      }
+      return result;
+
+    }
 		//getters and setters for SelectedFolder and SelectedItem
 		public User getSelectedFolder() {
 			return selectedFolder;

@@ -75,6 +75,11 @@ public class FavoriteItemFragment extends Fragment  {
     List<Product> list=user.getFavoritesProducts();
 		adapter = new InfoItemListAdapter(ctx, R.layout.item_list_item, list);
 		itemsList.setAdapter(adapter);
+    int a=list.size();
+
+//    List<Product> list = MyInfoManager.getInstance().getFolderItems(folder);
+//    adapter = new InfoItemListAdapter(ctx, R.layout.item_list_item, list);
+//    itemsList.setAdapter(adapter);
 
 		//NetworkConnector.getInstance().updateProductsFeed(this);
 		return rootView;

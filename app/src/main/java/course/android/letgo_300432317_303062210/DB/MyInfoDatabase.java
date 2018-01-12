@@ -234,8 +234,8 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 			if (cursor != null)
 				cursor.moveToFirst();
 
-			folder = new User();
-			folder.setName(cursor.getString(0));
+			folder = new User(cursor.getString(0));
+			//folder.setName(cursor.getString(0));
 
 
 		} catch (Throwable t) {
@@ -331,9 +331,10 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 	}
 
 	private User cursorToFolder(Cursor cursor) {
-		User result = new User();
+		User result = null;
 		try {
-			result.setName(cursor.getString(0));
+			//result.setName(cursor.getString(0));
+      result=new User(cursor.getString(0));
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}
@@ -499,35 +500,68 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
 
 	public List<Product> getAllItemsOfFolder(User folder) {
-		List<Product> result = new ArrayList<Product>();
-		Cursor cursor = null;
-		try {
+      List<Product> result = new ArrayList<Product>();
+    Cursor cursor = null;
+    try {
 
-			String folderName = folder.getName();
-			cursor = db.query(TABLE_PRODUCTS_NAME, TABLE_ITEM_COLUMNS, ITEM_COLUMN_FOLDERNAME +" = ?",
-					new String[] { folderName }, null, null,
-					null, null);
+      String folderName = folder.getName();
+      cursor = db.query(TABLE_PRODUCTS_NAME, TABLE_ITEM_COLUMNS, ITEM_COLUMN_FOLDERNAME +" = ?",
+        new String[] { folderName }, null, null,
+        null, null);
 
-			if(cursor!=null && cursor.getCount()>0){
-				cursor.moveToFirst();
-				while (!cursor.isAfterLast()) {
-					Product item = cursorToItem(cursor);
-					result.add(item);
-					cursor.moveToNext();
-				}
-			}
+      if(cursor!=null && cursor.getCount()>0){
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+          Product item = cursorToItem(cursor);
+          result.add(item);
+          cursor.moveToNext();
+        }
+      }
 
-		} catch (Throwable t) {
-			t.printStackTrace();
-		}
-		finally {
-			if(cursor!=null) {
-				// make sure to close the cursor
-				cursor.close();
-			}
-		}
-		return result;
-	}
+    } catch (Throwable t) {
+      t.printStackTrace();
+    }
+    finally {
+      if(cursor!=null) {
+        // make sure to close the cursor
+        cursor.close();
+      }
+    }
+    return result;
+  }
+
+
+  public List<Product> getAllFavoriteItems(User user) {
+    List<Product> result = new ArrayList<Product>();
+    Cursor cursor = null;
+    try {
+
+      String folderName = user.getName();
+      cursor = db.query(TABLE_PRODUCTS_NAME, TABLE_ITEM_COLUMNS, ITEM_COLUMN_FOLDERNAME +" = ?",
+        new String[] { folderName }, null, null,
+        null, null);
+
+      if(cursor!=null && cursor.getCount()>0){
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+          Product item = cursorToItem(cursor);
+          result.add(item);
+          cursor.moveToNext();
+        }
+      }
+
+    } catch (Throwable t) {
+      t.printStackTrace();
+    }
+    finally {
+      if(cursor!=null) {
+        // make sure to close the cursor
+        cursor.close();
+      }
+    }
+    return result;
+  }
+
 
 	public void open() {
 		try {

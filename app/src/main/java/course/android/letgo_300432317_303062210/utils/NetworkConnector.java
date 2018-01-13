@@ -85,7 +85,7 @@ public class NetworkConnector {
 
 
     private static final String REQ = "req";
-    private static int REQ_TIRES =  3;//DefaultRetryPolicy.DEFAULT_MAX_RETRIES;
+    private static int REQ_TIRES =  1;//DefaultRetryPolicy.DEFAULT_MAX_RETRIES;
 
     private NetworkConnector() {
 
@@ -207,7 +207,7 @@ public class NetworkConnector {
                     public void onResponse(NetworkResponse response) {
                         try {
                             JSONObject obj = new JSONObject(new String(response.data));
-                            Toast.makeText(mCtx, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mCtx, obj.getString("result_code"), Toast.LENGTH_SHORT).show();
                             notifyProductUpdateListener(obj, ResStatus.SUCCESS, listener);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -374,7 +374,33 @@ public class NetworkConnector {
 
     }
 
-    public void sendRequestToServerFolder(int requestCode, User user, NetworkResListener listener){
+
+  public void sendImageRequestToServer(int requestCode, String productId, NetworkResListener listener){
+
+
+
+    Uri.Builder builder = new Uri.Builder();
+
+
+    switch (requestCode){
+
+      case GET_PRODUCT_IMAGE_REQ: {
+        builder.appendQueryParameter(REQ , String.valueOf(requestCode));
+        builder.appendQueryParameter(PRODUCT_ID , productId);
+
+        String query = builder.build().getEncodedQuery();
+        addImageRequestToQueue(query, listener);
+
+        break;
+      }
+    }
+
+
+
+  }
+
+
+  public void sendRequestToServerFolder(int requestCode, User user, NetworkResListener listener){
 
         if(user==null){
             return;

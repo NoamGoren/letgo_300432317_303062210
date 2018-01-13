@@ -302,32 +302,8 @@ public class ProductsResProvider {
             String userId = obj.getUserId();
 
 
-            if (imageBytes == null) {
-                try {
-                    imageBytes = getImage(id, conn);
-                }catch (Throwable e){
-                    System.out.println("no image for product "+ id);
-                }
-            }
-
-
-            result=true;
-            stt = (PreparedStatement) conn.prepareStatement(insert_sql);
+            stt = (PreparedStatement) conn.prepareStatement(select_sql);
             stt.setString(1, id);
-            stt.setString(2, title);
-            stt.setString(3, description);
-            stt.setString(4, price);
-            stt.setString(5, location);
-            stt.setString(6, category);
-            if (imageBytes != null) {
-                InputStream is = new ByteArrayInputStream(imageBytes);
-                stt.setBlob(7, is);
-
-            } else {
-
-                stt.setNull(7, Types.BLOB);
-            }
-            stt.setString(8, userId);
 
 
             if (stt.execute()) {
@@ -335,49 +311,53 @@ public class ProductsResProvider {
                 if (rs1.next()) {
                     // its execute update
                     ps = (PreparedStatement) conn.prepareStatement(update_sql);
-                    ps.setString(1, id);
-                    ps.setString(2, title);
-                    ps.setString(3, description);
-                    if (imageBytes != null) {
-                        InputStream is = new ByteArrayInputStream(imageBytes);
-                        ps.setBlob(7, is);
+                   //UPDATE products SET title=?, description=?, price=?, location=?, category=?, image=?, userId=? WHERE id=?
+                    ps.setString(1, title);
+                    ps.setString(2, description);
+                  ps.setString(3, price);
+                  ps.setString(4, location);
+                  ps.setString(5, category);
+                  if (imageBytes != null) {
+                    InputStream is = new ByteArrayInputStream(imageBytes);
+                    ps.setBlob(6, is);
 
-                    } else {
+                  } else {
 
-                        ps.setNull(7, Types.BLOB);
-                    }
-                    ps.setString(5, location);
-                    ps.setString(6, category);
-                    ps.setString(4, price);
-                    ps.setString(8, userId);
+                    ps.setNull(6, Types.BLOB);
+                  }
+                  ps.setString(7, userId);
+                  ps.setString(8, id);
+
+
+
+
 
                     // where
-                    ps.execute();
+                    boolean a = ps.execute();
 
                     result = true;
 
                 } else {
+                 // "INSERT INTO products (id,title,description,price,location,category,image,userId) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 
                     // its execute insert
                     ps = (PreparedStatement) conn.prepareStatement(insert_sql);
                     ps.setString(1, id);
                     ps.setString(2, title);
                     ps.setString(3, description);
-
-
-                    if (imageBytes != null) {
-                        InputStream is = new ByteArrayInputStream(imageBytes);
-                        ps.setBlob(7, is);
-
-                    } else {
-
-                        ps.setNull(7, Types.BLOB);
-                    }
-
-
+                  ps.setString(4, price);
                     ps.setString(5, location);
                     ps.setString(6, category);
-                    ps.setString(4, price);
+
+                  if (imageBytes != null) {
+                    InputStream is = new ByteArrayInputStream(imageBytes);
+                    ps.setBlob(7, is);
+
+                  } else {
+
+                    ps.setNull(7, Types.BLOB);
+                  }
+
                     ps.setString(8, userId);
 
                     ps.execute();

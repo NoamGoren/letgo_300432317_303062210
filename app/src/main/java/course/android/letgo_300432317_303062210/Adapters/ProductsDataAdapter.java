@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import com.facebook.FacebookSdk;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 import course.android.letgo_300432317_303062210.Activities.HomeActivity;
@@ -26,6 +28,9 @@ import course.android.letgo_300432317_303062210.Classes.User;
 import course.android.letgo_300432317_303062210.DB.MyInfoManager;
 import course.android.letgo_300432317_303062210.Fragments.ProductsDetailsFragment;
 import course.android.letgo_300432317_303062210.R;
+import course.android.letgo_300432317_303062210.utils.NetworkConnector;
+import course.android.letgo_300432317_303062210.utils.NetworkResListener;
+import course.android.letgo_300432317_303062210.utils.ResStatus;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
@@ -82,7 +87,7 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
         final String category = mCategories[position];
         final Bitmap imageResId = mImageResIds[position];
         final String userId = mUserId[position];
-        viewHolder.setData(imageResId, name);
+        viewHolder.setData(imageResId, name,id);
       User user=MyInfoManager.getInstance().readFolder("ishai");
       Product item= MyInfoManager.getInstance().readItem(id);
       boolean test=user.getFavoritesProducts().contains(item);
@@ -192,7 +197,7 @@ class ViewHolder extends RecyclerView.ViewHolder {
   }
 
     //public TextView mNameTextView;
-
+    private String prodid;
     public ViewHolder(View itemView) {
         super(itemView);
 
@@ -205,9 +210,48 @@ class ViewHolder extends RecyclerView.ViewHolder {
        //mNameTextView = (TextView) itemView.findViewById(R.id.name);
     }
 
-    public void setData(Bitmap imageResId, String name) {
+    public void setData(Bitmap imageResId, String name, String productid) {
+      this.prodid = productid;
         mImageView.setImageBitmap(imageResId);
         //mNameTextView.setText(name);
+
+
+      NetworkConnector.getInstance().sendImageRequestToServer(NetworkConnector.GET_PRODUCT_IMAGE_REQ, prodid, new NetworkResListener() {
+        @Override
+        public void onPreUpdate() {
+          //Toast.makeText(context,"start download img... id=" + post.getId(),Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onProductUpdate(byte[] res, ResStatus status) {
+
+        }
+
+        @Override
+        public void onProductUpdate(JSONObject res, ResStatus status) {
+
+        }
+        @Override
+        public void onUserUpdate(JSONObject res,ResStatus status){
+
+        }
+
+        @Override
+        public void onProductUpdate(Bitmap res, ResStatus status) {
+          //Toast.makeText(context,"download img finished...status " + status.toString(),Toast.LENGTH_SHORT).show();
+          if(status == ResStatus.SUCCESS){
+            if(res!=null) {
+              if(mImageView!=null) {
+                mImageView.setImageBitmap(res);
+              }
+
+              MyInfoManager.getInstance().updateProductImage(prodid,res);
+            }
+          }
+
+        }
+      });
+
     }
 }
 

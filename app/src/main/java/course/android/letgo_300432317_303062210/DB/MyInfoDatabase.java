@@ -137,6 +137,36 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 		return false;
 	}
 
+
+  public boolean createItemWithoutImg(Product product) {
+    long result = 0;
+    try {
+      result = -1;
+      // make values to be inserted
+      ContentValues values = new ContentValues();
+      values.put(ITEM_COLUMN_ID, product.getId());
+      values.put(ITEM_COLUMN_NAME, product.getTitle());
+      values.put(ITEM_COLUMN_DESCRIPTION, product.getDescription());
+      values.put(ITEM_COLUMN_PRICE, product.getPrice());
+      values.put(ITEM_COLUMN_LOCATION, product.getLocation());
+      values.put(ITEM_COLUMN_CATEGORY, product.getCategory());
+      values.put(ITEM_COLUMN_FOLDERNAME, product.getUserId());
+
+
+      // insert item
+      result=db.insert(TABLE_PRODUCTS_NAME, null, values);
+
+
+    } catch (Throwable t) {
+      t.printStackTrace();
+    }
+
+    if(result>0){
+      return true;
+    }
+    return false;
+  }
+
 	private byte[] getBitmapAsByteArray(Bitmap bitmap) {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		bitmap.compress(CompressFormat.PNG, 0, outputStream);
@@ -382,7 +412,38 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
 	}
 
-	public int updateProductImage(Product product) {
+
+  public boolean updateItemWithoutImage(Product item) {
+    long result=-1;
+
+    try {
+
+      // make values to be inserted
+      ContentValues values = new ContentValues();
+      values.put(ITEM_COLUMN_ID, item.getId());
+      values.put(ITEM_COLUMN_NAME, item.getTitle());
+      values.put(ITEM_COLUMN_DESCRIPTION, item.getDescription());
+      values.put(ITEM_COLUMN_PRICE,item.getPrice());
+      values.put(ITEM_COLUMN_LOCATION,item.getLocation());
+      values.put(ITEM_COLUMN_CATEGORY,item.getCategory());
+      values.put(ITEM_COLUMN_FOLDERNAME,item.getUserId());
+
+
+      // update
+      result = db.update(TABLE_PRODUCTS_NAME, values, ITEM_COLUMN_ID + " = ?",
+        new String[] { item.getId() });
+    } catch (Throwable t) {
+      t.printStackTrace();
+    }
+    if(result>0){
+      return true;
+    }
+    return false;
+
+
+  }
+
+	public int updateProductImage(String id, Bitmap bm) {
 
 		int cnt = 0;
 		try {
@@ -391,8 +452,8 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 			ContentValues values = new ContentValues();
 
 			//images
-			if (product.getImage1() != null) {
-				byte[] data = product.getImgAsByteArray(product.getImage1());
+			if (bm != null) {
+				byte[] data = Product.getImgAsByteArray(bm);
 				if (data != null && data.length > 0) {
 					values.put(ITEM_COLUMN__IMAGE1, data);
 				}
@@ -403,7 +464,7 @@ public class MyInfoDatabase extends SQLiteOpenHelper {
 
 			// update
 			cnt = db.update(TABLE_PRODUCTS_NAME, values, ITEM_COLUMN_ID + " = ?",
-					new String[] { product.getId() });
+					new String[] { id });
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}

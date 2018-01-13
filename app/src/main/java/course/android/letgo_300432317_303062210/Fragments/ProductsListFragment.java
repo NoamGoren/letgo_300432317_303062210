@@ -34,7 +34,7 @@ import course.android.letgo_300432317_303062210.utils.NetworkConnector;
  * Created by Ishai Levi on 11/20/2017.
  */
 
-public class ProductsListFragment extends Fragment {
+public class ProductsListFragment extends Fragment implements CallBackListener,NetworkResListener {
 
     private Bitmap[] mImageResIds;
     private String[] mNames;
@@ -47,7 +47,8 @@ public class ProductsListFragment extends Fragment {
     private TypedArray typedArray;
     private List<Product> p1;
 
-
+  private RecyclerView recyclerView = null;
+  private  Activity activity = null;
     //Called when a fragment is first attached to its context.
     @Override
     public void onAttach(Activity context) {
@@ -159,16 +160,53 @@ public class ProductsListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_product_list, container, false);
         Activity activity = getActivity();
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
         recyclerView.setAdapter(new ProductsDataAdapter(activity,mId,mNames,mDescriptions,mPrices,mLocations,mCategories,mImageResIds,mUserId));
-        //NetworkConnector.getInstance().updateProductsFeed(this);
+        NetworkConnector.getInstance().updateProductsFeed(this);
 
 
 
         return view;
 
     }
+
+  @Override
+  public void onSaveButtonClicked() {
+
+  }
+
+  @Override
+  public void onPreUpdate() {
+
+  }
+
+  @Override
+  public void onProductUpdate(byte[] res, ResStatus status) {
+
+  }
+
+  @Override
+  public void onProductUpdate(JSONObject res, ResStatus status) {
+      if(status.equals(ResStatus.SUCCESS) && res!=null){
+        MyInfoManager.getInstance().updateItems(res);
+        CreateResultArray("ALL");
+        //recyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
+        recyclerView.setAdapter(new ProductsDataAdapter(activity,mId,mNames,mDescriptions,mPrices,mLocations,mCategories,mImageResIds,mUserId));
+
+
+      }
+  }
+
+  @Override
+  public void onProductUpdate(Bitmap res, ResStatus status) {
+
+  }
+
+  @Override
+  public void onUserUpdate(JSONObject res, ResStatus status) {
+
+  }
 
 
 //    @Override

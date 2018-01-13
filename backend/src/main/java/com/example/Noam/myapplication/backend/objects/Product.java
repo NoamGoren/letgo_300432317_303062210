@@ -184,7 +184,7 @@ public class Product {
             productJson.put("price",product.getPrice());
             productJson.put("location",product.getLocation());
             productJson.put("category",product.getCategory());
-            productJson.put("image",product.getImage());
+           // productJson.put("image",product.getImage());
             productJson.put("userId",product.getUserId());
 
             jsonArray.add(productJson);

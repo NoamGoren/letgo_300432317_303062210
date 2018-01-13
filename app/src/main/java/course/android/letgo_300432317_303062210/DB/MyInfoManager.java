@@ -194,17 +194,17 @@ public class MyInfoManager implements NetworkResListener {
 		}
 		List<Product> products = Product.parseJson(res);
 		for(Product i:products){
-			if(!db.createItem(i)) {
-				db.updateItem(i);
+			if(!db.createItemWithoutImg(i)) {
+				db.updateItemWithoutImage(i);
 			}
 		}
 	}
 //TODO ask about itemId
-	public void updateProductImage(Product product){
-		if(product.getImage1()!=null) {
-			String itemId = product.getId();
+	public void updateProductImage(String id, Bitmap bm){
+		if(bm!=null) {
+			String itemId = id;
 			if(db!=null){
-				db.updateItem(product);
+				db.updateProductImage(id,bm);
 			}
 		}
 	}

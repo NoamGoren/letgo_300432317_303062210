@@ -133,17 +133,29 @@ public class HomeActivity extends AppCompatActivity
     }
 
 
-
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+            //Intent i = new Intent(HomeActivity.this,HomeActivity.class);
+            //startActivity(i);
         } else {
+            Intent i = new Intent(HomeActivity.this,HomeActivity.class);
+            startActivity(i);
             super.onBackPressed();
         }
     }
+
+//    @Override
+//    public void onBackPressed() {
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        if (drawer.isDrawerOpen(GravityCompat.START)) {
+//            drawer.closeDrawer(GravityCompat.START);
+//        } else {
+//            super.onBackPressed();
+//        }
+//    }
 
     public void changeFrag(int number){
 

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.FacebookSdk;
 
@@ -55,6 +56,7 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
     public static boolean isEnable;
 
     protected Context context;
+
 
     //Constructor
     public ProductsDataAdapter(Context context, String[] mId, String[] mNames, String[] mDescriptions,String[] mPrices,String[] mLocations,String[] mCategories,Bitmap[] mImageResIds,String[] mUserId) {
@@ -143,6 +145,7 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
         @Override
         public void onClick(View v) {
           User user=MyInfoManager.getInstance().readFolder("ishai");
+            //User user=MyInfoManager.getInstance().readFolder(userId);
           Product item= MyInfoManager.getInstance().readItem(id);
 //          user.setFavoritesProducts(item);
         try{
@@ -150,6 +153,10 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
           if (!isEnable){
             user.setFavoritesProducts(item);
             viewHolder.getFavoriteButton().setImageResource(android.R.drawable.btn_star_big_on);
+              Toast.makeText(context,
+                      "the product has been add to favorite list", Toast.LENGTH_LONG).show();
+
+
 
           }else{
             Product p1=null;
@@ -166,6 +173,8 @@ public  class ProductsDataAdapter extends RecyclerView.Adapter<ViewHolder> {
             List<Product>ap=user.getFavoritesProducts();
             int ahp=ap.size();
             viewHolder.getFavoriteButton().setImageResource(android.R.drawable.btn_star_big_off);
+              Toast.makeText(context,
+                      "the product has been remove from favorite list", Toast.LENGTH_LONG).show();
           }
           isEnable = !isEnable;
         }catch(Exception e){

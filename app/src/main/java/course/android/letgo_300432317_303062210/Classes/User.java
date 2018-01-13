@@ -14,7 +14,7 @@ public class User {
 
 
     private String name;
-    private static List<Product> favoritesProducts=new ArrayList<Product>();
+    static   List<Product> favoritesProducts=new ArrayList<Product>();
 
     public User() {
 

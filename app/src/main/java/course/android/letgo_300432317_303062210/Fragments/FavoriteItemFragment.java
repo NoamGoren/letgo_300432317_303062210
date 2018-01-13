@@ -72,6 +72,7 @@ public class FavoriteItemFragment extends Fragment  {
 		sellingItemBtn.setOnClickListener(sellingItemListener);
 
 		User user = MyInfoManager.getInstance().readFolder("ishai");
+		//User user = MyInfoManager.getInstance().getSelectedFolder();
     List<Product> list=user.getFavoritesProducts();
 		adapter = new InfoItemListAdapter(ctx, R.layout.item_list_item, list);
 		itemsList.setAdapter(adapter);
